@@ -1,5 +1,7 @@
 @file:Suppress("UnstableApiUsage")
+@file:OptIn(ExperimentalRoborazziApi::class)
 
+import com.github.takahirom.roborazzi.ExperimentalRoborazziApi
 import java.io.FileInputStream
 import java.util.Properties
 
@@ -11,7 +13,6 @@ plugins {
     id("kotlinx-serialization")
     id("io.github.takahirom.roborazzi")
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.screenshot)
 }
 
 configureCompilerOptions()
@@ -84,6 +85,22 @@ android {
     testOptions {
         unitTests {
             isIncludeAndroidResources = true
+            all {
+                it.systemProperties["robolectric.pixelCopyRenderMode"] = "hardware"
+            }
+        }
+    }
+
+    roborazzi {
+        generateComposePreviewRobolectricTests {
+            enable = true
+            packages = listOf("dev.johnoreilly.confetti.wear")
+            robolectricConfig = mapOf(
+                "sdk" to "[34]",
+                "qualifiers" to "RobolectricDeviceQualifiers.WearOSLargeRound",
+                "application" to "dev.johnoreilly.confetti.wear.app.KoinTestApp::class",
+            )
+            testerQualifiedClassName = "dev.johnoreilly.confetti.wear.roborazzi.ConfettiComposePreviewTester"
         }
     }
 
@@ -245,10 +262,13 @@ dependencies {
     testImplementation(libs.roborazzi)
     testImplementation(libs.roborazzi.compose)
     testImplementation(libs.roborazzi.rule)
+
+    testImplementation(libs.roborazzi.compose.preview.scanner.support)
+    testImplementation(libs.composable.preview.scanner)
+
+    // TODO check
     implementation(libs.coil.test)
     implementation(kotlin("test"))
-
-    screenshotTestImplementation(libs.androidx.compose.ui.tooling)
 }
 
 tasks.register<PlayStoreScreenshotTask>("generateImages") {

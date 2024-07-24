@@ -15,6 +15,12 @@ pluginManagement {
                 content {
                 }
             }
+
+            maven("https://jitpack.io") {
+                content {
+                    includeGroupByRegex("com.github.sergio-sastre.*")
+                }
+            }
         }
     }
 

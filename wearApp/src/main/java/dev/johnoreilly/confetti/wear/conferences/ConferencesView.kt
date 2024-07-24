@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalWearMaterialApi::class)
+
 package dev.johnoreilly.confetti.wear.conferences
 
 import androidx.activity.compose.ReportDrawnWhen
@@ -8,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.wear.compose.foundation.lazy.items
 import androidx.wear.compose.material.ChipDefaults
+import androidx.wear.compose.material.ExperimentalWearMaterialApi
 import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
 import androidx.wear.compose.ui.tooling.preview.WearPreviewFontScales
 import com.arkivanov.decompose.extensions.compose.subscribeAsState

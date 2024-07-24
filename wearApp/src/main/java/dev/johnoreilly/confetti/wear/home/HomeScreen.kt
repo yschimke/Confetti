@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalWearMaterialApi::class)
+@file:OptIn(ExperimentalWearMaterialApi::class, ExperimentalCoilApi::class)
 
 package dev.johnoreilly.confetti.wear.home
 
@@ -26,6 +26,9 @@ import androidx.wear.compose.material.placeholder
 import androidx.wear.compose.material.rememberPlaceholderState
 import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
 import androidx.wear.compose.ui.tooling.preview.WearPreviewFontScales
+import androidx.wear.compose.ui.tooling.preview.WearPreviewLargeRound
+import androidx.wear.compose.ui.tooling.preview.WearPreviewSmallRound
+import coil.annotation.ExperimentalCoilApi
 import com.google.android.horologist.composables.PlaceholderChip
 import com.google.android.horologist.composables.Section
 import com.google.android.horologist.composables.Section.Companion.ALL_STATES
@@ -42,11 +45,13 @@ import com.google.android.horologist.compose.material.Button
 import com.google.android.horologist.compose.material.Chip
 import dev.johnoreilly.confetti.R
 import dev.johnoreilly.confetti.utils.QueryResult
+import dev.johnoreilly.confetti.wear.TestScaffold
 import dev.johnoreilly.confetti.wear.bookmarks.BookmarksUiState
 import dev.johnoreilly.confetti.wear.components.ScreenHeader
 import dev.johnoreilly.confetti.wear.components.SectionHeader
 import dev.johnoreilly.confetti.wear.components.SessionCard
 import dev.johnoreilly.confetti.wear.preview.TestFixtures
+import dev.johnoreilly.confetti.wear.preview.TestFixtures.kotlinConf2023
 import dev.johnoreilly.confetti.wear.ui.ConfettiThemeFixed
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.toJavaLocalDate
@@ -232,14 +237,14 @@ fun HomeListViewPreview() {
         HomeScreen(
             uiState = QueryResult.Success(
                 HomeUiState(
-                    conference = TestFixtures.kotlinConf2023.id,
-                    conferenceName = TestFixtures.kotlinConf2023.name,
-                    confDates = TestFixtures.kotlinConf2023.days,
+                    conference = kotlinConf2023.id,
+                    conferenceName = kotlinConf2023.name,
+                    confDates = kotlinConf2023.days,
                 )
             ),
             bookmarksUiState = QueryResult.Success(
                 BookmarksUiState(
-                    conference = TestFixtures.kotlinConf2023.id,
+                    conference = kotlinConf2023.id,
                     upcoming = listOf(
                         TestFixtures.sessionDetails
                     ),
@@ -251,6 +256,46 @@ fun HomeListViewPreview() {
             onSettingsClick = {},
             onBookmarksClick = {},
             daySelected = {},
+        )
+    }
+}
+
+@WearPreviewLargeRound
+@WearPreviewSmallRound
+@WearPreviewFontScales
+@Composable
+fun NoBookmarksPreview() {
+    TestScaffold {
+        HomeScreen(
+            uiState = QueryResult.Success(
+                HomeUiState(
+                    kotlinConf2023.id,
+                    kotlinConf2023.name,
+                    kotlinConf2023.days,
+                )
+            ),
+            bookmarksUiState = QueryResult.None,
+            sessionSelected = {},
+            daySelected = {},
+            onSettingsClick = {},
+            onBookmarksClick = {},
+        )
+    }
+}
+
+@WearPreviewLargeRound
+@WearPreviewSmallRound
+@WearPreviewFontScales
+@Composable
+fun LoadingPreview() {
+    TestScaffold {
+        HomeScreen(
+            uiState = QueryResult.Loading,
+            bookmarksUiState = QueryResult.Loading,
+            sessionSelected = {},
+            daySelected = {},
+            onSettingsClick = {},
+            onBookmarksClick = {},
         )
     }
 }
