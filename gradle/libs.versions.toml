@@ -49,6 +49,7 @@ generativeai = "0.5.0-1.0.0-wasm"
 buildkonfig = "0.15.1"
 roborazzi = "1.26.0"
 screenshot = "0.0.1-alpha04"
+tilesTooling = "1.4.0"
 
 [libraries]
 accompanist-adaptive = { module = "com.google.accompanist:accompanist-adaptive", version.ref = "accompanist" }
@@ -206,6 +207,7 @@ generativeai = { module = "dev.shreyaspatil.generativeai:generativeai-google", v
 roborazzi = { group = "io.github.takahirom.roborazzi", name = "roborazzi", version.ref = "roborazzi" }
 roborazzi-compose = { group = "io.github.takahirom.roborazzi", name = "roborazzi-compose", version.ref = "roborazzi" }
 roborazzi-rule = { group = "io.github.takahirom.roborazzi", name = "roborazzi-junit-rule", version.ref = "roborazzi" }
+androidx-tiles-tooling = { group = "androidx.wear.tiles", name = "tiles-tooling", version.ref = "tilesTooling" }
 
 [bundles]
 multiplatform-settings = ["multiplatform-settings"] #, "multiplatform-settings-coroutines", "multiplatform-settings-runtime-observable"]

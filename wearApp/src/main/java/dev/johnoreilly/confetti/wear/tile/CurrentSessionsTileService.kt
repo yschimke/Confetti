@@ -1,22 +1,28 @@
 package dev.johnoreilly.confetti.wear.tile
 
 import android.content.Intent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.DpSize
+import androidx.compose.ui.unit.dp
 import androidx.core.app.TaskStackBuilder
 import androidx.core.net.toUri
+import androidx.wear.compose.material.Text
 import androidx.wear.protolayout.ResourceBuilders
 import androidx.wear.tiles.EventBuilders
 import androidx.wear.tiles.RequestBuilders
 import androidx.wear.tiles.TileBuilders
 import com.apollographql.apollo.cache.normalized.FetchPolicy
 import com.google.android.horologist.tiles.SuspendingTileService
-import com.materialkolor.dynamicColorScheme
 import dev.johnoreilly.confetti.ConfettiRepository
 import dev.johnoreilly.confetti.analytics.AnalyticsLogger
 import dev.johnoreilly.confetti.auth.Authentication
 import dev.johnoreilly.confetti.toTimeZone
 import dev.johnoreilly.confetti.wear.settings.PhoneSettingsSync
-import dev.johnoreilly.confetti.wear.ui.toColor
-import dev.johnoreilly.confetti.wear.ui.toWearMaterialColors
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.toKotlinInstant
@@ -25,7 +31,7 @@ import org.koin.android.ext.android.inject
 import java.time.Instant
 
 class CurrentSessionsTileService : SuspendingTileService() {
-    private val renderer = CurrentSessionsTileRenderer(this)
+    private val renderer = GraphicsLayerTileRenderer(this)
 
     private val repository: ConfettiRepository by inject()
 
@@ -38,7 +44,26 @@ class CurrentSessionsTileService : SuspendingTileService() {
     private val tileSync: TileSync by inject()
 
     override suspend fun resourcesRequest(requestParams: RequestBuilders.ResourcesRequest): ResourceBuilders.Resources {
-        return renderer.produceRequestedResources(tileState(), requestParams)
+        println("resourceRequest")
+        val bitmap =
+            useVirtualDisplay(this@CurrentSessionsTileService) { display ->
+                println("useVirtualDisplay")
+                captureComposable(this@CurrentSessionsTileService, DpSize(100.dp, 100.dp), display = display) {
+                    println("captureComposable")
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(Color.Gray),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text("Hello hello")
+                    }
+                }
+            }
+
+        println("produceRequestedResources")
+
+        return renderer.produceRequestedResources(bitmap, requestParams)
     }
 
     private suspend fun tileState(): ConfettiTileData {
@@ -49,9 +74,6 @@ class CurrentSessionsTileService : SuspendingTileService() {
         if (conference.isBlank()) {
             return ConfettiTileData.NoConference
         }
-
-        val seedColor = repository.getConferenceThemeColor().toColor()
-        renderer.colors.value = dynamicColorScheme(seedColor = seedColor, isDark = true).toWearMaterialColors()
 
         val responseData = repository.bookmarkedSessionsQuery(
             conference, user?.uid, user, FetchPolicy.CacheOnly
@@ -84,7 +106,7 @@ class CurrentSessionsTileService : SuspendingTileService() {
             handleClick("confetti://confetti/$lastClickableId")
         }
 
-        return renderer.renderTimeline(tileState(), requestParams)
+        return renderer.renderTimeline(Unit, requestParams)
     }
 
     private fun handleClick(uri: String) {

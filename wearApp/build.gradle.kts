@@ -110,12 +110,6 @@ android {
             isShrinkResources = true
             isMinifyEnabled = true
             signingConfig = signingConfigs.getByName("confetti")
-            setProguardFiles(
-                listOf(
-                    getDefaultProguardFile("proguard-android.txt"),
-                    "proguard-rules.pro",
-                ),
-            )
             setProguardFiles(listOf(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"))
 
             matchingFallbacks += listOf("release")
@@ -222,6 +216,7 @@ dependencies {
     api(libs.coil.base)
 
     implementation(libs.androidx.protolayout.material)
+    implementation(libs.androidx.lifecycle.process)
 
     coreLibraryDesugaring(libs.desugar)
 
@@ -247,6 +242,7 @@ dependencies {
     testImplementation(libs.roborazzi.rule)
     implementation(libs.coil.test)
     implementation(kotlin("test"))
+    debugImplementation(libs.androidx.tiles.tooling)
 
     screenshotTestImplementation(libs.androidx.compose.ui.tooling)
 }
