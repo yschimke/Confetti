@@ -6,8 +6,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import androidx.wear.compose.material.Text
-import com.google.android.horologist.compose.material.ResponsiveListHeader
+import androidx.wear.compose.material3.ListHeader
+import androidx.wear.compose.material3.Text
 import dev.johnoreilly.confetti.ui.ConferenceCard
 import dev.johnoreilly.confetti.wear.components.SectionHeader
 import dev.johnoreilly.confetti.wear.components.SessionCard
@@ -36,7 +36,7 @@ fun ThemePreview(seedColor: Theme) {
         val now = remember { LocalDateTime.of(2020, 1, 1, 1, 1).toKotlinLocalDateTime() }
 
         Column {
-            ResponsiveListHeader {
+            ListHeader {
                 Text("Standard List Header")
             }
             DayChip(dayFormatter = dayFormatter, date = now.date, daySelected = {})

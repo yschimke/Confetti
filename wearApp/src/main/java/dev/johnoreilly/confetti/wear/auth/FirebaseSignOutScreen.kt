@@ -10,10 +10,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.wear.compose.material.CircularProgressIndicator
-import androidx.wear.compose.material.Text
-import com.google.android.horologist.compose.layout.ScreenScaffold
-import com.google.android.horologist.compose.material.Confirmation
+import androidx.wear.compose.material3.CircularProgressIndicator
+import androidx.wear.compose.material3.Text
+import androidx.wear.compose.material3.Confirmation
+import androidx.wear.compose.material3.ScreenScaffold
 import dev.johnoreilly.confetti.R
 
 @Composable

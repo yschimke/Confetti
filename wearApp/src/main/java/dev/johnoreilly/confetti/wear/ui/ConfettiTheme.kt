@@ -5,7 +5,7 @@ package dev.johnoreilly.confetti.wear.ui
 import androidx.compose.material3.ColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import androidx.wear.compose.material.Colors
+import androidx.wear.compose.material3.Colors
 import com.materialkolor.rememberDynamicColorScheme
 
 /**

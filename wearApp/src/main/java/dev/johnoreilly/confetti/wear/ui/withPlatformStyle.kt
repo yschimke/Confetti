@@ -6,8 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.PlatformTextStyle
-import androidx.wear.compose.material.Colors
-import androidx.wear.compose.material.Typography
+import androidx.wear.compose.material3.Colors
+import androidx.wear.compose.material3.Typography
 
 @Suppress("DEPRECATION")
 @Composable

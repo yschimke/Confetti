@@ -6,8 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import androidx.wear.compose.material.Icon
-import androidx.wear.compose.material.MaterialTheme
+import androidx.wear.compose.material3.Icon
+import androidx.wear.compose.material3.MaterialTheme
 import dev.johnoreilly.confetti.fragment.SpeakerDetails
 import dev.johnoreilly.confetti.ui.icons.ConfettiIcons
 import dev.johnoreilly.confetti.ui.icons.Facebook

@@ -1,8 +1,8 @@
 package dev.johnoreilly.confetti.wear.ui
 
 import androidx.compose.runtime.Composable
-import androidx.wear.compose.material.Colors
-import androidx.wear.compose.material.MaterialTheme
+import androidx.wear.compose.material3.Colors
+import androidx.wear.compose.material3.MaterialTheme
 
 @Composable
 fun ConfettiThemeFixed(

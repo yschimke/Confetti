@@ -8,13 +8,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.wear.compose.material.MaterialTheme
+import androidx.wear.compose.material3.MaterialTheme
+import androidx.wear.compose.material3.AppScaffold
+import androidx.wear.compose.material3.TimeText
 import coil.ImageLoader
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.LocalImageLoader
 import coil.test.FakeImageLoaderEngine
-import com.google.android.horologist.compose.layout.AppScaffold
-import com.google.android.horologist.compose.layout.ResponsiveTimeText
 import dev.johnoreilly.confetti.wear.ui.ConfettiTheme
 import dev.johnoreilly.confetti.wear.ui.toColor
 
@@ -34,7 +34,7 @@ fun TestScaffold(fakeImageLoader: FakeImageLoaderEngine? = null, content: @Compo
             modifier = Modifier
                 .fillMaxSize()
                 .background(MaterialTheme.colors.background),
-            timeText = { ResponsiveTimeText(timeSource = FixedTimeSource) }
+            timeText = { TimeText(timeSource = FixedTimeSource) }
         ) {
             ConfettiTheme(seedColor = null.toColor()) {
                 content()

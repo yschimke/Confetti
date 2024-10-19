@@ -6,19 +6,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.wear.compose.foundation.lazy.TransformingLazyColumn
 import androidx.wear.compose.foundation.lazy.items
-import androidx.wear.compose.material.ChipDefaults
+import androidx.wear.compose.foundation.lazy.rememberTransformingLazyColumnState
+import androidx.wear.compose.material3.Button
+import androidx.wear.compose.material3.ButtonDefaults
+import androidx.wear.compose.material3.ScreenScaffold
+import androidx.wear.compose.material3.Text
 import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
 import androidx.wear.compose.ui.tooling.preview.WearPreviewFontScales
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
-import com.google.android.horologist.composables.PlaceholderChip
-import com.google.android.horologist.compose.layout.ScalingLazyColumn
-import com.google.android.horologist.compose.layout.ScalingLazyColumnDefaults
-import com.google.android.horologist.compose.layout.ScalingLazyColumnDefaults.ItemType
-import com.google.android.horologist.compose.layout.ScalingLazyColumnState
-import com.google.android.horologist.compose.layout.ScreenScaffold
-import com.google.android.horologist.compose.layout.rememberResponsiveColumnState
-import com.google.android.horologist.compose.material.Chip
 import dev.johnoreilly.confetti.BuildConfig
 import dev.johnoreilly.confetti.GetConferencesQuery
 import dev.johnoreilly.confetti.decompose.ConferencesComponent
@@ -53,16 +50,11 @@ fun ConferencesView(
     navigateToConference: (GetConferencesQuery.Conference) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val columnState: ScalingLazyColumnState = rememberResponsiveColumnState(
-        contentPadding = ScalingLazyColumnDefaults.padding(
-            first = ItemType.Text,
-            last = ItemType.Chip
-        )
-    )
+    val columnState = rememberTransformingLazyColumnState()
 
     ScreenScaffold(scrollState = columnState) {
-        ScalingLazyColumn(
-            modifier = modifier.fillMaxSize(), columnState = columnState
+        TransformingLazyColumn(
+            modifier = modifier.fillMaxSize(), state = columnState
         ) {
             item {
                 ScreenHeader("Conferences")
@@ -71,10 +63,11 @@ fun ConferencesView(
             when (uiState) {
                 is ConferencesComponent.Loading -> {
                     items(5) {
-                        PlaceholderChip(
-                            modifier = Modifier.fillMaxWidth(),
-                            colors = ChipDefaults.secondaryChipColors()
-                        )
+                        // TODO
+//                        PlaceholderChip(
+//                            modifier = Modifier.fillMaxWidth(),
+//                            colors = ChipDefaults.secondaryChipColors()
+//                        )
                     }
                 }
 
@@ -103,14 +96,13 @@ private fun ConferencesChip(
     val seedColor = conference.themeColor?.toColor()
 
     ConfettiTheme(seedColor = seedColor) {
-        Chip(
+        Button(
             modifier = Modifier.fillMaxWidth(),
-            label = conference.name,
             onClick = {
                 navigateToConference(conference)
             },
-            colors = ChipDefaults.secondaryChipColors()
-        )
+            colors = ButtonDefaults.secondaryButtonColors()
+        ) { Text(conference.name) }
     }
 }
 
