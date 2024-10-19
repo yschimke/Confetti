@@ -16,6 +16,7 @@ import androidx.wear.compose.material3.Text
 import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
 import androidx.wear.compose.ui.tooling.preview.WearPreviewFontScales
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
+import com.google.android.horologist.composables.PlaceholderChip
 import dev.johnoreilly.confetti.BuildConfig
 import dev.johnoreilly.confetti.GetConferencesQuery
 import dev.johnoreilly.confetti.decompose.ConferencesComponent
@@ -64,10 +65,9 @@ fun ConferencesView(
                 is ConferencesComponent.Loading -> {
                     items(5) {
                         // TODO
-//                        PlaceholderChip(
-//                            modifier = Modifier.fillMaxWidth(),
-//                            colors = ChipDefaults.secondaryChipColors()
-//                        )
+                        PlaceholderChip(
+                            modifier = Modifier.fillMaxWidth(),
+                        )
                     }
                 }
 
