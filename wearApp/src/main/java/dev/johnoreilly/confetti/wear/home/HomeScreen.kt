@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalWearMaterialApi::class)
-
 package dev.johnoreilly.confetti.wear.home
 
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,10 +9,16 @@ import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.wear.compose.foundation.lazy.TransformingLazyColumn
+import androidx.wear.compose.foundation.lazy.TransformingLazyColumnScope
+import androidx.wear.compose.foundation.lazy.items
 import androidx.wear.compose.foundation.lazy.rememberTransformingLazyColumnState
-import androidx.wear.compose.material3.ChipDefaults
-import androidx.wear.compose.material3.ExperimentalWearMaterialApi
-import androidx.wear.compose.material3.OutlinedChip
+import androidx.wear.compose.material3.Button
+import androidx.wear.compose.material3.ButtonDefaults
+import androidx.wear.compose.material3.Icon
+import androidx.wear.compose.material3.IconButton
+import androidx.wear.compose.material3.OutlinedButton
+import androidx.wear.compose.material3.ScreenScaffold
 import androidx.wear.compose.material3.Text
 import androidx.wear.compose.material3.placeholder
 import androidx.wear.compose.material3.rememberPlaceholderState
@@ -48,9 +52,9 @@ fun HomeScreen(
     val columnState = rememberTransformingLazyColumnState()
 
     ScreenScaffold(scrollState = columnState) {
-        SectionedList(
+        TransformingLazyColumn(
             modifier = Modifier.fillMaxSize(),
-            columnState = columnState,
+            state = columnState,
         ) {
             titleSection(uiState)
 
@@ -63,114 +67,101 @@ fun HomeScreen(
     }
 }
 
-private fun SectionedListScope.titleSection(uiState: QueryResult<HomeUiState>) {
-    val titleSectionState = when (uiState) {
-        is QueryResult.Success -> Section.State.Loaded(listOf(uiState.result.conferenceName))
-        QueryResult.Loading -> Section.State.Loading
-        is QueryResult.Error -> Section.State.Failed
-        QueryResult.None -> Section.State.Empty
-    }
-
-    section(state = titleSectionState) {
-        loaded { conferenceName ->
-            ScreenHeader(conferenceName)
+private fun TransformingLazyColumnScope.titleSection(uiState: QueryResult<HomeUiState>) {
+    when (uiState) {
+        is QueryResult.Success -> {
+            item {
+                ScreenHeader(uiState.result.conferenceName)
+            }
         }
 
-        loading {
-            val chipPlaceholderState = rememberPlaceholderState { false }
-            ScreenHeader(
-                "",
-                modifier = Modifier
-                    .fillMaxWidth(0.75f)
-                    .placeholder(chipPlaceholderState)
-            )
+        QueryResult.Loading -> {
+            item {
+                val chipPlaceholderState = rememberPlaceholderState { false }
+                ScreenHeader(
+                    "",
+                    modifier = Modifier
+                        .fillMaxWidth(0.75f)
+                        .placeholder(chipPlaceholderState)
+                )
+            }
         }
+
+        else -> {}
     }
 }
 
-private fun SectionedListScope.bookmarksSection(
+private fun TransformingLazyColumnScope.bookmarksSection(
     uiState: QueryResult<HomeUiState>,
     bookmarksUiState: QueryResult<BookmarksUiState>,
     sessionSelected: (String) -> Unit,
     onBookmarksClick: () -> Unit
 ) {
-    val bookmarksSectionState = when (bookmarksUiState) {
-        is QueryResult.Success -> {
-            if (bookmarksUiState.result.hasUpcomingBookmarks) {
-                Section.State.Loaded(bookmarksUiState.result.upcoming.take(3))
-            } else {
-                Section.State.Empty
-            }
-        }
-
-        QueryResult.Loading -> Section.State.Loading
-        is QueryResult.Error -> Section.State.Failed
-        QueryResult.None -> Section.State.Failed // handling "None" as a failure
+    item {
+        SectionHeader(stringResource(R.string.home_bookmarked_sessions))
     }
 
-    section(state = bookmarksSectionState) {
-        header(visibleStates = ALL_STATES.copy(failed = false)) {
-            SectionHeader(stringResource(R.string.home_bookmarked_sessions))
-        }
-
-        loaded { session ->
-            key(session.id) {
-                SessionCard(session, sessionSelected = {
-                    if (uiState is QueryResult.Success) {
-                        sessionSelected(it)
-                    }
-                }, (bookmarksUiState as QueryResult.Success).result.now)
+    when (bookmarksUiState) {
+        is QueryResult.Success -> {
+            val upcoming = bookmarksUiState.result.upcoming
+            items(upcoming.take(3)) { session ->
+                key(session.id) {
+                    SessionCard(session, sessionSelected = {
+                        if (uiState is QueryResult.Success) {
+                            sessionSelected(it)
+                        }
+                    }, (bookmarksUiState as QueryResult.Success).result.now)
+                }
+            }
+            if (upcoming.isEmpty()) {
+                item {
+                    Text(
+                        stringResource(id = R.string.no_upcoming),
+                    )
+                }
             }
         }
 
-        // TODO placeholders
-        // loading {}
+        else -> {}
+    }
 
-        empty {
-            Text(
-                stringResource(id = R.string.no_upcoming),
-                modifier = Modifier.listTextPadding()
-            )
-        }
+    item {
 
-
-        footer(visibleStates = NO_STATES.copy(loaded = true, empty = true)) {
-            OutlinedChip(
-                label = { Text(stringResource(id = R.string.all_bookmarks)) },
-                onClick = {
-                    if (uiState is QueryResult.Success) {
-                        onBookmarksClick()
-                    }
+        OutlinedButton(
+            onClick = {
+                if (uiState is QueryResult.Success) {
+                    onBookmarksClick()
                 }
-            )
+            }
+        ) {
+            Text(stringResource(id = R.string.all_bookmarks))
         }
     }
 }
 
-private fun SectionedListScope.conferenceDaysSection(
+private fun TransformingLazyColumnScope.conferenceDaysSection(
     uiState: QueryResult<HomeUiState>,
     daySelected: (LocalDate) -> Unit,
     dayFormatter: DateTimeFormatter
 ) {
-    val conferenceDaysSectionState = when (uiState) {
-        is QueryResult.Success -> Section.State.Loaded(uiState.result.confDates)
-        QueryResult.Loading -> Section.State.Loading
-        is QueryResult.Error -> Section.State.Failed
-        QueryResult.None -> Section.State.Empty
+    item {
+        SectionHeader(stringResource(id = R.string.conference_days))
     }
-
-    section(state = conferenceDaysSectionState) {
-        header {
-            SectionHeader(stringResource(id = R.string.conference_days))
+    when (uiState) {
+        is QueryResult.Success -> {
+            items(uiState.result.confDates) { date ->
+                DayChip(dayFormatter, date, daySelected = { daySelected(date) })
+            }
         }
 
-        loaded { date ->
-            DayChip(dayFormatter, date, daySelected = { daySelected(date) })
+        QueryResult.Loading -> {
+            items(2) {
+                // TODO
+//            PlaceholderChip(contentDescription = "")
+            }
         }
 
-        loading(count = 2) {
-            PlaceholderChip(contentDescription = "")
-        }
+        else -> {}
     }
 }
 
@@ -180,20 +171,22 @@ fun DayChip(
     date: LocalDate,
     daySelected: () -> Unit
 ) {
-    Chip(
-        label = dayFormatter.format(date.toJavaLocalDate()),
+    Button(
         onClick = daySelected,
-        colors = ChipDefaults.secondaryChipColors(),
-    )
+        colors = ButtonDefaults.filledVariantButtonColors(),
+    ) {
+        Text(dayFormatter.format(date.toJavaLocalDate()))
+    }
 }
 
-private fun SectionedListScope.bottomMenuSection(onSettingsClick: () -> Unit) {
-    section {
-        loaded {
-            Button(
+private fun TransformingLazyColumnScope.bottomMenuSection(onSettingsClick: () -> Unit) {
+    item {
+        IconButton(
+            onClick = onSettingsClick
+        ) {
+            Icon(
                 imageVector = Icons.Default.Settings,
                 contentDescription = stringResource(R.string.home_settings_content_description),
-                onClick = onSettingsClick
             )
         }
     }

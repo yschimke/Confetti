@@ -45,14 +45,12 @@ fun SessionDetailView(
                         }
                         Text(
                             time,
-                            modifier = Modifier.listTextPadding()
                         )
                     }
 
                     items(description) {
                         Text(
                             text = it,
-                            modifier = Modifier.listTextPadding()
                         )
                     }
 

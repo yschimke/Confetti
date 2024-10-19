@@ -16,6 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.wear.compose.material3.CardColors
 import androidx.wear.compose.material3.CardDefaults
 import androidx.wear.compose.material3.LocalContentColor
 import androidx.wear.compose.material3.LocalTextStyle
@@ -47,9 +48,6 @@ fun SessionCard(
             modifier = modifier.fillMaxWidth(),
             onClick = { sessionSelected(session.id) },
             title = { Text(text = session.title, maxLines = 2, overflow = TextOverflow.Ellipsis) },
-            backgroundPainter = CardDefaults.cardBackgroundPainter(),
-            contentColor = MaterialTheme.colors.onSurfaceVariant,
-            titleColor = MaterialTheme.colors.onSurface
         ) {
             if (session.speakers.isNotEmpty()) {
                 Spacer(modifier = Modifier.size(4.dp))
@@ -62,8 +60,8 @@ fun SessionCard(
             Spacer(modifier = Modifier.size(4.dp))
             Row {
                 CompositionLocalProvider(
-                    LocalContentColor provides MaterialTheme.colors.onSurfaceVariant,
-                    LocalTextStyle provides MaterialTheme.typography.caption1,
+                    LocalContentColor provides MaterialTheme.colorScheme.onSurfaceVariant,
+                    LocalTextStyle provides MaterialTheme.typography.labelLarge,
                 ) {
                     Text(session.room?.name ?: "", modifier = Modifier.weight(1f))
 
@@ -80,7 +78,7 @@ fun SpeakerLabel(speaker: SessionDetails.Speaker) {
         // TODO add avatar
         Text(
             speaker.speakerDetails.name,
-            style = MaterialTheme.typography.caption2,
+            style = MaterialTheme.typography.labelMedium,
             fontWeight = FontWeight.Light,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
@@ -95,7 +93,7 @@ fun SessionTime(
 ) {
     val timeFormatted = remember { DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT) }
     if (currentTime in session.startsAt..session.endsAt) {
-        Text(stringResource(id = R.string.now), color = MaterialTheme.colors.error)
+        Text(stringResource(id = R.string.now), color = MaterialTheme.colorScheme.error)
     } else {
         Text(timeFormatted.format(session.startsAt.toJavaLocalDateTime()))
     }

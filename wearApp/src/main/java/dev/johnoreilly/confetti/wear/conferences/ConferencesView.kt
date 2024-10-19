@@ -101,7 +101,7 @@ private fun ConferencesChip(
             onClick = {
                 navigateToConference(conference)
             },
-            colors = ButtonDefaults.secondaryButtonColors()
+            colors = ButtonDefaults.filledVariantButtonColors()
         ) { Text(conference.name) }
     }
 }

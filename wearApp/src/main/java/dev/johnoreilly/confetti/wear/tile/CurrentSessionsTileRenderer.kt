@@ -20,7 +20,6 @@ import dev.johnoreilly.confetti.fragment.SessionDetails
 import dev.johnoreilly.confetti.wear.tile.ConfettiTileData.CurrentSessionsData
 import dev.johnoreilly.confetti.wear.tile.ConfettiTileData.NoConference
 import dev.johnoreilly.confetti.wear.tile.ConfettiTileData.NotLoggedIn
-import dev.johnoreilly.confetti.wear.ui.toTileColors
 import kotlinx.coroutines.flow.MutableStateFlow
 import androidx.wear.compose.material3.ColorScheme as WearComposeColors
 
@@ -30,8 +29,9 @@ class CurrentSessionsTileRenderer(
     SingleTileLayoutRenderer<ConfettiTileData, ConfettiTileData>(context) {
     val colors = MutableStateFlow(WearComposeColors())
 
-    override fun createTheme(): androidx.wear.protolayout.material.Colors =
-        colors.value.toTileColors()
+    // TODO
+//    override fun createTheme(): androidx.wear.protolayout.material.Colors =
+//        colors.value.toTileColors()
 
     override fun renderTile(
         state: ConfettiTileData,

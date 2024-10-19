@@ -23,7 +23,7 @@ fun SocialIcon(
     contentDescription: String,
     onClick: () -> Unit
 ) {
-    val iconTint = MaterialTheme.colors.onSurface.copy(alpha = 0.75f)
+    val iconTint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f)
     Icon(
         modifier = modifier
             .size(24.dp)

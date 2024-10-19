@@ -9,8 +9,8 @@ import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Modifier
 import androidx.wear.compose.foundation.ExperimentalWearFoundationApi
+import androidx.wear.compose.foundation.SwipeToDismissKeys
 import androidx.wear.compose.material3.SwipeToDismissBox
-import androidx.wear.compose.material3.SwipeToDismissKeys
 import androidx.wear.compose.material3.TimeText
 import androidx.wear.compose.material3.AppScaffold
 import com.arkivanov.decompose.Child
@@ -33,7 +33,7 @@ fun <C : Any, T : Any> SwipeToDismissBox(
     stack: Value<ChildStack<C, T>>,
     onDismissed: () -> Unit,
     modifier: Modifier = Modifier,
-    timeText: @Composable () -> Unit = { TimeText() },
+    timeText: @Composable () -> Unit = { TimeText() { time() } },
     content: @Composable (child: Child.Created<C, T>) -> Unit,
 ) {
     val state = stack.subscribeAsState()
@@ -62,7 +62,7 @@ fun <C : Any, T : Any> SwipeToDismissBox(
     stack: ChildStack<C, T>,
     onDismissed: () -> Unit,
     modifier: Modifier = Modifier,
-    timeText: @Composable () -> Unit = { TimeText() },
+    timeText: @Composable () -> Unit = { TimeText() { time() } },
     content: @Composable (child: Child.Created<C, T>) -> Unit,
 ) {
     val active: Child.Created<C, T> = stack.active
@@ -77,7 +77,7 @@ fun <C : Any, T : Any> SwipeToDismissBox(
             modifier = modifier,
             backgroundKey = background?.configuration ?: SwipeToDismissKeys.Background,
             contentKey = active.configuration,
-            hasBackground = background != null,
+            userSwipeEnabled = background != null,
         ) { isBackground ->
             val child = background?.takeIf { isBackground } ?: active
             holder.SaveableStateProvider(child.configuration.key()) {

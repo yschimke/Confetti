@@ -33,8 +33,8 @@ fun TestScaffold(fakeImageLoader: FakeImageLoaderEngine? = null, content: @Compo
         AppScaffold(
             modifier = Modifier
                 .fillMaxSize()
-                .background(MaterialTheme.colors.background),
-            timeText = { TimeText(timeSource = FixedTimeSource) }
+                .background(MaterialTheme.colorScheme.background),
+            timeText = { TimeText(timeSource = FixedTimeSource) { time() } }
         ) {
             ConfettiTheme(seedColor = null.toColor()) {
                 content()
