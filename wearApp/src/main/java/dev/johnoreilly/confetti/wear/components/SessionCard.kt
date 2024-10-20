@@ -32,9 +32,11 @@ import androidx.wear.compose.material3.TitleCard
 import dev.johnoreilly.confetti.R
 import dev.johnoreilly.confetti.fragment.SessionDetails
 import dev.johnoreilly.confetti.isBreak
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.toJavaLocalDateTime
+import org.intellij.markdown.parser.CancellationToken
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
@@ -69,7 +71,9 @@ fun SessionCard(
                     label = if (isBookmarked) "Unbookmark" else "Bookmark",
                     onClick = {
                         if (isBookmarked) removeBookmark(session.id) else addBookmark(session.id)
-                        coroutineScope.launch { revealState.animateTo(RevealValue.Covered) }
+                        coroutineScope.launch {
+                            revealState.animateTo(RevealValue.Covered)
+                        }
                     },
                 )
             }
