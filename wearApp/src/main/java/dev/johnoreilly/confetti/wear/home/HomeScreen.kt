@@ -27,6 +27,7 @@ import androidx.wear.compose.ui.tooling.preview.WearPreviewFontScales
 import dev.johnoreilly.confetti.R
 import dev.johnoreilly.confetti.utils.QueryResult
 import dev.johnoreilly.confetti.wear.bookmarks.BookmarksUiState
+import dev.johnoreilly.confetti.wear.components.PlaceholderButton
 import dev.johnoreilly.confetti.wear.components.ScreenHeader
 import dev.johnoreilly.confetti.wear.components.SectionHeader
 import dev.johnoreilly.confetti.wear.components.SessionCard
@@ -45,6 +46,8 @@ fun HomeScreen(
     sessionSelected: (String) -> Unit,
     daySelected: (LocalDate) -> Unit,
     onSettingsClick: () -> Unit,
+    addBookmark: (sessionId: String) -> Unit,
+    removeBookmark: (sessionId: String) -> Unit,
     onBookmarksClick: () -> Unit,
 ) {
     val dayFormatter = remember { DateTimeFormatter.ofPattern("cccc") }
@@ -56,13 +59,20 @@ fun HomeScreen(
             modifier = Modifier.fillMaxSize(),
             state = columnState,
         ) {
-            titleSection(uiState)
+            titleSection(uiState = uiState)
 
-            bookmarksSection(uiState, bookmarksUiState, sessionSelected, onBookmarksClick)
+            bookmarksSection(
+                uiState = uiState,
+                bookmarksUiState = bookmarksUiState,
+                sessionSelected = sessionSelected,
+                addBookmark = addBookmark,
+                removeBookmark = removeBookmark,
+                onBookmarksClick = onBookmarksClick
+            )
 
-            conferenceDaysSection(uiState, daySelected, dayFormatter)
+            conferenceDaysSection(uiState = uiState, daySelected = daySelected, dayFormatter = dayFormatter)
 
-            bottomMenuSection(onSettingsClick)
+            bottomMenuSection(onSettingsClick = onSettingsClick)
         }
     }
 }
@@ -95,6 +105,8 @@ private fun TransformingLazyColumnScope.bookmarksSection(
     uiState: QueryResult<HomeUiState>,
     bookmarksUiState: QueryResult<BookmarksUiState>,
     sessionSelected: (String) -> Unit,
+    addBookmark: (sessionId: String) -> Unit,
+    removeBookmark: (sessionId: String) -> Unit,
     onBookmarksClick: () -> Unit
 ) {
     item {
@@ -106,11 +118,17 @@ private fun TransformingLazyColumnScope.bookmarksSection(
             val upcoming = bookmarksUiState.result.upcoming
             items(upcoming.take(3)) { session ->
                 key(session.id) {
-                    SessionCard(session, sessionSelected = {
-                        if (uiState is QueryResult.Success) {
-                            sessionSelected(it)
-                        }
-                    }, (bookmarksUiState as QueryResult.Success).result.now)
+                    SessionCard(
+                        session, sessionSelected = {
+                            if (uiState is QueryResult.Success) {
+                                sessionSelected(it)
+                            }
+                        },
+                        currentTime = bookmarksUiState.result.now,
+                        addBookmark = addBookmark,
+                        removeBookmark = removeBookmark,
+                        isBookmarked = bookmarksUiState.result.isBookmarked(session.id)
+                    )
                 }
             }
             if (upcoming.isEmpty()) {
@@ -156,8 +174,7 @@ private fun TransformingLazyColumnScope.conferenceDaysSection(
 
         QueryResult.Loading -> {
             items(2) {
-                // TODO
-//            PlaceholderChip(contentDescription = "")
+                PlaceholderButton()
             }
         }
 
@@ -219,6 +236,8 @@ fun HomeListViewPreview() {
             onSettingsClick = {},
             onBookmarksClick = {},
             daySelected = {},
+            addBookmark = {},
+            removeBookmark = {}
         )
     }
 }

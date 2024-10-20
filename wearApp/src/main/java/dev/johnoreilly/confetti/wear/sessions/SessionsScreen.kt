@@ -21,6 +21,8 @@ import kotlinx.datetime.toKotlinLocalDateTime
 fun SessionsScreen(
     uiState: SessionsUiState,
     sessionSelected: (sessionId: String) -> Unit,
+    addBookmark: (sessionId: String) -> Unit,
+    removeBookmark: (sessionId: String) -> Unit,
 ) {
     val columnState = rememberTransformingLazyColumnState()
 
@@ -44,7 +46,10 @@ fun SessionsScreen(
                                 sessionSelected = {
                                     sessionSelected(it)
                                 },
-                                uiState.now
+                                uiState.now,
+                                isBookmarked = uiState.bookmarks.contains(session.id),
+                                addBookmark = addBookmark,
+                                removeBookmark = removeBookmark,
                             )
                         }
                     }
@@ -87,6 +92,8 @@ fun SessionListViewPreview() {
                 selectedSessionId = null,
             ),
             sessionSelected = {},
+            addBookmark = {},
+            removeBookmark = {}
         )
     }
 
