@@ -11,15 +11,17 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BookmarkAdded
 import androidx.compose.material.icons.filled.BookmarkBorder
-import androidx.compose.material.icons.filled.NoiseControlOff
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.wear.compose.foundation.RevealValue
+import androidx.wear.compose.foundation.rememberRevealState
 import androidx.wear.compose.material3.Icon
 import androidx.wear.compose.material3.LocalContentColor
 import androidx.wear.compose.material3.LocalTextStyle
@@ -30,6 +32,7 @@ import androidx.wear.compose.material3.TitleCard
 import dev.johnoreilly.confetti.R
 import dev.johnoreilly.confetti.fragment.SessionDetails
 import dev.johnoreilly.confetti.isBreak
+import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.toJavaLocalDateTime
 import java.time.format.DateTimeFormatter
@@ -48,6 +51,9 @@ fun SessionCard(
         SessionTime(session, currentTime)
     }
 ) {
+    val coroutineScope = rememberCoroutineScope()
+    val revealState = rememberRevealState()
+
     if (session.isBreak()) {
         Text(session.title, modifier = modifier)
     } else {
@@ -61,7 +67,10 @@ fun SessionCard(
                         )
                     },
                     label = if (isBookmarked) "Unbookmark" else "Bookmark",
-                    onClick = { if (isBookmarked) removeBookmark(session.id) else addBookmark(session.id) },
+                    onClick = {
+                        if (isBookmarked) removeBookmark(session.id) else addBookmark(session.id)
+                        coroutineScope.launch { revealState.animateTo(RevealValue.Covered) }
+                    },
                 )
             }
         ) {
