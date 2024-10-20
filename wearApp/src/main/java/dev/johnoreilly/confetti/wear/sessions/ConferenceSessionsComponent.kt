@@ -9,10 +9,12 @@ import dev.johnoreilly.confetti.decompose.SessionsSimpleComponent
 import dev.johnoreilly.confetti.decompose.SessionsUiState
 import dev.johnoreilly.confetti.decompose.asValue
 import dev.johnoreilly.confetti.decompose.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDate
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
+import kotlin.time.Duration.Companion.seconds
 
 interface ConferenceSessionsComponent {
     val uiState: Value<SessionsUiState>
