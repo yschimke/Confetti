@@ -195,6 +195,8 @@ dependencies {
     implementation(libs.play.services.auth)
     coreLibraryDesugaring(libs.desugar)
 
+    implementation(libs.androidx.glance.appwidget)
+
     implementation(libs.googleid)
     implementation(libs.androidx.credentials.play.services.auth)
 

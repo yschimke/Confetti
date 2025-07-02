@@ -59,5 +59,33 @@
 
         <activity android:name=".car.signin.SignInWithGoogleActivity" />
 
+        <receiver
+                android:name=".widget.SessionsGlanceAppWidgetReceiver"
+                android:label="@string/SessionsWidget"
+                android:enabled="@bool/glance_appwidget_available"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                    android:name="android.appwidget.provider"
+                    android:resource="@xml/sessionswidget" />
+        </receiver>
+
+        <receiver
+                android:name=".widget.RemoteComposeWidgetReceiver"
+                android:label="@string/SessionsWidget2"
+                android:enabled="@bool/glance_appwidget_available"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                    android:name="android.appwidget.provider"
+                    android:resource="@xml/sessionswidget2" />
+        </receiver>
+
     </application>
 </manifest> 
