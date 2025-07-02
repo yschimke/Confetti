@@ -196,6 +196,8 @@ dependencies {
     coreLibraryDesugaring(libs.desugar)
 
     implementation(libs.androidx.glance.appwidget)
+    implementation(libs.androidx.remote.core)
+    implementation(libs.androidx.remote.creation)
 
     implementation(libs.googleid)
     implementation(libs.androidx.credentials.play.services.auth)

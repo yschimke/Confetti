@@ -41,6 +41,7 @@ permissions = "0.19.1"
 permissionsCompose = "0.19.1"
 permissionsNotifications = "0.19.1"
 protolayout = "1.3.0-beta01"
+remoteCore = "1.0.0-SNAPSHOT"
 robolectric = "4.14.1"
 room = "2.7.1"
 tiles-tooling-preview = "1.5.0-beta01"
@@ -74,6 +75,8 @@ androidx-protolayout-expression-pipeline = { module = "androidx.wear.protolayout
 androidx-protolayout-material = { module = "androidx.wear.protolayout:protolayout-material", version.ref = "protolayout" }
 androidx-protolayout-material3 = { module = "androidx.wear.protolayout:protolayout-material3", version = "1.0.0-alpha27" }
 androidx-protolayout-proto = { module = "androidx.wear.protolayout:protolayout-proto", version.ref = "protolayout" }
+androidx-remote-core = { module = "androidx.compose.remote:remote-core", version.ref = "remoteCore" }
+androidx-remote-creation = { module = "androidx.compose.remote:remote-creation", version.ref = "remoteCore" }
 androidx-tiles-tooling-preview = { module = "androidx.wear.tiles:tiles-tooling-preview", version.ref = "tiles-tooling-preview" }
 androidx-tiles-tooling = { module = "androidx.wear.tiles:tiles-tooling", version.ref = "tiles-tooling-preview" }
 androidx-wear = { module = "androidx.wear:wear", version.ref = "wear" }
