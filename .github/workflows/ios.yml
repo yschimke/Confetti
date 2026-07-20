@@ -45,13 +45,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pods-
 
-      - name: Set Xcode Version 16.4
+      - name: Select latest available Xcode
         shell: bash
         run: |
-          xcodes select 16.4
-          
+          # Xcode 16.4 is no longer installed on the macos-latest runner image
+          # (it ships Xcode 26.x now), so a hard `xcodes select 16.4` fails. Pick
+          # the newest installed Xcode instead of pinning a version that vanishes.
+          XCODE_APP="$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)"
+          echo "Selecting $XCODE_APP"
+          sudo xcode-select -s "$XCODE_APP/Contents/Developer"
+          xcodebuild -version
+
       - name: Build iOS app
-        run: xcodebuild -allowProvisioningUpdates -project iosApp/iosApp.xcodeproj -configuration Debug -scheme iosApp -sdk iphoneos -destination name='iPhone 16 Pro'
+        run: xcodebuild -allowProvisioningUpdates -project iosApp/iosApp.xcodeproj -configuration Debug -scheme iosApp -sdk iphoneos -destination name='iPhone 17 Pro'
 
       - name: Run iOS unit tests
-        run: xcodebuild -allowProvisioningUpdates -project iosApp/iosApp.xcodeproj -configuration Debug -scheme iosApp -sdk iphoneos -destination name='iPhone 16 Pro' test -test-timeouts-enabled YES
+        run: xcodebuild -allowProvisioningUpdates -project iosApp/iosApp.xcodeproj -configuration Debug -scheme iosApp -sdk iphoneos -destination name='iPhone 17 Pro' test -test-timeouts-enabled YES
