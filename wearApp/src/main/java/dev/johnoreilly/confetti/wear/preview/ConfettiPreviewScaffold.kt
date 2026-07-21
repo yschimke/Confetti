@@ -3,6 +3,7 @@ package dev.johnoreilly.confetti.wear.preview
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.wear.compose.material3.AppScaffold
@@ -10,6 +11,7 @@ import androidx.wear.compose.material3.ColorScheme
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.TimeText
 import androidx.wear.compose.material3.Typography
+import coil.compose.LocalImageLoader
 import com.materialkolor.rememberDynamicColorScheme
 import dev.johnoreilly.confetti.wear.ui.ConfettiThemeFixed
 import dev.johnoreilly.confetti.wear.ui.ExpressiveTypography
@@ -39,13 +41,19 @@ fun ConfettiPreviewScaffold(
     content: @Composable () -> Unit,
 ) {
     ConfettiThemeFixed(colors = colors, typography = typography) {
-        AppScaffold(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background),
-            timeText = { TimeText(timeSource = FixedTimeSource) },
-        ) {
-            content()
+        // Provide an offline image loader so `SubcomposeAsyncImage` avatars
+        // render a real image instead of a perpetual loading spinner (there's
+        // no network in the render sandbox). See [rememberPreviewImageLoader].
+        @Suppress("DEPRECATION")
+        CompositionLocalProvider(LocalImageLoader provides rememberPreviewImageLoader()) {
+            AppScaffold(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.background),
+                timeText = { TimeText(timeSource = FixedTimeSource) },
+            ) {
+                content()
+            }
         }
     }
 }

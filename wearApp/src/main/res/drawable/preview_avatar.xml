@@ -1,0 +1,17 @@
+<!--
+  Placeholder avatar for @Preview / offline renders only. Speaker photos load
+  from the network, which the render sandbox can't reach, so previews swap in
+  this drawable via PreviewImageLoader. Not used at runtime.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+    <path
+        android:fillColor="#4B3E76"
+        android:pathData="M48,48m-48,0a48,48 0,1 1,96 0a48,48 0,1 1,-96 0" />
+    <path
+        android:fillColor="#E8DEFF"
+        android:pathData="M48,49c6.6,0 12,-5.4 12,-12S54.6,25 48,25 36,30.4 36,37 41.4,49 48,49zM48,55c-8,0 -24,4 -24,12v4h48v-4c0,-8 -16,-12 -24,-12z" />
+</vector>

@@ -12,11 +12,14 @@ import androidx.wear.compose.material3.ButtonDefaults
 import androidx.wear.compose.material3.CircularProgressIndicator
 import androidx.wear.compose.material3.Icon
 import androidx.wear.compose.material3.SurfaceTransformation
+import androidx.wear.compose.ui.tooling.preview.WearPreviewLargeRound
 import coil.compose.SubcomposeAsyncImage
 import dev.johnoreilly.confetti.fragment.SpeakerDetails
 import dev.johnoreilly.confetti.fullNameAndCompany
 import dev.johnoreilly.confetti.ui.icons.ConfettiIcons
 import dev.johnoreilly.confetti.ui.icons.Person
+import dev.johnoreilly.confetti.wear.preview.ConfettiPreviewScaffold
+import dev.johnoreilly.confetti.wear.preview.TestFixtures
 
 val SpeakerDetails.wearPhotoUrl: String?
     get() = photoUrlThumbnail?.let {
@@ -63,6 +66,17 @@ fun SessionSpeakerChip(
         onClick = { navigateToSpeaker(speaker.id) }
     ) {
         Text(speaker.fullNameAndCompany())
+    }
+}
+
+@WearPreviewLargeRound
+@Composable
+fun SessionSpeakerChipPreview() {
+    ConfettiPreviewScaffold {
+        SessionSpeakerChip(
+            speaker = TestFixtures.JohnOreilly.speakerDetails,
+            navigateToSpeaker = {},
+        )
     }
 }
 
