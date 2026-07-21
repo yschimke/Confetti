@@ -5,6 +5,10 @@
   "library": ["androidx.wear.compose:compose-material3"],
   "module": "wearApp",
   "modes": ["largeRound"],
+  "display": {
+    "surface": "dark",
+    "hero": "Sessions"
+  },
   "groups": [
     {
       "name": "Theme",
