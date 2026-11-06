@@ -74,21 +74,11 @@ fun SessionListView(
                 val trackNames = remember(uiState.tracks) { uiState.tracks.map { it.name }.toSet() }
 
                 AnimatedVisibility(visible = LocalTopBarCollapsedFraction.current < 0.5f) {
-                    Column {
-                        // Conference-styled header and promotions (Livery); nothing without a design.
-                        Column(
-                            modifier = Modifier.padding(horizontal = 16.dp),
-                            verticalArrangement = Arrangement.spacedBy(8.dp),
-                        ) {
-                            ConferenceHeaderSlot(uiState)
-                            PromoSlot(placement = "home.feed", conference = uiState.conference)
-                        }
-                        TrackFilterRow(
-                            tracks = uiState.tracks,
-                            selectedTracks = uiState.selectedTracks,
-                            onTrackSelectionChanged = onTrackSelectionChanged,
-                        )
-                    }
+                    TrackFilterRow(
+                        tracks = uiState.tracks,
+                        selectedTracks = uiState.selectedTracks,
+                        onTrackSelectionChanged = onTrackSelectionChanged,
+                    )
                 }
                 SessionListTabRow(pagerState, uiState)
 
@@ -134,8 +124,9 @@ fun SessionListView(
                             val stickyHeaderIndex = stickyHeader?.index ?: 0
                             val initialItemIndex = initialItem?.index ?: 0
 
-                            // Sum the index of the initial item and the sticky headers.
-                            stickyHeaderIndex + initialItemIndex
+                            // Sum the index of the initial item and the sticky headers, after
+                            // the conference item at the top.
+                            CONFERENCE_ITEMS + stickyHeaderIndex + initialItemIndex
                         }
                     }
 
@@ -149,6 +140,18 @@ fun SessionListView(
                             state = listState,
                             contentPadding = PaddingValues(bottom = LocalBottomNavigationPadding.current)
                         ) {
+                            // Conference-styled header and promotion (Livery), scrolling with
+                            // the agenda; empty (no height) without a design.
+                            item(key = "conference") {
+                                Column(
+                                    modifier = Modifier.padding(horizontal = 16.dp),
+                                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                                ) {
+                                    ConferenceHeaderSlot(uiState)
+                                    PromoSlot(placement = "home.feed", conference = uiState.conference)
+                                }
+                            }
+
                             sessions.forEach { (startTime, sessions) ->
 
                                 stickyHeader {
@@ -250,3 +253,6 @@ internal fun SessionListViewErrorPreview() {
         isLoggedIn = false,
     )
 }
+
+/** Items above the first sticky header: the conference header and promotion. */
+private const val CONFERENCE_ITEMS = 1
