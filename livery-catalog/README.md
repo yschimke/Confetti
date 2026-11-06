@@ -111,7 +111,7 @@ Every contract also takes the conference palette as theme roles (`theme.primary`
 
 | Surface | Status here |
 | --- | --- |
-| Phone and tablet (Android) | Wired: agenda header, promotion and session cards, promotions under sessions and on speaker pages. Off until Livery is built on stable Compose (see Friction); `-Pconfetti.livery=true` turns it on |
+| Phone and tablet (Android) | Wired: agenda header, promotion and session cards, promotions under sessions and on speaker pages. On by default; `-Pconfetti.livery=false` builds the app with Confetti's own UI everywhere |
 | iOS, desktop, web | The same shared slots compile for every target; each platform needs only to provide `LocalLiveryStyling` (a repository and a bundled or hosted catalog) |
 | Launcher widget | Templates authored (`launcher` target); next: a `LiveryLauncherWidgetProvider` for "next session" |
 | Wear | Templates authored (`wear-widget`, `wear:large`); next: a `LiveryWearWidget` beside the existing tiles |
@@ -141,16 +141,16 @@ packs and promotions in placements, not in the documents.
 
 ## Friction, and what changed in Livery
 
-Found doing this, and fixed in [yschimke/livery#14](https://github.com/yschimke/livery/pull/14):
+Found doing this, fixed in [yschimke/livery#14](https://github.com/yschimke/livery/pull/14) and
+released in Livery 0.2.0, which this branch uses:
 
 - **Compose version.** Livery 0.1.1 is built against Compose Multiplatform 1.13.0-beta02. Confetti
   pins the stable androidx Compose BOM (runtime 1.12.1), so the app compiles and then every slot
-  crashes with `NoSuchMethodError`. It also pulls a beta CMP into `shared`'s other targets. Fixed
-  upstream by building on stable 1.12.2 (verified against this branch through mavenLocal). Until a
-  release, the Android provider is off by default.
+  crashes with `NoSuchMethodError`. It also pulls a beta CMP into `shared`'s other targets. 0.2.0
+  builds on stable 1.12.2.
 - **Bundled catalog without placements or themes.** `manifest()` is only the downloaded catalog,
-  so a fresh install never decided a placement. Fixed upstream (`current()`, `theme(id)`). Here
-  `LiveryStyling` falls back to the bundled manifest until then.
+  so a fresh install never decided a placement. 0.2.0 adds `current()` and `theme(id)`, which
+  `LiveryStyling` uses.
 - **Opaque agent errors.** `livery-mcp` said "internal error" when Skia failed to load on a
   headless host. It now says why and how to fix it.
 - **Stale getting-started step**, pointing at a snapshot composite build.
@@ -165,5 +165,8 @@ Still open:
 - **Authoring.** Sidecars and typed contracts are hand-rolled here (`Authoring.kt`,
   `Contracts.kt`). Livery's authoring work could absorb both: record reads and emits at capture,
   and generate or check contracts from Kotlin.
-- Smaller points: `TemplateQuery.minor` is on Livery's main branch but not in 0.1.1. A placement's
-  segments must match the conference id exactly (`conference:droidconlondon2026`).
+- **Example data as initial values.** A host pushes only the inputs it binds, so a document's
+  initial values show whenever the app leaves an optional input out. Captured with example data,
+  they looked like real data. Here the capture uses contract defaults and `CatalogTest` guards
+  it. Livery's authoring tools should do the same, or a host could reset unbound reads.
+- A placement's segments must match the conference id exactly (`conference:droidconlondon2026`).
