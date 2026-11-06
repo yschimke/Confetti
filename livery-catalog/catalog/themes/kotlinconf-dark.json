@@ -1,6 +1,6 @@
 {
-  "id": "kotlinconf",
-  "title": "KotlinConf",
+  "id": "kotlinconf-dark",
+  "title": "KotlinConf (dark)",
   "mode": "dark",
   "values": {
     "theme.primary": {

@@ -33,4 +33,12 @@ class ContractsTest {
         val tickets = ConferenceContract.toJson()["actions"].toString()
         assertTrue("\"url\"" in tickets, tickets)
     }
+
+    @Test fun materialColoursCoverEveryThemeRole() {
+        val values = materialThemeValues(1, 2, 3, 4, 5, 6, 7)
+        AllContracts.forEach { c ->
+            assertEquals(c.inputs.values.filter { it.role != null }.map { it.name }.toSet(), values.keys, c.ref)
+        }
+        assertEquals("droidcon-dark", ConferenceSeries.themePack("droidcon", dark = true))
+    }
 }
