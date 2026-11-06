@@ -16,6 +16,26 @@ Two conferences are designed here: **droidcon** (dark, terminal-flavoured, Andro
 | Launcher widget | ![](renders/droidcon-session-launcher.png) | ![](renders/kotlinconf-session-launcher.png) |
 | Wear widget | ![](renders/droidcon-session-wear-large.png) | ![](renders/kotlinconf-session-wear-large.png) |
 
+### In the app
+
+The real Android path (`LiverySlotsTest`): the catalog bundled into the APK by Livery's Gradle
+plugin, picked by conference series, filled through the contract and played inside Confetti's
+agenda. A conference with no designs (`devfestnantes2025`) keeps Confetti's own row, and the
+droidcon party promotion comes from a placement rule in the catalog.
+
+![](renders/android-agenda-slots.png)
+
+### An admin's change, as data
+
+The same droidcon documents with a different theme pack (a venue blue for droidcon Berlin): no
+new capture, no app release, just values.
+
+| droidcon (catalog theme) | droidcon, Berlin theme pack |
+| --- | --- |
+| ![](renders/droidcon-header-in-app.png) | ![](renders/droidcon-header-in-app-berlin-theme.png) |
+| ![](renders/droidcon-session-in-app.png) | ![](renders/droidcon-session-in-app-berlin-theme.png) |
+| ![](renders/droidcon-speaker-in-app.png) | ![](renders/droidcon-speaker-in-app-berlin-theme.png) |
+
 ## How it fits together
 
 ```
