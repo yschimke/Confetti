@@ -31,7 +31,6 @@ import ee.schimke.livery.client.TemplateQuery
 import ee.schimke.livery.client.TemplateRepository
 import ee.schimke.livery.compose.LiveryHost
 import ee.schimke.livery.compose.LiverySlot
-import ee.schimke.livery.protocol.Manifest
 import ee.schimke.livery.protocol.PlayerCapabilities
 import ee.schimke.livery.protocol.Surfaces
 
@@ -54,24 +53,13 @@ class LiveryStyling(
     val capabilities: PlayerCapabilities = InApp,
     /** Hosts an `open-url` action may open. */
     val urlAllowlist: Set<String> = setOf("droidcon.com", "kotlinconf.com", "jetbrains.com", "confetti-app.dev"),
-    /** The catalog bundled with the app (see the workaround below). */
-    private val bundledManifest: Manifest? = null,
-    decider: Decider? = null,
+    /** Placement rules from the catalog slots draw from: downloaded, else the bundled copy. */
+    val decider: Decider = LocalRulesDecider({ repository.current() }, MemoryFrequencyStore()),
 ) {
-    val decider: Decider = decider ?: LocalRulesDecider({ currentManifest() }, MemoryFrequencyStore())
     val planner = SlotPlanner(repository, events, clock)
 
-    /**
-     * The conference's theme pack, pushed beside the data: the brand colours an admin can change
-     * as data. Read from the catalog slots draw from (downloaded, else bundled).
-     */
-    suspend fun theme(series: String): Bindings =
-        currentManifest()?.themes?.firstOrNull { it.id == series }?.let { Bindings(it.values) } ?: Bindings.EMPTY
-
-    // Livery 0.1.1's manifest() is only the *downloaded* catalog, so a fresh install would see no
-    // placements or themes; repository.current() fixes that upstream (yschimke/livery, this
-    // exploration). Until it is released, fall back to the bundled copy here.
-    private suspend fun currentManifest(): Manifest? = repository.manifest() ?: bundledManifest
+    /** The conference's theme pack, pushed beside the data: the brand colours an admin can change as data. */
+    suspend fun theme(series: String): Bindings = repository.theme(series) ?: Bindings.EMPTY
 
     /** Whether an `open-url` may go to [url]: https only, by the host it really reaches (Livery's own parser). */
     fun allowsUrl(url: String): Boolean = urlAllowed(url, urlAllowlist)
@@ -152,7 +140,7 @@ fun PromoSlot(
 }
 
 private fun LiveryStyling.query(contract: ConfettiContract, series: String) =
-    TemplateQuery(contract.ref, capabilities, tags = mapOf(ConferenceSeries.TAG to series))
+    TemplateQuery(contract.ref, capabilities, tags = mapOf(ConferenceSeries.TAG to series), minor = contract.minor)
 
 @Composable
 private fun rememberHost(styling: LiveryStyling, actions: ActionHandlers): LiveryHost {

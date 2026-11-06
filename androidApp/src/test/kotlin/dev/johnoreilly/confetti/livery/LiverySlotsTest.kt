@@ -49,8 +49,7 @@ class LiverySlotsTest {
     private val styling = confettiLiveryStyling(ApplicationProvider.getApplicationContext()) { clock }
 
     @Test fun conferenceStyledSlots() {
-        // Runs when the feature is on (-Pconfetti.livery=true): Livery 0.1.1 is built against a newer
-        // Compose runtime than this app's BOM, so the player can't run here until it is rebuilt.
+        // The slots only exist when the feature is on (the default; -Pconfetti.livery=false is off).
         assumeTrue(BuildConfig.LIVERY_ENABLED)
         val live = LocalDateTime.parse("2023-04-13T14:10")
         compose.setContent {

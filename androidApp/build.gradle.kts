@@ -63,10 +63,9 @@ android {
         versionCode = versionCode()
         versionName = versionName()
 
-        // Conference-styled slots (Livery). Off until a Livery release is built against stable
-        // Compose: 0.1.1 needs the 1.13 runtime and crashes against this app's BOM. Try it with
-        // -Pconfetti.livery=true and a Livery snapshot; see livery-catalog/README.md.
-        buildConfigField("boolean", "LIVERY_ENABLED", (findProperty("confetti.livery") == "true").toString())
+        // Conference-styled slots (Livery), on by default; -Pconfetti.livery=false builds the app
+        // with Confetti's own UI everywhere. See livery-catalog/README.md.
+        buildConfigField("boolean", "LIVERY_ENABLED", (findProperty("confetti.livery") != "false").toString())
     }
 
     androidResources {

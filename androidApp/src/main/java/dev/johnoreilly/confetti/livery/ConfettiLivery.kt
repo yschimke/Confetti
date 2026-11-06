@@ -56,7 +56,6 @@ fun confettiLiveryStyling(context: Context, clock: Clock = Clock { System.curren
             repository, fetcher, JavaCrypto,
             directHosts = setOf("sessionize.com", "storage.googleapis.com", "githubusercontent.com"),
         ),
-        bundledManifest = bundled?.manifest,
     )
 }
 
