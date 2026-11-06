@@ -17,6 +17,7 @@ import androidx.compose.remote.creation.compose.modifier.fillMaxWidth
 import androidx.compose.remote.creation.compose.modifier.height
 import androidx.compose.remote.creation.compose.modifier.padding
 import androidx.compose.remote.creation.compose.modifier.size
+import androidx.compose.remote.creation.compose.modifier.visibility
 import androidx.compose.remote.creation.compose.modifier.width
 import androidx.compose.remote.creation.compose.shapes.RemoteRoundedCornerShape
 import androidx.compose.remote.creation.compose.state.rdp
@@ -50,12 +51,15 @@ fun DroidconHeader() {
         Label(input(C.name), c.onSurface, size = 30, weight = FontWeight.ExtraBold, maxLines = 2)
         Label(input(C.tagline), c.muted, size = 15, weight = FontWeight.Normal, maxLines = 2)
         Label("◉ ".rs + input(C.location), c.tertiary, size = 13, weight = FontWeight.SemiBold)
+        // Only when the app has somewhere to send people: no URL, no button.
+        val ticketsUrl = input(C.ticketsUrl)
         RemoteBox(
             modifier = RemoteModifier
+                .visibility(ticketsUrl.isNotEmpty.visibleIf())
                 .padding(top = 8.rdp)
                 .clip(RemoteRoundedCornerShape(4.rdp))
                 .background(c.primary)
-                .clickable(emit(C.tickets, input(C.ticketsUrl)))
+                .clickable(emit(C.tickets, ticketsUrl))
                 .padding(horizontal = 14.rdp, vertical = 6.rdp),
         ) { Label("GET TICKETS →".rs, c.onPrimary, size = 13) }
     }

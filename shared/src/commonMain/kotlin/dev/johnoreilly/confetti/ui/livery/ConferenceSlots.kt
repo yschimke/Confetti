@@ -1,6 +1,7 @@
 package dev.johnoreilly.confetti.ui.livery
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalUriHandler
 import dev.johnoreilly.confetti.decompose.SessionsUiState
 import dev.johnoreilly.confetti.fragment.SessionDetails
 import dev.johnoreilly.confetti.fragment.SpeakerDetails
@@ -17,13 +18,17 @@ import sessionTimeFormat
  * meets a design: the contract types keep both sides honest (see livery-contracts/Contracts.kt).
  */
 
-/** The conference header above the agenda; nothing (the agenda as today) without a design. */
+/**
+ * The conference header above the agenda; nothing (the agenda as today) without a design. The
+ * designs draw their tickets button only when there is a [ticketsUrl] (Confetti's data has none yet).
+ */
 @Composable
-fun ConferenceHeaderSlot(state: SessionsUiState.Success) {
+fun ConferenceHeaderSlot(state: SessionsUiState.Success, ticketsUrl: String? = null) {
     val dates = state.confDates.sorted()
     val first = dates.firstOrNull() ?: return
     val last = dates.last()
     val c = ConferenceContract
+    val uriHandler = LocalUriHandler.current
     val dateText = if (first == last) "${first.day} ${first.month.name.take(3)} ${first.year}"
         else "${first.day}–${last.day} ${last.month.name.take(3)} ${last.year}"
     ConferenceSlot(
@@ -33,7 +38,9 @@ fun ConferenceHeaderSlot(state: SessionsUiState.Success) {
             put(c.name, c.name.fit(state.conferenceName))
             put(c.dates, c.dates.fit(dateText))
             put(c.live, state.now.date in dates)
+            ticketsUrl?.let { put(c.ticketsUrl, c.ticketsUrl.fit(it)) }
         },
+        actions = mapOf(c.tickets.kind to { args -> args["url"]?.let(uriHandler::openUri) }),
     ) {}
 }
 
