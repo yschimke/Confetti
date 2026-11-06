@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -25,6 +26,8 @@ import dev.johnoreilly.confetti.decompose.DefaultAppComponent
 import dev.johnoreilly.confetti.decompose.ThemeBrand
 import dev.johnoreilly.confetti.decompose.UserEditableSettings
 import dev.johnoreilly.confetti.ui.App
+import dev.johnoreilly.confetti.ui.livery.LiveryStyling
+import dev.johnoreilly.confetti.ui.livery.LocalLiveryStyling
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
@@ -38,6 +41,7 @@ class MainActivity : ComponentActivity() {
 
         var userEditableSettings by mutableStateOf<UserEditableSettings?>(null)
         val signInProcess: SignInProcess by inject()
+        val liveryStyling: LiveryStyling by inject()
 
         val appComponent =
             handleDeepLink { uri ->
@@ -67,7 +71,10 @@ class MainActivity : ComponentActivity() {
         }
 
         setContent {
-            App(component = appComponent)
+            // Conference-styled slots from the bundled Livery catalog (see livery/ConfettiLivery.kt).
+            CompositionLocalProvider(LocalLiveryStyling provides if (BuildConfig.LIVERY_ENABLED) liveryStyling else null) {
+                App(component = appComponent)
+            }
         }
     }
 }

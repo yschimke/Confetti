@@ -37,6 +37,12 @@ import dev.johnoreilly.confetti.isService
 import dev.johnoreilly.confetti.listTags
 import dev.johnoreilly.confetti.ui.LocalBottomNavigationPadding
 import dev.johnoreilly.confetti.ui.trackColor
+import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Arrangement
+import dev.johnoreilly.confetti.ui.livery.SessionCardSlot
+import dev.johnoreilly.confetti.ui.livery.PromoSlot
+import dev.johnoreilly.confetti.ui.livery.ConferenceHeaderSlot
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -68,11 +74,21 @@ fun SessionListView(
                 val trackNames = remember(uiState.tracks) { uiState.tracks.map { it.name }.toSet() }
 
                 AnimatedVisibility(visible = LocalTopBarCollapsedFraction.current < 0.5f) {
-                    TrackFilterRow(
-                        tracks = uiState.tracks,
-                        selectedTracks = uiState.selectedTracks,
-                        onTrackSelectionChanged = onTrackSelectionChanged,
-                    )
+                    Column {
+                        // Conference-styled header and promotions (Livery); nothing without a design.
+                        Column(
+                            modifier = Modifier.padding(horizontal = 16.dp),
+                            verticalArrangement = Arrangement.spacedBy(8.dp),
+                        ) {
+                            ConferenceHeaderSlot(uiState)
+                            PromoSlot(placement = "home.feed", conference = uiState.conference)
+                        }
+                        TrackFilterRow(
+                            tracks = uiState.tracks,
+                            selectedTracks = uiState.selectedTracks,
+                            onTrackSelectionChanged = onTrackSelectionChanged,
+                        )
+                    }
                 }
                 SessionListTabRow(pagerState, uiState)
 
@@ -140,17 +156,41 @@ fun SessionListView(
                                 }
 
                                 itemsIndexed(sessions) { index, session ->
-                                    SessionItemView(
-                                        session = session,
-                                        sessionSelected = sessionSelected,
-                                        isBookmarked = uiState.bookmarks.contains(session.id),
-                                        addBookmark = addBookmark,
-                                        removeBookmark = removeBookmark,
-                                        onNavigateToSignIn = onNavigateToSignIn,
-                                        isLoggedIn = isLoggedIn,
-                                        trackColor = session.trackColor(uiState.tracks),
-                                        tags = session.listTags(trackNames, uiState.selectedTracks),
-                                    )
+                                    val isBookmarked = uiState.bookmarks.contains(session.id)
+                                    val nativeItem = @Composable {
+                                        SessionItemView(
+                                            session = session,
+                                            sessionSelected = sessionSelected,
+                                            isBookmarked = isBookmarked,
+                                            addBookmark = addBookmark,
+                                            removeBookmark = removeBookmark,
+                                            onNavigateToSignIn = onNavigateToSignIn,
+                                            isLoggedIn = isLoggedIn,
+                                            trackColor = session.trackColor(uiState.tracks),
+                                            tags = session.listTags(trackNames, uiState.selectedTracks),
+                                        )
+                                    }
+                                    if (session.isBreak() || session.isService()) {
+                                        nativeItem()
+                                    } else {
+                                        // The conference's session design when it has one (Livery),
+                                        // else Confetti's own row.
+                                        SessionCardSlot(
+                                            conference = uiState.conference,
+                                            session = session,
+                                            now = uiState.now,
+                                            isBookmarked = isBookmarked,
+                                            onOpen = { sessionSelected(session.id) },
+                                            onToggleBookmark = {
+                                                when {
+                                                    !isLoggedIn -> onNavigateToSignIn()
+                                                    isBookmarked -> removeBookmark(session.id)
+                                                    else -> addBookmark(session.id)
+                                                }
+                                            },
+                                            fallback = nativeItem,
+                                        )
+                                    }
                                     val isCurrentBreak = session.isBreak() || session.isService()
                                     val isNextBreak = index < sessions.lastIndex && (sessions[index + 1].isBreak() || sessions[index + 1].isService())
                                     if (index < sessions.lastIndex && !isCurrentBreak && !isNextBreak) {

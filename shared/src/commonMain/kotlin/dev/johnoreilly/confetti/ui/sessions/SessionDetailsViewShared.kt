@@ -75,6 +75,7 @@ import kotlinx.datetime.LocalDateTime
 import org.jetbrains.compose.resources.stringResource
 import sessionStartDateTimeFormat
 import sessionTimeFormat
+import dev.johnoreilly.confetti.ui.livery.PromoSlot
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -143,6 +144,9 @@ fun SessionDetailViewShared(
                         }
                     }
                     Spacer(modifier = Modifier.size(16.dp))
+
+                    // A growth placement under the talk (Livery): feedback, the next workshop...
+                    PromoSlot(placement = "session.footer", conference = conference)
                 }
 
                 if (session.speakers.isNotEmpty()) {

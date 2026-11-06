@@ -1,0 +1,79 @@
+package dev.johnoreilly.confetti.livery
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Text
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onRoot
+import androidx.compose.ui.unit.dp
+import androidx.test.core.app.ApplicationProvider
+import com.github.takahirom.roborazzi.captureRoboImage
+import dev.johnoreilly.confetti.di.KoinTestApp
+import dev.johnoreilly.confetti.preview.sessionDetails
+import dev.johnoreilly.confetti.ui.livery.LocalLiveryStyling
+import dev.johnoreilly.confetti.ui.livery.PromoSlot
+import dev.johnoreilly.confetti.ui.livery.SessionCardSlot
+import kotlinx.datetime.LocalDateTime
+import dev.johnoreilly.confetti.BuildConfig
+import org.junit.Assert.assertEquals
+import org.junit.Assume.assumeTrue
+import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
+import org.robolectric.annotation.GraphicsMode
+import java.time.Instant
+
+/**
+ * The real app path: the catalog bundled into the APK's assets by the Livery Gradle plugin,
+ * selected by conference series, filled through the contract and played by the RC player inside
+ * Confetti's own composables. A conference without a series keeps Confetti's row.
+ */
+@RunWith(RobolectricTestRunner::class)
+@Config(application = KoinTestApp::class, sdk = [35])
+@GraphicsMode(GraphicsMode.Mode.NATIVE)
+class LiverySlotsTest {
+    @get:Rule val compose = createComposeRule()
+
+    // During the droidcon London party placement's window.
+    private val clock = Instant.parse("2026-10-29T18:00:00Z").toEpochMilli()
+    private val styling = confettiLiveryStyling(ApplicationProvider.getApplicationContext()) { clock }
+
+    @Test fun conferenceStyledSlots() {
+        // Runs when the feature is on (-Pconfetti.livery=true): Livery 0.1.1 is built against a newer
+        // Compose runtime than this app's BOM, so the player can't run here until it is rebuilt.
+        assumeTrue(BuildConfig.LIVERY_ENABLED)
+        val live = LocalDateTime.parse("2023-04-13T14:10")
+        compose.setContent {
+            CompositionLocalProvider(LocalLiveryStyling provides styling) {
+                Column(
+                    Modifier.background(Color.White).width(400.dp).padding(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    for ((conference, bookmarked) in listOf("kotlinconf2026" to false, "droidconlondon2025" to true, "devfestnantes2025" to false)) {
+                        SessionCardSlot(conference, sessionDetails, live, bookmarked, onOpen = {}, onToggleBookmark = {}) {
+                            Text("Confetti's own row for $conference", Modifier.testTag("native"))
+                        }
+                    }
+                    PromoSlot("home.feed", "droidconlondon2026")
+                    PromoSlot("session.footer", "kotlinconf2026")
+                }
+            }
+        }
+        // Planning reads the bundled catalog off the main thread; until it lands, slots draw their fallback.
+        compose.waitUntil(10_000) { compose.onAllNodesWithTag("native").fetchSemanticsNodes().size == 1 }
+        compose.waitForIdle()
+        compose.onRoot().captureRoboImage("build/outputs/roborazzi/livery-slots.png")
+        // Only the conference without a design kept the native row.
+        assertEquals(1, compose.onAllNodesWithTag("native").fetchSemanticsNodes().size)
+    }
+}
