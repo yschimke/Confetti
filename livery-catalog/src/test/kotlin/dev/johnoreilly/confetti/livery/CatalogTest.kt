@@ -39,6 +39,18 @@ class CatalogTest {
         assertTrue(failure?.message?.contains("not an input of confetti/session@1") == true, "$failure")
     }
 
+    @Test fun noExampleDataIsBakedIntoADocument() {
+        // A host pushes only the inputs it binds, so a document's initial values must be the
+        // contract's defaults: example text left in one would show as real data (a ticket URL the
+        // app never gave, a made-up speaker).
+        captured.forEach { t ->
+            val text = t.bytes.decodeToString()
+            t.design.contract.examples.values.flatMap { it.values }.filterIsInstance<String>().filter { it.length >= 4 }.forEach {
+                assertTrue(it !in text, "${t.design.id}/${t.template.name} has example data \"$it\" baked in")
+            }
+        }
+    }
+
     @Test fun everyTemplatePlays() {
         captured.forEach { t ->
             val c = t.design.contract

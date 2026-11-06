@@ -39,7 +39,7 @@ class CapturedTemplate(val design: DesignDef, val template: TemplateDef, val byt
 
 /** Captures one template to Remote Compose bytes on the JVM, recording what it read and emitted. */
 fun capture(design: DesignDef, template: TemplateDef): CapturedTemplate = runBlocking {
-    val scope = TemplateScope(design.contract, design.contract.examples.getValue(design.example))
+    val scope = TemplateScope(design.contract)
     val bytes = captureCommonRemoteDocument(
         creationDisplayInfo = RemoteCreationDisplayInfo(
             width = template.widthDp, height = template.heightDp, densityDpi = 160,

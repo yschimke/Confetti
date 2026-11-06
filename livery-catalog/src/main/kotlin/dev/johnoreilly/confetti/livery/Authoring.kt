@@ -14,6 +14,9 @@ import androidx.compose.remote.creation.compose.state.rs
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
+import kotlinx.serialization.json.booleanOrNull
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.jsonPrimitive
 
 /**
  * The contract a template is being captured for, and what it touched: the inputs it reads and the
@@ -21,7 +24,7 @@ import androidx.compose.ui.graphics.Color
  * recording them at capture time means they can't drift from the document, and anything outside
  * the contract fails the capture.
  */
-class TemplateScope(val contract: ConfettiContract, val example: Map<Input, Any>) {
+class TemplateScope(val contract: ConfettiContract) {
     val reads = linkedSetOf<String>()
     val emits = linkedSetOf<String>()
 
@@ -39,15 +42,17 @@ class TemplateScope(val contract: ConfettiContract, val example: Map<Input, Any>
 val LocalTemplateScope = staticCompositionLocalOf<TemplateScope> { error("not capturing a template") }
 
 /**
- * A contract string input, as a `USER` named value (PROTOCOL §4.2). Its initial value, what a
- * player shows before the host pushes anything, is the design's example.
+ * A contract string input, as a `USER` named value (PROTOCOL §4.2). Its initial value is the
+ * contract's default, never example data: a host pushes only the inputs it binds, so an optional
+ * input the app leaves out keeps the initial value, and an example there (a ticket URL, a
+ * speaker's name) would show up as real data.
  */
 @Composable
 fun input(input: Input): RemoteString {
     val scope = LocalTemplateScope.current
     require(input.type == InputType.String) { "${input.name} is ${input.type}" }
     scope.read(input)
-    return rememberNamedRemoteString(input.name, scope.example[input] as? String ?: "")
+    return rememberNamedRemoteString(input.name, input.default?.jsonPrimitive?.contentOrNull ?: "")
 }
 
 @Composable
@@ -55,7 +60,7 @@ fun inputBool(input: Input): RemoteBoolean {
     val scope = LocalTemplateScope.current
     require(input.type == InputType.Bool) { "${input.name} is ${input.type}" }
     scope.read(input)
-    val initial = scope.example[input] as? Boolean ?: input.default?.toString()?.toBooleanStrictOrNull() ?: false
+    val initial = input.default?.jsonPrimitive?.booleanOrNull ?: false
     return rememberNamedRemoteBoolean(input.name, initial)
 }
 

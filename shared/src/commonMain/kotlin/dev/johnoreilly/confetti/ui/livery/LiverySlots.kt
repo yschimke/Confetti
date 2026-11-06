@@ -73,14 +73,18 @@ class LiveryStyling(
     // exploration). Until it is released, fall back to the bundled copy here.
     private suspend fun currentManifest(): Manifest? = repository.manifest() ?: bundledManifest
 
-    fun allowsUrl(url: String): Boolean {
-        val host = url.removePrefix("https://").takeIf { it != url }?.substringBefore('/')?.substringBefore('?')?.lowercase() ?: return false
-        return urlAllowlist.any { host == it || host.endsWith(".$it") }
-    }
+    /** Whether an `open-url` may go to [url]: https only, by the host it really reaches (Livery's own parser). */
+    fun allowsUrl(url: String): Boolean = urlAllowed(url, urlAllowlist)
 
     companion object {
         val InApp = PlayerCapabilities(Surfaces.IN_APP, maxRcApiLevel = 7, profiles = setOf("androidx"))
     }
+}
+
+/** [url] is https and the host it really reaches is one of [hosts] or under one of them. */
+internal fun urlAllowed(url: String, hosts: Set<String>): Boolean {
+    val host = ImageResolver.remoteHost(url) ?: return false
+    return hosts.any { host == it || host.endsWith(".$it") }
 }
 
 val LocalLiveryStyling = staticCompositionLocalOf<LiveryStyling?> { null }

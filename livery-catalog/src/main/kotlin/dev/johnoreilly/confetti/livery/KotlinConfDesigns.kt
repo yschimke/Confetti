@@ -18,6 +18,7 @@ import androidx.compose.remote.creation.compose.modifier.fillMaxWidth
 import androidx.compose.remote.creation.compose.modifier.padding
 import androidx.compose.remote.creation.compose.modifier.rotate
 import androidx.compose.remote.creation.compose.modifier.size
+import androidx.compose.remote.creation.compose.modifier.visibility
 import androidx.compose.remote.creation.compose.shapes.RemoteCircleShape
 import androidx.compose.remote.creation.compose.shapes.RemoteRoundedCornerShape
 import androidx.compose.remote.creation.compose.shaders.RemoteBrush
@@ -91,11 +92,14 @@ fun KotlinConfHeader() {
                 verticalAlignment = RemoteAlignment.CenterVertically,
             ) {
                 Chip(input(C.location), onBrand.copy(alpha = 0.2f.rf), onBrand)
+                // Only when the app has somewhere to send people: no URL, no button.
+                val ticketsUrl = input(C.ticketsUrl)
                 RemoteBox(
                     modifier = RemoteModifier
+                        .visibility(ticketsUrl.isNotEmpty.visibleIf())
                         .clip(RemoteCircleShape)
                         .background(onBrand)
-                        .clickable(emit(C.tickets, input(C.ticketsUrl)))
+                        .clickable(emit(C.tickets, ticketsUrl))
                         .padding(horizontal = 14.rdp, vertical = 5.rdp),
                 ) { Label("Get tickets".rs, c.primary, size = 13) }
             }
