@@ -32,6 +32,9 @@ dependencies {
     implementation(libs.livery.compose)
     implementation(libs.livery.render)
     implementation(compose.desktop.currentOs)
+    // Material 3 dynamic schemes, for the renders of a user's dynamic colours.
+    implementation(compose.material3)
+    implementation(libs.materialkolor)
     implementation(platform(libs.kotlinx.serialization.bom))
     implementation(libs.kotlinx.serialization)
 

@@ -10,7 +10,15 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
+import androidx.compose.material3.ColorScheme
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalUriHandler
+import dev.johnoreilly.confetti.livery.materialThemeValues
+import dev.johnoreilly.confetti.ui.LocalDynamicColorInUse
+import ee.schimke.livery.protocol.NamedValue
 import dev.johnoreilly.confetti.livery.Action
 import dev.johnoreilly.confetti.livery.ConferenceSeries
 import dev.johnoreilly.confetti.livery.ConfettiContract
@@ -58,8 +66,13 @@ class LiveryStyling(
 ) {
     val planner = SlotPlanner(repository, events, clock)
 
-    /** The conference's theme pack, pushed beside the data: the brand colours an admin can change as data. */
-    suspend fun theme(series: String): Bindings = repository.theme(series) ?: Bindings.EMPTY
+    /**
+     * The colours pushed beside a slot's data, as `theme.*` roles: the user's Material 3 colours
+     * when [appColors] is given (dynamic colour on), else the conference's theme pack for the mode
+     * (`droidcon-light`, `kotlinconf-dark`): brand colours an admin can change as data.
+     */
+    suspend fun theme(series: String, dark: Boolean, appColors: Bindings? = null): Bindings =
+        appColors ?: repository.theme(ConferenceSeries.themePack(series, dark)) ?: repository.theme(series) ?: Bindings.EMPTY
 
     /** Whether an `open-url` may go to [url]: https only, by the host it really reaches (Livery's own parser). */
     fun allowsUrl(url: String): Boolean = urlAllowed(url, urlAllowlist)
@@ -102,8 +115,10 @@ fun ConferenceSlot(
     }
     val json = remember(contract, data) { contract.data(data) }
     val host = rememberHost(styling, actions)
-    LiverySlot(key = json, host = host, modifier = modifier, fallback = { fallback() }) {
-        styling.planner.forAppData(styling.query(contract, series), json, extra = styling.theme(series))
+    val colors = rememberSlotColors()
+    // Re-planned when the data or the colours change: a mode switch or a new wallpaper recolours live.
+    LiverySlot(key = json to colors, host = host, modifier = modifier, fallback = { fallback() }) {
+        styling.planner.forAppData(styling.query(contract, series), json, extra = styling.theme(series, colors.dark, colors.app))
     }
 }
 
@@ -128,15 +143,42 @@ fun PromoSlot(
         PromoContract.ctaAction.kind to { args -> args["url"]?.let(uriHandler::openUri) },
         PromoContract.dismiss.kind to { _ -> dismissed = true },
     ))
-    LiverySlot(key = placement to conference, host = host, modifier = modifier) {
+    val colors = rememberSlotColors()
+    LiverySlot(key = Triple(placement, conference, colors), host = host, modifier = modifier) {
         val context = DecisionContext(
             nowEpochMs = styling.clock.nowEpochMs(), platform = styling.platform, locale = styling.locale,
             appVersion = styling.appVersion, bucketingId = styling.bucketingId,
             segments = segments + ConferenceSeries.segment(conference),
         )
         val decision = styling.decider.decide(placement, context) ?: return@LiverySlot PlanResult.Fallback("no decision for $placement")
-        styling.planner.forDecision(styling.query(PromoContract, series), decision, extra = styling.theme(series))
+        styling.planner.forDecision(styling.query(PromoContract, series), decision, extra = styling.theme(series, colors.dark, colors.app))
     }
+}
+
+/**
+ * Whether the app around a slot is dark, and the user's Material 3 colours when dynamic colour is
+ * in use ([LocalDynamicColorInUse]); read from the [MaterialTheme] the slot sits in, so the app's
+ * own light/dark setting wins over the system's.
+ */
+private data class SlotColors(val dark: Boolean, val app: Bindings?)
+
+@Composable
+private fun rememberSlotColors(): SlotColors {
+    val scheme = MaterialTheme.colorScheme
+    val dynamic = LocalDynamicColorInUse.current
+    return remember(scheme, dynamic) {
+        SlotColors(dark = scheme.surface.luminance() < 0.5f, app = if (dynamic) scheme.toLiveryTheme() else null)
+    }
+}
+
+/** A Material 3 scheme as the designs' theme roles (the catalog's renders use the same mapping). */
+fun ColorScheme.toLiveryTheme(): Bindings {
+    fun Color.argb() = toArgb().toLong() and 0xFFFFFFFFL
+    return Bindings(materialThemeValues(
+        primary = primary.argb(), onPrimary = onPrimary.argb(), secondary = secondary.argb(),
+        tertiary = tertiary.argb(), surface = surfaceContainerHigh.argb(), onSurface = onSurface.argb(),
+        onSurfaceVariant = onSurfaceVariant.argb(),
+    ).mapValues { NamedValue.Color(it.value) })
 }
 
 private fun LiveryStyling.query(contract: ConfettiContract, series: String) =

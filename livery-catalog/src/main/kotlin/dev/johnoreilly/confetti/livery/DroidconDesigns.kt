@@ -46,7 +46,7 @@ fun DroidconHeader() {
     ) {
         RemoteRow(verticalAlignment = RemoteAlignment.CenterVertically, horizontalArrangement = RemoteArrangement.spacedBy(8.rdp)) {
             Label("> ".rs + input(C.dates), c.primary, size = 13)
-            LivePill(inputBool(C.live), c.primary, c.surface, text = "HAPPENING NOW")
+            LivePill(inputBool(C.live), c.primary, c.onPrimary, text = "HAPPENING NOW")
         }
         Label(input(C.name), c.onSurface, size = 30, weight = FontWeight.ExtraBold, maxLines = 2)
         Label(input(C.tagline), c.muted, size = 15, weight = FontWeight.Normal, maxLines = 2)
@@ -86,12 +86,12 @@ fun DroidconSession() {
         ) {
             RemoteRow(verticalAlignment = RemoteAlignment.CenterVertically, horizontalArrangement = RemoteArrangement.spacedBy(8.rdp)) {
                 Label(input(C.time), c.primary, size = 12)
-                LivePill(inputBool(C.live), c.primary, c.surface)
+                LivePill(inputBool(C.live), c.primary, c.onPrimary)
                 Label("@ ".rs + input(C.room), c.muted, size = 12, weight = FontWeight.Medium, modifier = RemoteModifier.weight(1f))
             }
             Label(input(C.title), c.onSurface, size = 17, weight = FontWeight.Bold, maxLines = 2)
             Label(input(C.speakers), c.muted, size = 13, weight = FontWeight.Normal)
-            Chip("#".rs + input(C.tag), c.tertiary, c.onSurface, corner = 4)
+            Chip("#".rs + input(C.tag), c.tertiary.copy(alpha = 0.18f.rf), c.tertiary, corner = 4)
         }
         RemoteBox(
             modifier = RemoteModifier.padding(8.rdp).size(40.rdp, 40.rdp).clickable(emit(C.bookmark)),
@@ -150,18 +150,18 @@ fun DroidconPromo() {
         verticalArrangement = RemoteArrangement.spacedBy(6.rdp),
     ) {
         RemoteRow(RemoteModifier.fillMaxWidth(), verticalAlignment = RemoteAlignment.CenterVertically) {
-            Label("// ".rs + input(C.eyebrow), c.surface, size = 12, modifier = RemoteModifier.weight(1f))
+            Label("// ".rs + input(C.eyebrow), c.onPrimary, size = 12, modifier = RemoteModifier.weight(1f))
             RemoteBox(RemoteModifier.size(28.rdp, 28.rdp).clickable(emit(C.dismiss)), contentAlignment = RemoteAlignment.Center) {
-                Label("✕".rs, c.surface, size = 14)
+                Label("✕".rs, c.onPrimary, size = 14)
             }
         }
-        Label(input(C.headline), c.surface, size = 22, weight = FontWeight.ExtraBold, maxLines = 2)
-        Label(input(C.body), c.surface, size = 14, weight = FontWeight.Normal, maxLines = 3)
+        Label(input(C.headline), c.onPrimary, size = 22, weight = FontWeight.ExtraBold, maxLines = 2)
+        Label(input(C.body), c.onPrimary, size = 14, weight = FontWeight.Normal, maxLines = 3)
         RemoteBox(
             modifier = RemoteModifier
                 .padding(top = 6.rdp)
                 .clip(RemoteRoundedCornerShape(4.rdp))
-                .background(c.surface)
+                .background(c.onPrimary)
                 .clickable(emit(C.ctaAction, input(C.url)))
                 .padding(horizontal = 14.rdp, vertical = 8.rdp),
         ) { Label(input(C.cta), c.primary, size = 13) }

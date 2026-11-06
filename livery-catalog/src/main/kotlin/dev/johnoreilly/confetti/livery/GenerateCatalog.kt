@@ -14,6 +14,9 @@ import ee.schimke.composeai.rcplayer.compose.RcImageLoader
 import ee.schimke.livery.client.BindResult
 import ee.schimke.livery.client.Bindings
 import ee.schimke.livery.client.ContractBinder
+import androidx.compose.material3.ColorScheme
+import androidx.compose.ui.graphics.toArgb
+import com.materialkolor.dynamicColorScheme
 import ee.schimke.livery.protocol.Contract
 import ee.schimke.livery.protocol.NamedValue
 import ee.schimke.livery.render.RenderSpec
@@ -61,11 +64,11 @@ fun bind(contract: ConfettiContract, data: JsonObject): Bindings =
     }
 
 /** Renders a captured template with its design's example data (and a theme pack's values) to PNG. */
-fun render(captured: CapturedTemplate, data: JsonObject, theme: Bindings = Bindings.EMPTY): ByteArray =
+fun render(captured: CapturedTemplate, data: JsonObject, theme: Bindings = Bindings.EMPTY, dark: Boolean = true): ByteArray =
     TemplateRenderer.png(
         template = captured.bytes,
         bindings = bind(captured.design.contract, data) + theme,
-        spec = RenderSpec(captured.template.widthDp, captured.template.heightDp, density = 2f, dark = true),
+        spec = RenderSpec(captured.template.widthDp, captured.template.heightDp, density = 2f, dark = dark),
         images = PreviewImages,
     )
 
@@ -171,6 +174,39 @@ fun main(args: Array<String>) {
             val c = t.design.contract
             out.resolve("${t.design.id}-in-app-berlin-theme.png").writeBytes(render(t, c.data(c.examples.getValue(t.design.example)), berlin))
         }
+        // Light and dark: the same documents with each mode's theme pack, as the app pushes them.
+        fun pack(id: String) = catalog.resolve("themes/$id.json").takeIf { it.isFile }
+            ?.let { Bindings(json.decodeFromString<ThemePack>(it.readText()).values) } ?: error("no theme pack $id")
+        // Material 3 dynamic colour: a user's wallpaper scheme pushed as the theme roles instead of
+        // the conference's, the layout unchanged. Two stand-in wallpapers, one per mode.
+        val dynamic = mapOf(
+            "dynamic-teal-light" to (Color(0xFF00897B) to false),
+            "dynamic-rose-dark" to (Color(0xFFD81B60) to true),
+        )
+        captured.filter { it.template.name == "in-app" }.forEach { t ->
+            val c = t.design.contract
+            val data = c.data(c.examples.getValue(t.design.example))
+            for (dark in listOf(false, true)) {
+                val mode = if (dark) "dark" else "light"
+                out.resolve("${t.design.id}-in-app-$mode.png")
+                    .writeBytes(render(t, data, pack(ConferenceSeries.themePack(t.design.brand.series, dark)), dark))
+            }
+            dynamic.forEach { (name, seed) ->
+                val (color, dark) = seed
+                val scheme = dynamicColorScheme(seedColor = color, isDark = dark, isAmoled = false)
+                out.resolve("${t.design.id}-in-app-$name.png").writeBytes(render(t, data, scheme.toLiveryTheme(), dark))
+            }
+        }
         println("renders: ${out.absolutePath}")
     }
+}
+
+/** The app's mapping (shared's LiverySlots does the same): a Material 3 scheme as the theme roles. */
+fun ColorScheme.toLiveryTheme(): Bindings {
+    fun Color.argb() = toArgb().toLong() and 0xFFFFFFFFL
+    return Bindings(materialThemeValues(
+        primary = primary.argb(), onPrimary = onPrimary.argb(), secondary = secondary.argb(),
+        tertiary = tertiary.argb(), surface = surfaceContainerHigh.argb(), onSurface = onSurface.argb(),
+        onSurfaceVariant = onSurfaceVariant.argb(),
+    ).mapValues { NamedValue.Color(it.value) })
 }

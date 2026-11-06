@@ -124,8 +124,8 @@ fun KotlinConfSession() {
     ) {
         RemoteColumn(RemoteModifier.weight(1f), verticalArrangement = RemoteArrangement.spacedBy(6.rdp)) {
             RemoteRow(verticalAlignment = RemoteAlignment.CenterVertically, horizontalArrangement = RemoteArrangement.spacedBy(8.rdp)) {
-                Chip(input(C.time), c.primary, c.onSurface)
-                LivePill(inputBool(C.live), c.tertiary, c.onSurface, text = "Live")
+                Chip(input(C.time), c.primary, c.onPrimary)
+                LivePill(inputBool(C.live), c.tertiary, c.onPrimary, text = "Live")
                 Label(input(C.room), c.muted, size = 13, weight = FontWeight.Medium, modifier = RemoteModifier.weight(1f))
             }
             Label(input(C.title), c.onSurface, size = 18, weight = FontWeight.Bold, maxLines = 2)
@@ -141,7 +141,7 @@ fun KotlinConfSession() {
                 .clickable(emit(C.bookmark)),
             contentAlignment = RemoteAlignment.Center,
         ) {
-            Label(bookmarked.select("♥".rs, "♡".rs), c.onSurface, size = 18)
+            Label(bookmarked.select("♥".rs, "♡".rs), bookmarked.select(c.onPrimary, c.onSurface), size = 18)
         }
     }
 }
@@ -174,7 +174,7 @@ fun KotlinConfSpeaker() {
         }
         Label(input(C.name), c.onSurface, size = 20, weight = FontWeight.Bold)
         Label(input(C.tagline), c.muted, size = 14, weight = FontWeight.Normal, maxLines = 2)
-        Chip(input(C.sessions), c.primary, c.onSurface)
+        Chip(input(C.sessions), c.primary, c.onPrimary)
     }
 }
 

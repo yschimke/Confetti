@@ -236,4 +236,33 @@ object ConferenceSeries {
 
     /** The Livery segment a placement targets a conference's attendees with. */
     fun segment(conferenceId: String): String = "conference:$conferenceId"
+
+    /** The theme pack for a series in the app's current mode: `droidcon-light`, `kotlinconf-dark`. */
+    fun themePack(series: String, dark: Boolean): String = "$series-${if (dark) "dark" else "light"}"
 }
+
+/**
+ * The theme roles every contract takes (see [ThemeInputs]), from a Material 3 colour scheme: how a
+ * user's dynamic colours reach a design. Named arguments so each platform passes the scheme's
+ * fields explicitly; one mapping for the apps and the catalog's renders.
+ *
+ * `surface` is the colour a design draws its cards on: pass the scheme's `surfaceContainerHigh`,
+ * so a card stands off the screen behind it in both modes.
+ */
+fun materialThemeValues(
+    primary: Long,
+    onPrimary: Long,
+    secondary: Long,
+    tertiary: Long,
+    surface: Long,
+    onSurface: Long,
+    onSurfaceVariant: Long,
+): Map<String, Long> = mapOf(
+    "theme.primary" to primary,
+    "theme.onPrimary" to onPrimary,
+    "theme.secondary" to secondary,
+    "theme.tertiary" to tertiary,
+    "theme.surface" to surface,
+    "theme.onSurface" to onSurface,
+    "theme.onSurfaceVariant" to onSurfaceVariant,
+)

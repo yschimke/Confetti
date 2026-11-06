@@ -16,6 +16,28 @@ Two conferences are designed here: **droidcon** (dark, terminal-flavoured, Andro
 | Launcher widget | ![](renders/droidcon-session-launcher.png) | ![](renders/kotlinconf-session-launcher.png) |
 | Wear widget | ![](renders/droidcon-session-wear-large.png) | ![](renders/kotlinconf-session-wear-large.png) |
 
+### Light, dark and Material 3 dynamic colour
+
+Every colour in a design is a `theme.*` role, so a mode or a palette is data pushed beside the
+slot's data, never a new document:
+
+- **Light and dark.** Each conference has a theme pack per mode (`droidcon-light`,
+  `droidcon-dark`, `kotlinconf-light`, `kotlinconf-dark` in `catalog/themes/`). A slot picks the
+  one matching the app around it, judged from its `MaterialTheme`, so Confetti's own light or dark
+  setting wins over the system's.
+- **Material 3 dynamic colour.** When the user has dynamic colour on (`ConferenceMaterialTheme`
+  sets `LocalDynamicColorInUse`), a slot pushes their `MaterialTheme.colorScheme` instead
+  (`materialThemeValues` in `Contracts.kt`, one mapping for the app and these renders). Each
+  conference keeps its layout and takes the user's wallpaper colours.
+
+Changing the mode or the wallpaper recolours a slot live, without restarting its document.
+
+![](renders/light-dark-dynamic.png)
+
+The same in the app (`LiverySlotsTest`): light, dark, and dynamic colour from a teal wallpaper.
+
+![](renders/android-agenda-modes.png)
+
 ### In the app
 
 The real Android path (`LiverySlotsTest`): the catalog bundled into the APK by Livery's Gradle
