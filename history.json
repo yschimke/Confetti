@@ -1,0 +1,4221 @@
+{
+    "formatVersion": "compose-preview-history/v1",
+    "generatedFrom": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+    "previews": {
+        "androidApp/ScreenshotTest.SessionDetailsPreview": {
+            "path": "renders/androidApp/SessionDetailsPreview-80cd2284.png",
+            "versions": [
+                {
+                    "blob": "98db6dd54b2a9a84819ccc0704344bbba2552cb2",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/activity__MainActivity": {
+            "path": "renders/androidApp/activity__MainActivity.png",
+            "versions": [
+                {
+                    "blob": "f2e7b4f2f7db127c29912a10528cb5e6d2b8ff59",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.AndroidScreenPreviewsKt.AndroidSessionDetailPreview_Phone — dark": {
+            "path": "renders/androidApp/AndroidSessionDetailPreview_Phone_dark-ae9a0f09.png",
+            "versions": [
+                {
+                    "blob": "7bc0f08e09b54b4f1d7fbffaa270aa9257f7b8d1",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.AndroidScreenPreviewsKt.AndroidSessionDetailPreview_Phone — light": {
+            "path": "renders/androidApp/AndroidSessionDetailPreview_Phone_light-bcba2932.png",
+            "versions": [
+                {
+                    "blob": "c50f19afe126a6e4b9244991bc84477e479007b9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.AndroidScreenPreviewsKt.AndroidSessionDetailPreview_Tablet landscape": {
+            "path": "renders/androidApp/AndroidSessionDetailPreview_Tablet_landscape-baf6dd1f.png",
+            "versions": [
+                {
+                    "blob": "f45af3693a544f622294095f6474ddf4958a7e43",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.AndroidScreenPreviewsKt.AndroidSpeakerDetailsPreview_Phone — dark": {
+            "path": "renders/androidApp/AndroidSpeakerDetailsPreview_Phone_dark-e29a322a.png",
+            "versions": [
+                {
+                    "blob": "c50f19afe126a6e4b9244991bc84477e479007b9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.AndroidScreenPreviewsKt.AndroidSpeakerDetailsPreview_Phone — light": {
+            "path": "renders/androidApp/AndroidSpeakerDetailsPreview_Phone_light-84d61fe1.png",
+            "versions": [
+                {
+                    "blob": "c50f19afe126a6e4b9244991bc84477e479007b9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.AndroidScreenPreviewsKt.AndroidSpeakerDetailsPreview_Tablet landscape": {
+            "path": "renders/androidApp/AndroidSpeakerDetailsPreview_Tablet_landscape-7017ccc9.png",
+            "versions": [
+                {
+                    "blob": "f45af3693a544f622294095f6474ddf4958a7e43",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.BookmarkAddPreview_Dark": {
+            "path": "renders/androidApp/BookmarkAddPreview_Dark-80892b0e.png",
+            "versions": [
+                {
+                    "blob": "d797e3d8d30d8a97f96faa36d009dedd36af12a3",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.BookmarkAddPreview_Light": {
+            "path": "renders/androidApp/BookmarkAddPreview_Light-34753aee.png",
+            "versions": [
+                {
+                    "blob": "d797e3d8d30d8a97f96faa36d009dedd36af12a3",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.BookmarkOnPreview_Dark": {
+            "path": "renders/androidApp/BookmarkOnPreview_Dark-0ced8c18.png",
+            "versions": [
+                {
+                    "blob": "d797e3d8d30d8a97f96faa36d009dedd36af12a3",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.BookmarkOnPreview_Light": {
+            "path": "renders/androidApp/BookmarkOnPreview_Light-388742dc.png",
+            "versions": [
+                {
+                    "blob": "d797e3d8d30d8a97f96faa36d009dedd36af12a3",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.ColorSchemeSpecimenPreview_Dark": {
+            "path": "renders/androidApp/ColorSchemeSpecimenPreview_Dark-e8a86add.png",
+            "versions": [
+                {
+                    "blob": "8259b473abb34a84ec630815af3c17fef3aa2691",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.ColorSchemeSpecimenPreview_Light": {
+            "path": "renders/androidApp/ColorSchemeSpecimenPreview_Light-05c97097.png",
+            "versions": [
+                {
+                    "blob": "8259b473abb34a84ec630815af3c17fef3aa2691",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.ConfettiHeaderPreview_Dark": {
+            "path": "renders/androidApp/ConfettiHeaderPreview_Dark-83a7050c.png",
+            "versions": [
+                {
+                    "blob": "db2a4c7c51bbbd73bdd5533639356332c4994b06",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.ConfettiHeaderPreview_Light": {
+            "path": "renders/androidApp/ConfettiHeaderPreview_Light-02f53df3.png",
+            "versions": [
+                {
+                    "blob": "db2a4c7c51bbbd73bdd5533639356332c4994b06",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.ScheduleScreenPreview_Dark": {
+            "path": "renders/androidApp/ScheduleScreenPreview_Dark-67718575.png",
+            "versions": [
+                {
+                    "blob": "c50f19afe126a6e4b9244991bc84477e479007b9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.ScheduleScreenPreview_Light": {
+            "path": "renders/androidApp/ScheduleScreenPreview_Light-4cc7500f.png",
+            "versions": [
+                {
+                    "blob": "c50f19afe126a6e4b9244991bc84477e479007b9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.SessionDetailsScreenPreview_Dark": {
+            "path": "renders/androidApp/SessionDetailsScreenPreview_Dark-402cba37.png",
+            "versions": [
+                {
+                    "blob": "c50f19afe126a6e4b9244991bc84477e479007b9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.SessionDetailsScreenPreview_Light": {
+            "path": "renders/androidApp/SessionDetailsScreenPreview_Light-568b398a.png",
+            "versions": [
+                {
+                    "blob": "c50f19afe126a6e4b9244991bc84477e479007b9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.SessionItemBreakPreview_Dark": {
+            "path": "renders/androidApp/SessionItemBreakPreview_Dark-ec404584.png",
+            "versions": [
+                {
+                    "blob": "282325092dd8d1e247a01595d3bca3510b95ac9f",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.SessionItemBreakPreview_Light": {
+            "path": "renders/androidApp/SessionItemBreakPreview_Light-7c679a78.png",
+            "versions": [
+                {
+                    "blob": "282325092dd8d1e247a01595d3bca3510b95ac9f",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.SessionItemLightningPreview_Dark": {
+            "path": "renders/androidApp/SessionItemLightningPreview_Dark-7aa5671e.png",
+            "versions": [
+                {
+                    "blob": "378148802a7f7acbf540ff2eb64a81a996bee142",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.SessionItemLightningPreview_Light": {
+            "path": "renders/androidApp/SessionItemLightningPreview_Light-a8e92a7a.png",
+            "versions": [
+                {
+                    "blob": "378148802a7f7acbf540ff2eb64a81a996bee142",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.SessionItemPopulatedPreview_Dark": {
+            "path": "renders/androidApp/SessionItemPopulatedPreview_Dark-631a7045.png",
+            "versions": [
+                {
+                    "blob": "378148802a7f7acbf540ff2eb64a81a996bee142",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.SessionItemPopulatedPreview_Light": {
+            "path": "renders/androidApp/SessionItemPopulatedPreview_Light-0480a2ab.png",
+            "versions": [
+                {
+                    "blob": "378148802a7f7acbf540ff2eb64a81a996bee142",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.SpeakerDetailsScreenPreview_Dark": {
+            "path": "renders/androidApp/SpeakerDetailsScreenPreview_Dark-9ccb0a29.png",
+            "versions": [
+                {
+                    "blob": "c50f19afe126a6e4b9244991bc84477e479007b9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.SpeakerDetailsScreenPreview_Light": {
+            "path": "renders/androidApp/SpeakerDetailsScreenPreview_Light-b79c4d1a.png",
+            "versions": [
+                {
+                    "blob": "c50f19afe126a6e4b9244991bc84477e479007b9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.SpeakerItemPreview_Dark": {
+            "path": "renders/androidApp/SpeakerItemPreview_Dark-6d8d5283.png",
+            "versions": [
+                {
+                    "blob": "2aba1617330e116c8a0846e94257db7690e860c6",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.SpeakerItemPreview_Light": {
+            "path": "renders/androidApp/SpeakerItemPreview_Light-16cfecc3.png",
+            "versions": [
+                {
+                    "blob": "2aba1617330e116c8a0846e94257db7690e860c6",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.TypographySpecimenPreview_Dark": {
+            "path": "renders/androidApp/TypographySpecimenPreview_Dark-3523357e.png",
+            "versions": [
+                {
+                    "blob": "e7c10e88e5dd1a8b527020e6591ffc840aa84434",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ComponentCatalogKt.TypographySpecimenPreview_Light": {
+            "path": "renders/androidApp/TypographySpecimenPreview_Light-e4709481.png",
+            "versions": [
+                {
+                    "blob": "e7c10e88e5dd1a8b527020e6591ffc840aa84434",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.RecentMobileUiPreviewsKt.AccountScreenPreview_Dark": {
+            "path": "renders/androidApp/AccountScreenPreview_Dark-a7b60242.png",
+            "versions": [
+                {
+                    "blob": "c50f19afe126a6e4b9244991bc84477e479007b9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.RecentMobileUiPreviewsKt.AccountScreenPreview_Light": {
+            "path": "renders/androidApp/AccountScreenPreview_Light-5dce728d.png",
+            "versions": [
+                {
+                    "blob": "c50f19afe126a6e4b9244991bc84477e479007b9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.RecentMobileUiPreviewsKt.AssistantConversationPreview_Dark": {
+            "path": "renders/androidApp/AssistantConversationPreview_Dark-b38b7f49.png",
+            "versions": [
+                {
+                    "blob": "b213e008f3e0f09299bb73a8f954a5f1d98237dc",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.RecentMobileUiPreviewsKt.AssistantConversationPreview_Light": {
+            "path": "renders/androidApp/AssistantConversationPreview_Light-0a5ca29b.png",
+            "versions": [
+                {
+                    "blob": "fa9109ba1c18d3c048b7b460e1e51bc8165580f3",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.RecentMobileUiPreviewsKt.ConferenceSelectionPreview_Dark": {
+            "path": "renders/androidApp/ConferenceSelectionPreview_Dark-902fcef6.png",
+            "versions": [
+                {
+                    "blob": "c50f19afe126a6e4b9244991bc84477e479007b9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.RecentMobileUiPreviewsKt.ConferenceSelectionPreview_Light": {
+            "path": "renders/androidApp/ConferenceSelectionPreview_Light-db39c3f8.png",
+            "versions": [
+                {
+                    "blob": "c50f19afe126a6e4b9244991bc84477e479007b9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.RecentMobileUiPreviewsKt.HazeBottomNavigationDetailPreview_Dark - high contrast blur target": {
+            "path": "renders/androidApp/HazeBottomNavigationDetailPreview_Dark_high_contrast_blur_target-51c60974.png",
+            "versions": [
+                {
+                    "blob": "630aa61fc1c7b0935fc798ee75e439eccc5ef8a0",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.RecentMobileUiPreviewsKt.HazeBottomNavigationDetailPreview_Light - high contrast blur target": {
+            "path": "renders/androidApp/HazeBottomNavigationDetailPreview_Light_high_contrast_blur_target-ffccf7c6.png",
+            "versions": [
+                {
+                    "blob": "0f819b5f2e95aa45dc03ca1a70a4b0d9ffbaa7a3",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.RecentMobileUiPreviewsKt.HazeBottomNavigationPreview_Dark": {
+            "path": "renders/androidApp/HazeBottomNavigationPreview_Dark-98edf98e.png",
+            "versions": [
+                {
+                    "blob": "c50f19afe126a6e4b9244991bc84477e479007b9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.RecentMobileUiPreviewsKt.HazeBottomNavigationPreview_Light": {
+            "path": "renders/androidApp/HazeBottomNavigationPreview_Light-8d68e7fd.png",
+            "versions": [
+                {
+                    "blob": "c50f19afe126a6e4b9244991bc84477e479007b9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.RecentMobileUiPreviewsKt.OnboardingHazePreview_Dark": {
+            "path": "renders/androidApp/OnboardingHazePreview_Dark-61a55232.png",
+            "versions": [
+                {
+                    "blob": "e731d3f0a7baa52e704aced03919586dc7933b7a",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.RecentMobileUiPreviewsKt.OnboardingHazePreview_Light": {
+            "path": "renders/androidApp/OnboardingHazePreview_Light-472e7fa2.png",
+            "versions": [
+                {
+                    "blob": "c50f19afe126a6e4b9244991bc84477e479007b9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.RecentMobileUiPreviewsKt.OnboardingSignInStepPreview_Dark": {
+            "path": "renders/androidApp/OnboardingSignInStepPreview_Dark-36612898.png",
+            "versions": [
+                {
+                    "blob": "c50f19afe126a6e4b9244991bc84477e479007b9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.RecentMobileUiPreviewsKt.OnboardingSignInStepPreview_Light": {
+            "path": "renders/androidApp/OnboardingSignInStepPreview_Light-633a98a0.png",
+            "versions": [
+                {
+                    "blob": "c50f19afe126a6e4b9244991bc84477e479007b9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.RecentMobileUiPreviewsKt.SettingsScreenPreview_Dark": {
+            "path": "renders/androidApp/SettingsScreenPreview_Dark-ba1bef09.png",
+            "versions": [
+                {
+                    "blob": "c50f19afe126a6e4b9244991bc84477e479007b9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.RecentMobileUiPreviewsKt.SettingsScreenPreview_Light": {
+            "path": "renders/androidApp/SettingsScreenPreview_Light-dbd36222.png",
+            "versions": [
+                {
+                    "blob": "c50f19afe126a6e4b9244991bc84477e479007b9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ThemeFoundationPreviewsKt.ThemeFoundationAndroidPreview_Dark": {
+            "path": "renders/androidApp/ThemeFoundationAndroidPreview_Dark-dad8d762.png",
+            "versions": [
+                {
+                    "blob": "342a18bbbe9acbbaad6c26af809b7ce7833bda4b",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ThemeFoundationPreviewsKt.ThemeFoundationAndroidPreview_Light": {
+            "path": "renders/androidApp/ThemeFoundationAndroidPreview_Light-98d43561.png",
+            "versions": [
+                {
+                    "blob": "342a18bbbe9acbbaad6c26af809b7ce7833bda4b",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ThemeFoundationPreviewsKt.ThemeFoundationConferenceSeedPreview_Dark": {
+            "path": "renders/androidApp/ThemeFoundationConferenceSeedPreview_Dark-f74e7f38.png",
+            "versions": [
+                {
+                    "blob": "31f89218522ca6211cee3dcccfc2b774c41d0336",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ThemeFoundationPreviewsKt.ThemeFoundationConferenceSeedPreview_Light": {
+            "path": "renders/androidApp/ThemeFoundationConferenceSeedPreview_Light-03f13201.png",
+            "versions": [
+                {
+                    "blob": "31f89218522ca6211cee3dcccfc2b774c41d0336",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ThemeFoundationPreviewsKt.ThemeFoundationCurrentPreview_Dark": {
+            "path": "renders/androidApp/ThemeFoundationCurrentPreview_Dark-4dcfeff0.png",
+            "versions": [
+                {
+                    "blob": "342a18bbbe9acbbaad6c26af809b7ce7833bda4b",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ThemeFoundationPreviewsKt.ThemeFoundationCurrentPreview_Light": {
+            "path": "renders/androidApp/ThemeFoundationCurrentPreview_Light-d16c7dc5.png",
+            "versions": [
+                {
+                    "blob": "342a18bbbe9acbbaad6c26af809b7ce7833bda4b",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ThemeFoundationPreviewsKt.ThemeFoundationDefaultPreview_Dark": {
+            "path": "renders/androidApp/ThemeFoundationDefaultPreview_Dark-ac6eb453.png",
+            "versions": [
+                {
+                    "blob": "342a18bbbe9acbbaad6c26af809b7ce7833bda4b",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ThemeFoundationPreviewsKt.ThemeFoundationDefaultPreview_Light": {
+            "path": "renders/androidApp/ThemeFoundationDefaultPreview_Light-21720691.png",
+            "versions": [
+                {
+                    "blob": "342a18bbbe9acbbaad6c26af809b7ce7833bda4b",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ThemeFoundationPreviewsKt.ThemeFoundationDynamicPreview_Dark": {
+            "path": "renders/androidApp/ThemeFoundationDynamicPreview_Dark-2600609b.png",
+            "versions": [
+                {
+                    "blob": "342a18bbbe9acbbaad6c26af809b7ce7833bda4b",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.ThemeFoundationPreviewsKt.ThemeFoundationDynamicPreview_Light": {
+            "path": "renders/androidApp/ThemeFoundationDynamicPreview_Light-9f1c29f8.png",
+            "versions": [
+                {
+                    "blob": "342a18bbbe9acbbaad6c26af809b7ce7833bda4b",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.component.BackgroundKt.BackgroundAndroid_Dark theme": {
+            "path": "renders/androidApp/BackgroundAndroid_Dark_theme-c686adfb.png",
+            "versions": [
+                {
+                    "blob": "6a9339f793c9d43eeba0e3f18c40413a02bd995d",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.component.BackgroundKt.BackgroundAndroid_Light theme": {
+            "path": "renders/androidApp/BackgroundAndroid_Light_theme-6e0afb08.png",
+            "versions": [
+                {
+                    "blob": "6a9339f793c9d43eeba0e3f18c40413a02bd995d",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.component.BackgroundKt.BackgroundDefault_Dark theme": {
+            "path": "renders/androidApp/BackgroundDefault_Dark_theme-cbff4c79.png",
+            "versions": [
+                {
+                    "blob": "6a9339f793c9d43eeba0e3f18c40413a02bd995d",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.component.BackgroundKt.BackgroundDefault_Light theme": {
+            "path": "renders/androidApp/BackgroundDefault_Light_theme-9d4ec11f.png",
+            "versions": [
+                {
+                    "blob": "6a9339f793c9d43eeba0e3f18c40413a02bd995d",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.component.BackgroundKt.BackgroundDynamic_Dark theme": {
+            "path": "renders/androidApp/BackgroundDynamic_Dark_theme-d5efd51a.png",
+            "versions": [
+                {
+                    "blob": "6a9339f793c9d43eeba0e3f18c40413a02bd995d",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/dev.johnoreilly.confetti.ui.component.BackgroundKt.BackgroundDynamic_Light theme": {
+            "path": "renders/androidApp/BackgroundDynamic_Light_theme-d914bf6f.png",
+            "versions": [
+                {
+                    "blob": "6a9339f793c9d43eeba0e3f18c40413a02bd995d",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/themecatalog__AndroidMakers_Dark": {
+            "path": "renders/androidApp/themecatalog__AndroidMakers_Dark.png",
+            "versions": [
+                {
+                    "blob": "78f48c5b7fd8d5c4ddd7392eb05a64c4454a23f2",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/themecatalog__AndroidMakers_Light": {
+            "path": "renders/androidApp/themecatalog__AndroidMakers_Light.png",
+            "versions": [
+                {
+                    "blob": "78f48c5b7fd8d5c4ddd7392eb05a64c4454a23f2",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/themecatalog__Android_Dark": {
+            "path": "renders/androidApp/themecatalog__Android_Dark.png",
+            "versions": [
+                {
+                    "blob": "78f48c5b7fd8d5c4ddd7392eb05a64c4454a23f2",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/themecatalog__Android_Light": {
+            "path": "renders/androidApp/themecatalog__Android_Light.png",
+            "versions": [
+                {
+                    "blob": "78f48c5b7fd8d5c4ddd7392eb05a64c4454a23f2",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/themecatalog__Confetti_brand_Dark": {
+            "path": "renders/androidApp/themecatalog__Confetti_brand_Dark.png",
+            "versions": [
+                {
+                    "blob": "78f48c5b7fd8d5c4ddd7392eb05a64c4454a23f2",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/themecatalog__Confetti_brand_Light": {
+            "path": "renders/androidApp/themecatalog__Confetti_brand_Light.png",
+            "versions": [
+                {
+                    "blob": "78f48c5b7fd8d5c4ddd7392eb05a64c4454a23f2",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/themecatalog__DevFest_Dark": {
+            "path": "renders/androidApp/themecatalog__DevFest_Dark.png",
+            "versions": [
+                {
+                    "blob": "78f48c5b7fd8d5c4ddd7392eb05a64c4454a23f2",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/themecatalog__DevFest_Light": {
+            "path": "renders/androidApp/themecatalog__DevFest_Light.png",
+            "versions": [
+                {
+                    "blob": "78f48c5b7fd8d5c4ddd7392eb05a64c4454a23f2",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/themecatalog__Droidcon_Dark": {
+            "path": "renders/androidApp/themecatalog__Droidcon_Dark.png",
+            "versions": [
+                {
+                    "blob": "78f48c5b7fd8d5c4ddd7392eb05a64c4454a23f2",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/themecatalog__Droidcon_Light": {
+            "path": "renders/androidApp/themecatalog__Droidcon_Light.png",
+            "versions": [
+                {
+                    "blob": "78f48c5b7fd8d5c4ddd7392eb05a64c4454a23f2",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/themecatalog__Dynamic_Dark": {
+            "path": "renders/androidApp/themecatalog__Dynamic_Dark.png",
+            "versions": [
+                {
+                    "blob": "78f48c5b7fd8d5c4ddd7392eb05a64c4454a23f2",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/themecatalog__Dynamic_Light": {
+            "path": "renders/androidApp/themecatalog__Dynamic_Light.png",
+            "versions": [
+                {
+                    "blob": "78f48c5b7fd8d5c4ddd7392eb05a64c4454a23f2",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/themecatalog__KotlinConf_Dark": {
+            "path": "renders/androidApp/themecatalog__KotlinConf_Dark.png",
+            "versions": [
+                {
+                    "blob": "78f48c5b7fd8d5c4ddd7392eb05a64c4454a23f2",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "androidApp/themecatalog__KotlinConf_Light": {
+            "path": "renders/androidApp/themecatalog__KotlinConf_Light.png",
+            "versions": [
+                {
+                    "blob": "78f48c5b7fd8d5c4ddd7392eb05a64c4454a23f2",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.AccountIconKt.AccountIconSignedInPreview_Signed in": {
+            "path": "renders/shared/AccountIconSignedInPreview_Signed_in-69376947.png",
+            "versions": [
+                {
+                    "blob": "7618056e70da620b18b85bba2d0c8448f138d260",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.AccountIconKt.AccountIconSignedOutPreview_Signed out": {
+            "path": "renders/shared/AccountIconSignedOutPreview_Signed_out-e5f6cd36.png",
+            "versions": [
+                {
+                    "blob": "af1406ada233c3b35ba7cafc290ebe0b26ede238",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.ConferenceListViewKt.ConferenceCardPreview_Conference card": {
+            "path": "renders/shared/ConferenceCardPreview_Conference_card-d8b49bf2.png",
+            "versions": [
+                {
+                    "blob": "24e0a8b9a62e33153feeebd6fe7b941c2f03ec77",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.ConferenceListViewKt.ConferenceListViewLoadedPreview_Phone (large)": {
+            "path": "renders/shared/ConferenceListViewLoadedPreview_Phone_large-3aa334dd.png",
+            "versions": [
+                {
+                    "blob": "4a6630eb571b55afedd7f206b3baf044eec1d086",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.ConferenceListViewKt.ConferenceListViewLoadedPreview_Phone (small)": {
+            "path": "renders/shared/ConferenceListViewLoadedPreview_Phone_small-576295ec.png",
+            "versions": [
+                {
+                    "blob": "4093e9887dec4d3c2f9464a8f6d016f15e8fef79",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.ConferenceListViewKt.ConferenceListViewLoadedPreview_Tablet landscape": {
+            "path": "renders/shared/ConferenceListViewLoadedPreview_Tablet_landscape-a09396dd.png",
+            "versions": [
+                {
+                    "blob": "2e28100758d1fd0cabc124279b994a17b0fc92ea",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.ConferenceListViewKt.ConferenceListViewLoadingPreview_Loading": {
+            "path": "renders/shared/ConferenceListViewLoadingPreview_Loading-40ee75b6.png",
+            "versions": [
+                {
+                    "blob": "c7c56925e9ad14bc1558183811a18168e8a11b10",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.account.AccountUIKt.AccountViewSignedInPreview": {
+            "path": "renders/shared/AccountViewSignedInPreview-e93ba336.png",
+            "versions": [
+                {
+                    "blob": "69b3dd039c2155240cc8287d50d8e7d91ce2455a",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.account.AccountUIKt.AccountViewSignedOutPreview": {
+            "path": "renders/shared/AccountViewSignedOutPreview-b69ebed1.png",
+            "versions": [
+                {
+                    "blob": "ae7d632ce20fdb186838f36011c0eb6cbc5a3cd6",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.bookmarks.BookmarksViewKt.BookmarksViewEmptyPreview_Empty": {
+            "path": "renders/shared/BookmarksViewEmptyPreview_Empty-6e9462f6.png",
+            "versions": [
+                {
+                    "blob": "d8ee24b8c0b0f2c90fb437ac74e6ba952a0fb7ca",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.bookmarks.BookmarksViewKt.BookmarksViewLoadedPreview_Phone (large)": {
+            "path": "renders/shared/BookmarksViewLoadedPreview_Phone_large-f26eccbe.png",
+            "versions": [
+                {
+                    "blob": "6be1ff0a0bddf67774598ba0e97b0f5d4f930006",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.bookmarks.BookmarksViewKt.BookmarksViewLoadedPreview_Phone (small)": {
+            "path": "renders/shared/BookmarksViewLoadedPreview_Phone_small-3730fb05.png",
+            "versions": [
+                {
+                    "blob": "120a061a1f4fd78507ac73be5baa6ebe34a0d57d",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.bookmarks.BookmarksViewKt.BookmarksViewLoadedPreview_Tablet landscape": {
+            "path": "renders/shared/BookmarksViewLoadedPreview_Tablet_landscape-2c6dcbec.png",
+            "versions": [
+                {
+                    "blob": "35c9f683aa59c6e060b79cd6b471471ff7ea9621",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.bookmarks.BookmarksViewKt.BookmarksViewLoadingPreview_Loading": {
+            "path": "renders/shared/BookmarksViewLoadingPreview_Loading-38d33b77.png",
+            "versions": [
+                {
+                    "blob": "15189d0259e7759d1d8f30046bae81c9f3a066dd",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.component.EmptyViewKt.EmptyViewPreview_Empty": {
+            "path": "renders/shared/EmptyViewPreview_Empty-6b5b6a8a.png",
+            "versions": [
+                {
+                    "blob": "ee4d9baca9e65a6bad4afed29872baf84e874910",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.component.ErrorViewKt.ErrorViewNoRetryPreview_Error without retry": {
+            "path": "renders/shared/ErrorViewNoRetryPreview_Error_without_retry-cfa70dc4.png",
+            "versions": [
+                {
+                    "blob": "b7b418129e23bb5b59c29de57dd494200bd727a5",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.component.ErrorViewKt.ErrorViewWithRetryPreview_Error with retry": {
+            "path": "renders/shared/ErrorViewWithRetryPreview_Error_with_retry-fc772491.png",
+            "versions": [
+                {
+                    "blob": "e08034daa3ffae9ba2256810194c7fd57bc6d75b",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.component.LoadingViewKt.LoadingViewPreview_Loading": {
+            "path": "renders/shared/LoadingViewPreview_Loading-4f8c89a0.png",
+            "versions": [
+                {
+                    "blob": "493fed37ce1b52eabfed7d00eefc6fafc504f719",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.component.LoadingViewKt.LoadingViewWithMessagePreview_Loading with message": {
+            "path": "renders/shared/LoadingViewWithMessagePreview_Loading_with_message-389c0949.png",
+            "versions": [
+                {
+                    "blob": "f3ffa730808cf59b7d471ca9fe0a417d72106f2f",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.search.SearchViewKt.SearchViewEmptyQueryPreview_Empty query": {
+            "path": "renders/shared/SearchViewEmptyQueryPreview_Empty_query-e92ae7d8.png",
+            "versions": [
+                {
+                    "blob": "fa281010b1e5c683da534ef1f685da6de02f22f7",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.search.SearchViewKt.SearchViewLoadedPreview_Phone (large)": {
+            "path": "renders/shared/SearchViewLoadedPreview_Phone_large-14a12c5d.png",
+            "versions": [
+                {
+                    "blob": "2300c7c8eddfea9ef3178e3ba1bd2d520d975092",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.search.SearchViewKt.SearchViewLoadedPreview_Phone (small)": {
+            "path": "renders/shared/SearchViewLoadedPreview_Phone_small-4912a617.png",
+            "versions": [
+                {
+                    "blob": "ee0f6b34b1822723de218309bd04c68835b149cd",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.search.SearchViewKt.SearchViewLoadedPreview_Tablet landscape": {
+            "path": "renders/shared/SearchViewLoadedPreview_Tablet_landscape-d66c0857.png",
+            "versions": [
+                {
+                    "blob": "08427d3828ea9f67ebd8e73422d213b9a40ba155",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.search.SearchViewKt.SearchViewLoadingPreview_Loading": {
+            "path": "renders/shared/SearchViewLoadingPreview_Loading-b829e94f.png",
+            "versions": [
+                {
+                    "blob": "f424203332c8d8f80fd1bfc3e3ab996ca0e1b7b6",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.sessions.SessionDetailsViewSharedKt.SessionDetailViewEmptyPreview_Empty": {
+            "path": "renders/shared/SessionDetailViewEmptyPreview_Empty-947eca97.png",
+            "versions": [
+                {
+                    "blob": "d5b472f67f79e0da62e94e5c5bffc4c5a2081ee8",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.sessions.SessionDetailsViewSharedKt.SessionDetailViewLoadedPreview_Phone (large)": {
+            "path": "renders/shared/SessionDetailViewLoadedPreview_Phone_large-23f0403a.png",
+            "versions": [
+                {
+                    "blob": "45f092fe0b7b1e0f1665f34687ae9549a1325bd0",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.sessions.SessionDetailsViewSharedKt.SessionDetailViewLoadedPreview_Phone (small)": {
+            "path": "renders/shared/SessionDetailViewLoadedPreview_Phone_small-898c8cbc.png",
+            "versions": [
+                {
+                    "blob": "2c65380e2813c51b1050cc29ee99eaeceb98f100",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.sessions.SessionDetailsViewSharedKt.SessionDetailViewLoadedPreview_Tablet landscape": {
+            "path": "renders/shared/SessionDetailViewLoadedPreview_Tablet_landscape-8e7a2e86.png",
+            "versions": [
+                {
+                    "blob": "b0de1b1c304d9b70816f926a8ece6d65119ecba9",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.sessions.SessionItemViewKt.SessionItemViewBreakPreview_Break": {
+            "path": "renders/shared/SessionItemViewBreakPreview_Break-c0ba104e.png",
+            "versions": [
+                {
+                    "blob": "11edf9f46fb207d83fb8c7fb06e2015370d149e3",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.sessions.SessionItemViewKt.SessionItemViewLightningPreview_Lightning talk": {
+            "path": "renders/shared/SessionItemViewLightningPreview_Lightning_talk-b0b30068.png",
+            "versions": [
+                {
+                    "blob": "76de41d2ba17dd223507bec3b4e06ec1628d0c19",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.sessions.SessionItemViewKt.SessionItemViewLoadedPreview_Phone (large)": {
+            "path": "renders/shared/SessionItemViewLoadedPreview_Phone_large-dec394e2.png",
+            "versions": [
+                {
+                    "blob": "2a6ffbacde4e2cad7a68ef0220510fb4ec3b5015",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.sessions.SessionItemViewKt.SessionItemViewLoadedPreview_Phone (small)": {
+            "path": "renders/shared/SessionItemViewLoadedPreview_Phone_small-93ad50e5.png",
+            "versions": [
+                {
+                    "blob": "6c722698f6af92f9beb910b769ea0cb39314dd73",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.sessions.SessionItemViewKt.SessionItemViewLoadedPreview_Tablet landscape": {
+            "path": "renders/shared/SessionItemViewLoadedPreview_Tablet_landscape-ad99e92d.png",
+            "versions": [
+                {
+                    "blob": "d6c824720734ff94cc449b62b0bfc76ccdc0d81f",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.sessions.SessionListGridViewKt.SessionListGridViewLoadedPreview_Phone (large)": {
+            "path": "renders/shared/SessionListGridViewLoadedPreview_Phone_large-3c3de344.png",
+            "versions": [
+                {
+                    "blob": "e49c3df56421b5540cc7d4b25dba9815f77c778b",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.sessions.SessionListGridViewKt.SessionListGridViewLoadedPreview_Phone (small)": {
+            "path": "renders/shared/SessionListGridViewLoadedPreview_Phone_small-d12fb411.png",
+            "versions": [
+                {
+                    "blob": "13a6f98d9010a43d76487a97895d1a7a1abb8431",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.sessions.SessionListGridViewKt.SessionListGridViewLoadedPreview_Tablet landscape": {
+            "path": "renders/shared/SessionListGridViewLoadedPreview_Tablet_landscape-2b469c0a.png",
+            "versions": [
+                {
+                    "blob": "6e177e0a6d1a9491ea28af9946311b5b8e324bd1",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.sessions.SessionListGridViewKt.SessionListGridViewLoadingPreview_Loading": {
+            "path": "renders/shared/SessionListGridViewLoadingPreview_Loading-c0b0a27c.png",
+            "versions": [
+                {
+                    "blob": "bdf75f94fdf027a7ae7bbe105e5329465db59362",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.sessions.SessionListViewKt.SessionListViewErrorPreview_Error": {
+            "path": "renders/shared/SessionListViewErrorPreview_Error-ac5e2139.png",
+            "versions": [
+                {
+                    "blob": "a4cdc96e5b00cce57fcbfe0fcdd5c0688994da14",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.sessions.SessionListViewKt.SessionListViewLoadedPreview_Phone (large)": {
+            "path": "renders/shared/SessionListViewLoadedPreview_Phone_large-d6a8183c.png",
+            "versions": [
+                {
+                    "blob": "378a567e2837ad024c8eda9d592e73b32c305a2d",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.sessions.SessionListViewKt.SessionListViewLoadedPreview_Phone (small)": {
+            "path": "renders/shared/SessionListViewLoadedPreview_Phone_small-933c0456.png",
+            "versions": [
+                {
+                    "blob": "d57a2735eb0791479fc7fee6eb64ede4dc544972",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.sessions.SessionListViewKt.SessionListViewLoadedPreview_Tablet landscape": {
+            "path": "renders/shared/SessionListViewLoadedPreview_Tablet_landscape-bd102bb4.png",
+            "versions": [
+                {
+                    "blob": "553fc4f1a1f58b1c5703644ec25c5160446d834d",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.sessions.SessionListViewKt.SessionListViewLoadingPreview_Loading": {
+            "path": "renders/shared/SessionListViewLoadingPreview_Loading-e64962ea.png",
+            "versions": [
+                {
+                    "blob": "15189d0259e7759d1d8f30046bae81c9f3a066dd",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.settings.SettingsUIKt.SettingsScreenPreview_Phone (large)": {
+            "path": "renders/shared/SettingsScreenPreview_Phone_large-fd155dd2.png",
+            "versions": [
+                {
+                    "blob": "ad9351a3d9af59603861bd45ef12f9a803eb8357",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.settings.SettingsUIKt.SettingsScreenPreview_Phone (small)": {
+            "path": "renders/shared/SettingsScreenPreview_Phone_small-975176c7.png",
+            "versions": [
+                {
+                    "blob": "e62215c1198359b44e2b09ca1d8beca4416c21ea",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.settings.SettingsUIKt.SettingsScreenPreview_Tablet landscape": {
+            "path": "renders/shared/SettingsScreenPreview_Tablet_landscape-9aa5ddd0.png",
+            "versions": [
+                {
+                    "blob": "61ad016976bcaf426d2ae1b15a609921642f90ec",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.speakers.SpeakerItemViewKt.SpeakerItemViewLoadedPreview_Phone (large)": {
+            "path": "renders/shared/SpeakerItemViewLoadedPreview_Phone_large-41821238.png",
+            "versions": [
+                {
+                    "blob": "ed298ec72635125acee557c95e2f16d65a01305b",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.speakers.SpeakerItemViewKt.SpeakerItemViewLoadedPreview_Phone (small)": {
+            "path": "renders/shared/SpeakerItemViewLoadedPreview_Phone_small-787d4234.png",
+            "versions": [
+                {
+                    "blob": "a0983f382a80e7f80404540d4609d7617a8b3162",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.speakers.SpeakerItemViewKt.SpeakerItemViewLoadedPreview_Tablet landscape": {
+            "path": "renders/shared/SpeakerItemViewLoadedPreview_Tablet_landscape-1c180fbb.png",
+            "versions": [
+                {
+                    "blob": "efc9e4674caa14f384dd4ab4daf0b29e9151c791",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.speakers.SpeakerItemViewKt.SpeakerItemViewNoTaglinePreview_No tagline": {
+            "path": "renders/shared/SpeakerItemViewNoTaglinePreview_No_tagline-7844bc92.png",
+            "versions": [
+                {
+                    "blob": "a3ac949861999bf60e56ff43f64a48217612c004",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.speakers.SpeakersDetailsViewKt.SpeakerDetailsViewAlternateSpeakerPreview_Different speaker": {
+            "path": "renders/shared/SpeakerDetailsViewAlternateSpeakerPreview_Different_speaker-5d06ad1a.png",
+            "versions": [
+                {
+                    "blob": "12facd8b56e03643200ae83e2ac00655b5b2f5ae",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.speakers.SpeakersDetailsViewKt.SpeakerDetailsViewLoadedPreview_Phone (large)": {
+            "path": "renders/shared/SpeakerDetailsViewLoadedPreview_Phone_large-89e6bac8.png",
+            "versions": [
+                {
+                    "blob": "0efe32be5800a2678f78167d66ff60eeefed6c37",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.speakers.SpeakersDetailsViewKt.SpeakerDetailsViewLoadedPreview_Phone (small)": {
+            "path": "renders/shared/SpeakerDetailsViewLoadedPreview_Phone_small-df73d484.png",
+            "versions": [
+                {
+                    "blob": "d7ce112dc413078a3b9063bb879ead44da1ce329",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.speakers.SpeakersDetailsViewKt.SpeakerDetailsViewLoadedPreview_Tablet landscape": {
+            "path": "renders/shared/SpeakerDetailsViewLoadedPreview_Tablet_landscape-58efb527.png",
+            "versions": [
+                {
+                    "blob": "ae6f46173b414edb3215127bb1d70fdd103358de",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.speakers.SpeakersGridViewKt.SpeakerGridViewEmptyPreview_Empty": {
+            "path": "renders/shared/SpeakerGridViewEmptyPreview_Empty-e69a7086.png",
+            "versions": [
+                {
+                    "blob": "d5b472f67f79e0da62e94e5c5bffc4c5a2081ee8",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.speakers.SpeakersGridViewKt.SpeakerGridViewLoadedPreview_Phone (large)": {
+            "path": "renders/shared/SpeakerGridViewLoadedPreview_Phone_large-57300ee7.png",
+            "versions": [
+                {
+                    "blob": "f9b6c49b668d81bac848ff577bca1bb1557fcad6",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.speakers.SpeakersGridViewKt.SpeakerGridViewLoadedPreview_Phone (small)": {
+            "path": "renders/shared/SpeakerGridViewLoadedPreview_Phone_small-2e44cd7b.png",
+            "versions": [
+                {
+                    "blob": "25f81f044b3ba814174f917e0de3ca808287cdbd",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.speakers.SpeakersGridViewKt.SpeakerGridViewLoadedPreview_Tablet landscape": {
+            "path": "renders/shared/SpeakerGridViewLoadedPreview_Tablet_landscape-c5e83e7b.png",
+            "versions": [
+                {
+                    "blob": "969efe9d12d4acbe866b1c4ac4a60ab0976e9537",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.venue.VenueViewKt.VenueViewLoadedPreview_Phone (large)": {
+            "path": "renders/shared/VenueViewLoadedPreview_Phone_large-b6f27dff.png",
+            "versions": [
+                {
+                    "blob": "3f6f802af25c4926ebb3bb1df639e272900abc45",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.venue.VenueViewKt.VenueViewLoadedPreview_Phone (small)": {
+            "path": "renders/shared/VenueViewLoadedPreview_Phone_small-f59709cb.png",
+            "versions": [
+                {
+                    "blob": "7332d790e326eb1ff7f1ec96f9b6bb4dff112142",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.venue.VenueViewKt.VenueViewLoadedPreview_Tablet landscape": {
+            "path": "renders/shared/VenueViewLoadedPreview_Tablet_landscape-1e19528b.png",
+            "versions": [
+                {
+                    "blob": "fc2139f3fe81c26a3b1d480b1f865f69674cb2d3",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "shared/dev.johnoreilly.confetti.ui.venue.VenueViewKt.VenueViewWithFloorPlanPreview_With floor plan": {
+            "path": "renders/shared/VenueViewWithFloorPlanPreview_With_floor_plan-78f0fed0.png",
+            "versions": [
+                {
+                    "blob": "a036ec62f7ca7d127381e5fd7836cdca6af9a34b",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/activity__MainActivity": {
+            "path": "renders/wearApp/activity__MainActivity.png",
+            "versions": [
+                {
+                    "blob": "7a359c2cf389fcc546b2b144ae391981880a4486",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ConferenceHomeScreenTestKt.ConferenceHomeScreenLoading_Devices - Large Round": {
+            "path": "renders/wearApp/ConferenceHomeScreenLoading_Devices_Large_Round-a9d48560.png",
+            "versions": [
+                {
+                    "blob": "82118fcd7d0587f9cf02f82b8f7907f5a5d34753",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ConferenceHomeScreenTestKt.ConferenceHomeScreenWithBookmarks_Devices - Large Round": {
+            "path": "renders/wearApp/ConferenceHomeScreenWithBookmarks_Devices_Large_Round-53879197.png",
+            "versions": [
+                {
+                    "blob": "82118fcd7d0587f9cf02f82b8f7907f5a5d34753",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ConferenceHomeScreenTestKt.ConferenceHomeScreen_Devices - Large Round": {
+            "path": "renders/wearApp/ConferenceHomeScreen_Devices_Large_Round-f0852b24.png",
+            "versions": [
+                {
+                    "blob": "82118fcd7d0587f9cf02f82b8f7907f5a5d34753",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ConferenceHomeScreenTestKt.ConferenceHomeScreen_Devices - Small Round": {
+            "path": "renders/wearApp/ConferenceHomeScreen_Devices_Small_Round-4a2dcdbb.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ConferenceHomeScreenTestKt.ConferenceHomeScreen_Fonts - Large": {
+            "path": "renders/wearApp/ConferenceHomeScreen_Fonts_Large-c550169a.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ConferenceHomeScreenTestKt.ConferenceHomeScreen_Fonts - Larger": {
+            "path": "renders/wearApp/ConferenceHomeScreen_Fonts_Larger-0d29473b.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ConferenceHomeScreenTestKt.ConferenceHomeScreen_Fonts - Largest": {
+            "path": "renders/wearApp/ConferenceHomeScreen_Fonts_Largest-6705cd72.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ConferenceHomeScreenTestKt.ConferenceHomeScreen_Fonts - Medium": {
+            "path": "renders/wearApp/ConferenceHomeScreen_Fonts_Medium-43e958ec.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ConferenceHomeScreenTestKt.ConferenceHomeScreen_Fonts - Normal": {
+            "path": "renders/wearApp/ConferenceHomeScreen_Fonts_Normal-5c4f39fb.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ConferenceHomeScreenTestKt.ConferenceHomeScreen_Fonts - Small": {
+            "path": "renders/wearApp/ConferenceHomeScreen_Fonts_Small-b026dd7f.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.SessionDetailsScreenTestKt.SessionDetailsScreen_Devices - Large Round": {
+            "path": "renders/wearApp/SessionDetailsScreen_Devices_Large_Round-7542603b.png",
+            "versions": [
+                {
+                    "blob": "82118fcd7d0587f9cf02f82b8f7907f5a5d34753",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.SpeakerDetailsScreenTestKt.SpeakerDetailsScreen_Devices - Large Round": {
+            "path": "renders/wearApp/SpeakerDetailsScreen_Devices_Large_Round-4115a437.png",
+            "versions": [
+                {
+                    "blob": "82118fcd7d0587f9cf02f82b8f7907f5a5d34753",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewEmpty_Devices - Large Round": {
+            "path": "renders/wearApp/BookmarksPreviewEmpty_Devices_Large_Round-77a986d2.png",
+            "versions": [
+                {
+                    "blob": "82118fcd7d0587f9cf02f82b8f7907f5a5d34753",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewEmpty_Devices - Small Round": {
+            "path": "renders/wearApp/BookmarksPreviewEmpty_Devices_Small_Round-f63b6234.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewEmpty_Fonts - Large": {
+            "path": "renders/wearApp/BookmarksPreviewEmpty_Fonts_Large-a42d287e.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewEmpty_Fonts - Larger": {
+            "path": "renders/wearApp/BookmarksPreviewEmpty_Fonts_Larger-33cdb7f3.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewEmpty_Fonts - Largest": {
+            "path": "renders/wearApp/BookmarksPreviewEmpty_Fonts_Largest-f9261cf4.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewEmpty_Fonts - Medium": {
+            "path": "renders/wearApp/BookmarksPreviewEmpty_Fonts_Medium-fcfe9e2a.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewEmpty_Fonts - Normal": {
+            "path": "renders/wearApp/BookmarksPreviewEmpty_Fonts_Normal-4f7a1da7.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewEmpty_Fonts - Small": {
+            "path": "renders/wearApp/BookmarksPreviewEmpty_Fonts_Small-cafecae9.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewErrorLong_Devices - Large Round": {
+            "path": "renders/wearApp/BookmarksPreviewErrorLong_Devices_Large_Round-f88686f6.png",
+            "versions": [
+                {
+                    "blob": "82118fcd7d0587f9cf02f82b8f7907f5a5d34753",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewErrorLong_Devices - Small Round": {
+            "path": "renders/wearApp/BookmarksPreviewErrorLong_Devices_Small_Round-a2247a8a.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewErrorLong_Fonts - Large": {
+            "path": "renders/wearApp/BookmarksPreviewErrorLong_Fonts_Large-0e8ae0ad.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewErrorLong_Fonts - Larger": {
+            "path": "renders/wearApp/BookmarksPreviewErrorLong_Fonts_Larger-2397b037.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewErrorLong_Fonts - Largest": {
+            "path": "renders/wearApp/BookmarksPreviewErrorLong_Fonts_Largest-fa330ac5.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewErrorLong_Fonts - Medium": {
+            "path": "renders/wearApp/BookmarksPreviewErrorLong_Fonts_Medium-3eeada9d.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewErrorLong_Fonts - Normal": {
+            "path": "renders/wearApp/BookmarksPreviewErrorLong_Fonts_Normal-e09ccc4a.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewErrorLong_Fonts - Small": {
+            "path": "renders/wearApp/BookmarksPreviewErrorLong_Fonts_Small-419406a4.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewError_Devices - Large Round": {
+            "path": "renders/wearApp/BookmarksPreviewError_Devices_Large_Round-751696d8.png",
+            "versions": [
+                {
+                    "blob": "82118fcd7d0587f9cf02f82b8f7907f5a5d34753",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewError_Devices - Small Round": {
+            "path": "renders/wearApp/BookmarksPreviewError_Devices_Small_Round-19f220ba.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewError_Fonts - Large": {
+            "path": "renders/wearApp/BookmarksPreviewError_Fonts_Large-6596cca9.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewError_Fonts - Larger": {
+            "path": "renders/wearApp/BookmarksPreviewError_Fonts_Larger-6f8dcd86.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewError_Fonts - Largest": {
+            "path": "renders/wearApp/BookmarksPreviewError_Fonts_Largest-44482399.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewError_Fonts - Medium": {
+            "path": "renders/wearApp/BookmarksPreviewError_Fonts_Medium-f3c1a65f.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewError_Fonts - Normal": {
+            "path": "renders/wearApp/BookmarksPreviewError_Fonts_Normal-aba4ec62.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewError_Fonts - Small": {
+            "path": "renders/wearApp/BookmarksPreviewError_Fonts_Small-66fccb60.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewLoading_Devices - Large Round": {
+            "path": "renders/wearApp/BookmarksPreviewLoading_Devices_Large_Round-192fee01.png",
+            "versions": [
+                {
+                    "blob": "82118fcd7d0587f9cf02f82b8f7907f5a5d34753",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewLoading_Devices - Small Round": {
+            "path": "renders/wearApp/BookmarksPreviewLoading_Devices_Small_Round-c475b7e7.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewLoading_Fonts - Large": {
+            "path": "renders/wearApp/BookmarksPreviewLoading_Fonts_Large-20492877.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewLoading_Fonts - Larger": {
+            "path": "renders/wearApp/BookmarksPreviewLoading_Fonts_Larger-89e32101.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewLoading_Fonts - Largest": {
+            "path": "renders/wearApp/BookmarksPreviewLoading_Fonts_Largest-c789f347.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewLoading_Fonts - Medium": {
+            "path": "renders/wearApp/BookmarksPreviewLoading_Fonts_Medium-2098864d.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewLoading_Fonts - Normal": {
+            "path": "renders/wearApp/BookmarksPreviewLoading_Fonts_Normal-f6bf91bd.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewLoading_Fonts - Small": {
+            "path": "renders/wearApp/BookmarksPreviewLoading_Fonts_Small-dd83c730.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreviewLong_Devices - Large Round": {
+            "path": "renders/wearApp/BookmarksPreviewLong_Devices_Large_Round-db316244.png",
+            "versions": [
+                {
+                    "blob": "77b9b36f429ecd7daa53f9cb591fb2e1affac880",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreview_Devices - Large Round": {
+            "path": "renders/wearApp/BookmarksPreview_Devices_Large_Round-e89fefb0.png",
+            "versions": [
+                {
+                    "blob": "82118fcd7d0587f9cf02f82b8f7907f5a5d34753",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreview_Devices - Small Round": {
+            "path": "renders/wearApp/BookmarksPreview_Devices_Small_Round-4c641ad7.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreview_Fonts - Large": {
+            "path": "renders/wearApp/BookmarksPreview_Fonts_Large-7182421a.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreview_Fonts - Larger": {
+            "path": "renders/wearApp/BookmarksPreview_Fonts_Larger-683e6421.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreview_Fonts - Largest": {
+            "path": "renders/wearApp/BookmarksPreview_Fonts_Largest-7dec4c49.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreview_Fonts - Medium": {
+            "path": "renders/wearApp/BookmarksPreview_Fonts_Medium-034df691.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreview_Fonts - Normal": {
+            "path": "renders/wearApp/BookmarksPreview_Fonts_Normal-12f819ce.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.bookmarks.BookmarksScreenKt.BookmarksPreview_Fonts - Small": {
+            "path": "renders/wearApp/BookmarksPreview_Fonts_Small-00622168.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.conferences.ConferencesViewKt.ConferencesViewCuratedPreview_Devices - Large Round": {
+            "path": "renders/wearApp/ConferencesViewCuratedPreview_Devices_Large_Round-ae86db23.png",
+            "versions": [
+                {
+                    "blob": "6673c9ba7f5bf1182e4a84f378bbe5b0566e5e04",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.conferences.ConferencesViewKt.ConferencesViewErrorPreview_Devices - Large Round": {
+            "path": "renders/wearApp/ConferencesViewErrorPreview_Devices_Large_Round-ece8b9a2.png",
+            "versions": [
+                {
+                    "blob": "82118fcd7d0587f9cf02f82b8f7907f5a5d34753",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.conferences.ConferencesViewKt.ConferencesViewErrorPreview_Devices - Small Round": {
+            "path": "renders/wearApp/ConferencesViewErrorPreview_Devices_Small_Round-27338daa.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.conferences.ConferencesViewKt.ConferencesViewErrorPreview_Fonts - Large": {
+            "path": "renders/wearApp/ConferencesViewErrorPreview_Fonts_Large-13f77957.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.conferences.ConferencesViewKt.ConferencesViewErrorPreview_Fonts - Larger": {
+            "path": "renders/wearApp/ConferencesViewErrorPreview_Fonts_Larger-5be651e1.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.conferences.ConferencesViewKt.ConferencesViewErrorPreview_Fonts - Largest": {
+            "path": "renders/wearApp/ConferencesViewErrorPreview_Fonts_Largest-cac3510c.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.conferences.ConferencesViewKt.ConferencesViewErrorPreview_Fonts - Medium": {
+            "path": "renders/wearApp/ConferencesViewErrorPreview_Fonts_Medium-43f54d2e.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.conferences.ConferencesViewKt.ConferencesViewErrorPreview_Fonts - Normal": {
+            "path": "renders/wearApp/ConferencesViewErrorPreview_Fonts_Normal-ec938550.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.conferences.ConferencesViewKt.ConferencesViewErrorPreview_Fonts - Small": {
+            "path": "renders/wearApp/ConferencesViewErrorPreview_Fonts_Small-f3d2d29b.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.conferences.ConferencesViewKt.ConferencesViewLongPreview_Devices - Large Round": {
+            "path": "renders/wearApp/ConferencesViewLongPreview_Devices_Large_Round-d9372525.png",
+            "versions": [
+                {
+                    "blob": "49d4ec01d627357cfe67655fb6e4a01111576f0e",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.conferences.ConferencesViewKt.ConferencesViewPreview_Devices - Large Round": {
+            "path": "renders/wearApp/ConferencesViewPreview_Devices_Large_Round-f2abab96.png",
+            "versions": [
+                {
+                    "blob": "82118fcd7d0587f9cf02f82b8f7907f5a5d34753",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.conferences.ConferencesViewKt.ConferencesViewPreview_Devices - Small Round": {
+            "path": "renders/wearApp/ConferencesViewPreview_Devices_Small_Round-3999b8b4.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.conferences.ConferencesViewKt.ConferencesViewPreview_Fonts - Large": {
+            "path": "renders/wearApp/ConferencesViewPreview_Fonts_Large-02b9fe76.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.conferences.ConferencesViewKt.ConferencesViewPreview_Fonts - Larger": {
+            "path": "renders/wearApp/ConferencesViewPreview_Fonts_Larger-c63d997a.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.conferences.ConferencesViewKt.ConferencesViewPreview_Fonts - Largest": {
+            "path": "renders/wearApp/ConferencesViewPreview_Fonts_Largest-be422bdb.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.conferences.ConferencesViewKt.ConferencesViewPreview_Fonts - Medium": {
+            "path": "renders/wearApp/ConferencesViewPreview_Fonts_Medium-ccfbae8e.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.conferences.ConferencesViewKt.ConferencesViewPreview_Fonts - Normal": {
+            "path": "renders/wearApp/ConferencesViewPreview_Fonts_Normal-4cb89760.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.conferences.ConferencesViewKt.ConferencesViewPreview_Fonts - Small": {
+            "path": "renders/wearApp/ConferencesViewPreview_Fonts_Small-84ccedac.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.home.HomeScreenKt.HomeListViewAndroidMakers_Devices - Large Round": {
+            "path": "renders/wearApp/HomeListViewAndroidMakers_Devices_Large_Round-12a9051b.png",
+            "versions": [
+                {
+                    "blob": "49d4ec01d627357cfe67655fb6e4a01111576f0e",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.home.HomeScreenKt.HomeListViewDevFest_Devices - Large Round": {
+            "path": "renders/wearApp/HomeListViewDevFest_Devices_Large_Round-14d42677.png",
+            "versions": [
+                {
+                    "blob": "35e360803ae634275dd44095c03410a3afa693b1",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.home.HomeScreenKt.HomeListViewDroidcon_Devices - Large Round": {
+            "path": "renders/wearApp/HomeListViewDroidcon_Devices_Large_Round-4382e4a5.png",
+            "versions": [
+                {
+                    "blob": "49d4ec01d627357cfe67655fb6e4a01111576f0e",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.home.HomeScreenKt.HomeListViewKotlinConf_Devices - Large Round": {
+            "path": "renders/wearApp/HomeListViewKotlinConf_Devices_Large_Round-86172c22.png",
+            "versions": [
+                {
+                    "blob": "49d4ec01d627357cfe67655fb6e4a01111576f0e",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.home.HomeScreenKt.HomeListViewLongPreview_Devices - Large Round": {
+            "path": "renders/wearApp/HomeListViewLongPreview_Devices_Large_Round-5ef4376c_SCROLL_top.png",
+            "versions": [
+                {
+                    "blob": "83059ddeb22d342d731ee295e529eed427cf5549",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.home.HomeScreenKt.HomeListViewLongPreview_Devices - Large Round#1": {
+            "path": "renders/wearApp/HomeListViewLongPreview_Devices_Large_Round-5ef4376c_SCROLL_end.png",
+            "versions": [
+                {
+                    "blob": "2bb3427475296957af448dd4083e613065ac23f7",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.home.HomeScreenKt.HomeListViewLongPreview_Devices - Large Round#2": {
+            "path": "renders/wearApp/HomeListViewLongPreview_Devices_Large_Round-5ef4376c_SCROLL_long.png",
+            "versions": [
+                {
+                    "blob": "36ec7f07aa5a81386748073c3645dd73fadd7166",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.home.HomeScreenKt.HomeListViewLongPreview_Devices - Large Round#3": {
+            "path": "renders/wearApp/HomeListViewLongPreview_Devices_Large_Round-5ef4376c_SCROLL_gif.gif",
+            "versions": [
+                {
+                    "blob": "d50408d6160345e42fa3a6deebac1e510156dbde",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.home.HomeScreenKt.HomeListViewPreview_Devices - Large Round": {
+            "path": "renders/wearApp/HomeListViewPreview_Devices_Large_Round-51d1d4d8.png",
+            "versions": [
+                {
+                    "blob": "82118fcd7d0587f9cf02f82b8f7907f5a5d34753",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.home.HomeScreenKt.HomeListViewPreview_Devices - Small Round": {
+            "path": "renders/wearApp/HomeListViewPreview_Devices_Small_Round-bd2ab0a6.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.home.HomeScreenKt.HomeListViewPreview_Fonts - Large": {
+            "path": "renders/wearApp/HomeListViewPreview_Fonts_Large-96481448.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.home.HomeScreenKt.HomeListViewPreview_Fonts - Larger": {
+            "path": "renders/wearApp/HomeListViewPreview_Fonts_Larger-3722d3d1.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.home.HomeScreenKt.HomeListViewPreview_Fonts - Largest": {
+            "path": "renders/wearApp/HomeListViewPreview_Fonts_Largest-b2094fa8.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.home.HomeScreenKt.HomeListViewPreview_Fonts - Medium": {
+            "path": "renders/wearApp/HomeListViewPreview_Fonts_Medium-766b3aef.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.home.HomeScreenKt.HomeListViewPreview_Fonts - Normal": {
+            "path": "renders/wearApp/HomeListViewPreview_Fonts_Normal-02552e9e.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.home.HomeScreenKt.HomeListViewPreview_Fonts - Small": {
+            "path": "renders/wearApp/HomeListViewPreview_Fonts_Small-5ffaad95.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.sessiondetails.SessionDetailsViewKt.SessionDetailViewPreview_Devices - Large Round": {
+            "path": "renders/wearApp/SessionDetailViewPreview_Devices_Large_Round-2d541005.png",
+            "versions": [
+                {
+                    "blob": "82118fcd7d0587f9cf02f82b8f7907f5a5d34753",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.sessions.SessionsScreenKt.SessionListViewLongPreview_Devices - Large Round": {
+            "path": "renders/wearApp/SessionListViewLongPreview_Devices_Large_Round-3e70be72.png",
+            "versions": [
+                {
+                    "blob": "49d4ec01d627357cfe67655fb6e4a01111576f0e",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.sessions.SessionsScreenKt.SessionListViewPreview_Devices - Large Round": {
+            "path": "renders/wearApp/SessionListViewPreview_Devices_Large_Round-491f6518.png",
+            "versions": [
+                {
+                    "blob": "82118fcd7d0587f9cf02f82b8f7907f5a5d34753",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.sessions.SessionsScreenKt.SessionListViewPreview_Devices - Small Round": {
+            "path": "renders/wearApp/SessionListViewPreview_Devices_Small_Round-ea08c791.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.sessions.SessionsScreenKt.SessionListViewPreview_Fonts - Large": {
+            "path": "renders/wearApp/SessionListViewPreview_Fonts_Large-959d379c.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.sessions.SessionsScreenKt.SessionListViewPreview_Fonts - Larger": {
+            "path": "renders/wearApp/SessionListViewPreview_Fonts_Larger-6729e759.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.sessions.SessionsScreenKt.SessionListViewPreview_Fonts - Largest": {
+            "path": "renders/wearApp/SessionListViewPreview_Fonts_Largest-a8304576.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.sessions.SessionsScreenKt.SessionListViewPreview_Fonts - Medium": {
+            "path": "renders/wearApp/SessionListViewPreview_Fonts_Medium-37cb7e87.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.sessions.SessionsScreenKt.SessionListViewPreview_Fonts - Normal": {
+            "path": "renders/wearApp/SessionListViewPreview_Fonts_Normal-f190aa45.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.sessions.SessionsScreenKt.SessionListViewPreview_Fonts - Small": {
+            "path": "renders/wearApp/SessionListViewPreview_Fonts_Small-c6c57b04.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.settings.SettingsListViewKt.SettingsListViewLongPreview_Devices - Large Round": {
+            "path": "renders/wearApp/SettingsListViewLongPreview_Devices_Large_Round-10efc2a2.png",
+            "versions": [
+                {
+                    "blob": "49d4ec01d627357cfe67655fb6e4a01111576f0e",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.settings.SettingsListViewKt.SettingsListViewPreview_Devices - Large Round": {
+            "path": "renders/wearApp/SettingsListViewPreview_Devices_Large_Round-a69b53b2.png",
+            "versions": [
+                {
+                    "blob": "82118fcd7d0587f9cf02f82b8f7907f5a5d34753",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.settings.SettingsListViewKt.SettingsListViewPreview_Devices - Small Round": {
+            "path": "renders/wearApp/SettingsListViewPreview_Devices_Small_Round-b17b04f2.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.settings.SettingsListViewKt.SettingsListViewPreview_Fonts - Large": {
+            "path": "renders/wearApp/SettingsListViewPreview_Fonts_Large-73c8c132.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.settings.SettingsListViewKt.SettingsListViewPreview_Fonts - Larger": {
+            "path": "renders/wearApp/SettingsListViewPreview_Fonts_Larger-56c5f9e9.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.settings.SettingsListViewKt.SettingsListViewPreview_Fonts - Largest": {
+            "path": "renders/wearApp/SettingsListViewPreview_Fonts_Largest-5fd1a530.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.settings.SettingsListViewKt.SettingsListViewPreview_Fonts - Medium": {
+            "path": "renders/wearApp/SettingsListViewPreview_Fonts_Medium-a595862e.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.settings.SettingsListViewKt.SettingsListViewPreview_Fonts - Normal": {
+            "path": "renders/wearApp/SettingsListViewPreview_Fonts_Normal-5ba4d19c.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.settings.SettingsListViewKt.SettingsListViewPreview_Fonts - Small": {
+            "path": "renders/wearApp/SettingsListViewPreview_Fonts_Small-4660321a.png",
+            "versions": [
+                {
+                    "blob": "4b172fa49155c5305958f2ea7ccf04766ad8b97c",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.speakerdetails.SpeakerDetailsViewKt.SpeakerDetailsViewPreview_Devices - Large Round": {
+            "path": "renders/wearApp/SpeakerDetailsViewPreview_Devices_Large_Round-137728c3.png",
+            "versions": [
+                {
+                    "blob": "49d4ec01d627357cfe67655fb6e4a01111576f0e",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.tile.LoginTilePreviewKt.BookmarksTilePreview_wearos_small_round": {
+            "path": "renders/wearApp/BookmarksTilePreview_wearos_small_round-0de8cfc4.png",
+            "versions": [
+                {
+                    "blob": "10bc448364353644810d405347c9a52a4fd8dc20",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.tile.LoginTilePreviewKt.LoginTilePreview_wearos_small_round": {
+            "path": "renders/wearApp/LoginTilePreview_wearos_small_round-8d1c5048.png",
+            "versions": [
+                {
+                    "blob": "10bc448364353644810d405347c9a52a4fd8dc20",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.tile.LoginTilePreviewKt.NoConferenceTilePreview_wearos_small_round": {
+            "path": "renders/wearApp/NoConferenceTilePreview_wearos_small_round-9c0c0598.png",
+            "versions": [
+                {
+                    "blob": "10bc448364353644810d405347c9a52a4fd8dc20",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ComponentCatalogKt.ColorSchemeSpecimenPreview": {
+            "path": "renders/wearApp/ColorSchemeSpecimenPreview-8deffbd5.png",
+            "versions": [
+                {
+                    "blob": "6c326ad900d1747a04c03831d726711934d42894",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ComponentCatalogKt.DayChipPreview": {
+            "path": "renders/wearApp/DayChipPreview-bed63cff.png",
+            "versions": [
+                {
+                    "blob": "090cec4d52c53d52306d51473a9a8e5aff8cd6ba",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ComponentCatalogKt.PlaceholderButtonPreview": {
+            "path": "renders/wearApp/PlaceholderButtonPreview-6b648e89.png",
+            "versions": [
+                {
+                    "blob": "090cec4d52c53d52306d51473a9a8e5aff8cd6ba",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ComponentCatalogKt.ScreenHeaderPreview": {
+            "path": "renders/wearApp/ScreenHeaderPreview-e3101d55.png",
+            "versions": [
+                {
+                    "blob": "b3e024aac733c01eb6c507793c961617310a5c8b",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ComponentCatalogKt.SectionHeaderPreview": {
+            "path": "renders/wearApp/SectionHeaderPreview-21921571.png",
+            "versions": [
+                {
+                    "blob": "b3e024aac733c01eb6c507793c961617310a5c8b",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ComponentCatalogKt.SessionCardBookmarkedPreview": {
+            "path": "renders/wearApp/SessionCardBookmarkedPreview-e2f70fe4.png",
+            "versions": [
+                {
+                    "blob": "4b8210c692e6cc6ce9500501cea051697a8248f3",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ComponentCatalogKt.SessionCardLoadingPreview": {
+            "path": "renders/wearApp/SessionCardLoadingPreview-00105089.png",
+            "versions": [
+                {
+                    "blob": "7a43e6d1b9b3d1ca8610e6c5949e71af688145e8",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ComponentCatalogKt.SessionCardPopulatedPreview": {
+            "path": "renders/wearApp/SessionCardPopulatedPreview-a246e629.png",
+            "versions": [
+                {
+                    "blob": "4b8210c692e6cc6ce9500501cea051697a8248f3",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ComponentCatalogKt.SessionSpeakerChipPreview": {
+            "path": "renders/wearApp/SessionSpeakerChipPreview-a82dcb1c.png",
+            "versions": [
+                {
+                    "blob": "090cec4d52c53d52306d51473a9a8e5aff8cd6ba",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ComponentCatalogKt.SocialIconPreview": {
+            "path": "renders/wearApp/SocialIconPreview-d589b747.png",
+            "versions": [
+                {
+                    "blob": "f80f045bd22adab3a2981c1f6300bce53ac90278",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ComponentCatalogKt.TypographySpecimenPreview": {
+            "path": "renders/wearApp/TypographySpecimenPreview-68b374ee.png",
+            "versions": [
+                {
+                    "blob": "ef7ad0a89ab93991d8d22fd223ae5143a232482d",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ThemeFoundationPreviewsKt.ThemeFoundationAndroidMakersPreview": {
+            "path": "renders/wearApp/ThemeFoundationAndroidMakersPreview-e709db9d.png",
+            "versions": [
+                {
+                    "blob": "1958b61979443e9e5c12f4ba5232f32bb29f0383",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ThemeFoundationPreviewsKt.ThemeFoundationConfettiPreview": {
+            "path": "renders/wearApp/ThemeFoundationConfettiPreview-dedc23f5.png",
+            "versions": [
+                {
+                    "blob": "6a34fabb9ff2375d3e24885926eae901c75c9b4e",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ThemeFoundationPreviewsKt.ThemeFoundationDevFestPreview": {
+            "path": "renders/wearApp/ThemeFoundationDevFestPreview-53f18c05.png",
+            "versions": [
+                {
+                    "blob": "41795e97fd92b8e046395f71cedcab6bbf5e601d",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ThemeFoundationPreviewsKt.ThemeFoundationDroidconPreview": {
+            "path": "renders/wearApp/ThemeFoundationDroidconPreview-ec2acd5a.png",
+            "versions": [
+                {
+                    "blob": "1958b61979443e9e5c12f4ba5232f32bb29f0383",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ThemeFoundationPreviewsKt.ThemeFoundationKotlinConfPreview": {
+            "path": "renders/wearApp/ThemeFoundationKotlinConfPreview-4017d8ea.png",
+            "versions": [
+                {
+                    "blob": "45b231a6252d2c5c0e61f33ab17971c87434e692",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ThemePreviewKt.Color_0x000080": {
+            "path": "renders/wearApp/Color_0x000080-db54a72c.png",
+            "versions": [
+                {
+                    "blob": "b3055b1bf489a67c4615cdcfcc10281930447547",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ThemePreviewKt.Color_0x008000": {
+            "path": "renders/wearApp/Color_0x008000-c396c847.png",
+            "versions": [
+                {
+                    "blob": "b3055b1bf489a67c4615cdcfcc10281930447547",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ThemePreviewKt.Color_0x800000": {
+            "path": "renders/wearApp/Color_0x800000-5f8e75cc.png",
+            "versions": [
+                {
+                    "blob": "b3055b1bf489a67c4615cdcfcc10281930447547",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ThemePreviewKt.Defaults": {
+            "path": "renders/wearApp/Defaults-dbbe8909.png",
+            "versions": [
+                {
+                    "blob": "b3055b1bf489a67c4615cdcfcc10281930447547",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ThemePreviewKt.NotSet": {
+            "path": "renders/wearApp/NotSet-5c6e4f51.png",
+            "versions": [
+                {
+                    "blob": "b3055b1bf489a67c4615cdcfcc10281930447547",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ThemeSwatchesKt.Color_0x000080Swatches": {
+            "path": "renders/wearApp/Color_0x000080Swatches-415a9eab.png",
+            "versions": [
+                {
+                    "blob": "683f7b1d9b66f76eee030c5085eb37254572035b",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ThemeSwatchesKt.Color_0x008000Swatches": {
+            "path": "renders/wearApp/Color_0x008000Swatches-97db5913.png",
+            "versions": [
+                {
+                    "blob": "683f7b1d9b66f76eee030c5085eb37254572035b",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ThemeSwatchesKt.Color_0x800000Swatches": {
+            "path": "renders/wearApp/Color_0x800000Swatches-9a9417b9.png",
+            "versions": [
+                {
+                    "blob": "683f7b1d9b66f76eee030c5085eb37254572035b",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ThemeSwatchesKt.DefaultsSwatches": {
+            "path": "renders/wearApp/DefaultsSwatches-11a5af85.png",
+            "versions": [
+                {
+                    "blob": "683f7b1d9b66f76eee030c5085eb37254572035b",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/dev.johnoreilly.confetti.wear.ui.ThemeSwatchesKt.NotSetSwatches": {
+            "path": "renders/wearApp/NotSetSwatches-dc75f430.png",
+            "versions": [
+                {
+                    "blob": "683f7b1d9b66f76eee030c5085eb37254572035b",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/wearthemecatalog__AndroidMakers": {
+            "path": "renders/wearApp/wearthemecatalog__AndroidMakers.png",
+            "versions": [
+                {
+                    "blob": "78f48c5b7fd8d5c4ddd7392eb05a64c4454a23f2",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/wearthemecatalog__Confetti__default_": {
+            "path": "renders/wearApp/wearthemecatalog__Confetti__default_.png",
+            "versions": [
+                {
+                    "blob": "78f48c5b7fd8d5c4ddd7392eb05a64c4454a23f2",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/wearthemecatalog__DevFest": {
+            "path": "renders/wearApp/wearthemecatalog__DevFest.png",
+            "versions": [
+                {
+                    "blob": "78f48c5b7fd8d5c4ddd7392eb05a64c4454a23f2",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/wearthemecatalog__Droidcon": {
+            "path": "renders/wearApp/wearthemecatalog__Droidcon.png",
+            "versions": [
+                {
+                    "blob": "78f48c5b7fd8d5c4ddd7392eb05a64c4454a23f2",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        },
+        "wearApp/wearthemecatalog__KotlinConf": {
+            "path": "renders/wearApp/wearthemecatalog__KotlinConf.png",
+            "versions": [
+                {
+                    "blob": "78f48c5b7fd8d5c4ddd7392eb05a64c4454a23f2",
+                    "commit": "a78a94049272ef9d1c0e2306b72715e190ca1023",
+                    "date": "2026-11-06T06:30:59Z",
+                    "sourceSha": "b97d2070",
+                    "commits": 1
+                }
+            ],
+            "observations": 1,
+            "unstable": false,
+            "flapCount": 0
+        }
+    }
+}
