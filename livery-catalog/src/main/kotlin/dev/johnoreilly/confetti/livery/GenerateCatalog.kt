@@ -15,6 +15,7 @@ import ee.schimke.livery.client.BindResult
 import ee.schimke.livery.client.Bindings
 import ee.schimke.livery.client.ContractBinder
 import ee.schimke.livery.protocol.Contract
+import ee.schimke.livery.protocol.NamedValue
 import ee.schimke.livery.render.RenderSpec
 import ee.schimke.livery.render.TemplateRenderer
 import ee.schimke.livery.protocol.PlacementRule
@@ -159,6 +160,16 @@ fun main(args: Array<String>) {
             c.examples["long"]?.takeIf { t.template.name == "in-app" }?.let { long ->
                 out.resolve("${t.design.id}-${t.template.name}-long.png").writeBytes(render(t, c.data(long)))
             }
+        }
+        // What an admin's data-only change looks like: the same droidcon documents, recoloured by
+        // a different theme pack's values (here a venue blue for droidcon Berlin), no new capture.
+        val berlin = Bindings(mapOf(
+            "theme.primary" to NamedValue.Color(0xFF4FC3F7), "theme.secondary" to NamedValue.Color(0xFFFFD54F),
+            "theme.tertiary" to NamedValue.Color(0xFF7E57C2), "theme.onPrimary" to NamedValue.Color(0xFF0B1A2A),
+        ))
+        captured.filter { it.design.brand == Droidcon && it.template.name == "in-app" && it.design.contract != PromoContract }.forEach { t ->
+            val c = t.design.contract
+            out.resolve("${t.design.id}-in-app-berlin-theme.png").writeBytes(render(t, c.data(c.examples.getValue(t.design.example)), berlin))
         }
         println("renders: ${out.absolutePath}")
     }
