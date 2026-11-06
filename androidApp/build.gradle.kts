@@ -15,6 +15,13 @@ plugins {
     // catalog.mobile.spec.json + the design-artifacts workflow). Mirrors :wearApp.
     alias(libs.plugins.composeai.preview)
     id("androidx.baselineprofile")
+    // Builds :livery-catalog's source tree into the APK's assets (checked like `livery build
+    // --inspect`), read back by AndroidBundled.fromAssets. See livery/ConfettiLivery.kt.
+    alias(libs.plugins.livery.catalog)
+}
+
+livery {
+    source.set(rootProject.layout.projectDirectory.dir("livery-catalog/catalog"))
 }
 
 configureCompilerOptions()
@@ -55,6 +62,11 @@ android {
 
         versionCode = versionCode()
         versionName = versionName()
+
+        // Conference-styled slots (Livery). Off until a Livery release is built against stable
+        // Compose: 0.1.1 needs the 1.13 runtime and crashes against this app's BOM. Try it with
+        // -Pconfetti.livery=true and a Livery snapshot; see livery-catalog/README.md.
+        buildConfigField("boolean", "LIVERY_ENABLED", (findProperty("confetti.livery") == "true").toString())
     }
 
     androidResources {
@@ -160,6 +172,7 @@ dependencies {
 
     implementation(projects.common.car)
     implementation(projects.shared)
+    implementation(libs.livery.client)
 
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling)

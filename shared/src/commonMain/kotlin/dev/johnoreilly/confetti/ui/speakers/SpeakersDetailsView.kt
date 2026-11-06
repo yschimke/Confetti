@@ -68,6 +68,7 @@ import dev.johnoreilly.confetti.ui.sessions.SocialIcon
 import org.jetbrains.compose.resources.stringResource
 
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import dev.johnoreilly.confetti.ui.livery.PromoSlot
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -204,6 +205,13 @@ fun SpeakerDetailsView(
                 onNavigateToSignIn = onNavigateToSignIn,
                 isLoggedIn = isLoggedIn,
                 navigateToSession = navigateToSession,
+            )
+
+            // A growth placement on speaker pages (Livery): a sponsor, a meetup, a survey.
+            PromoSlot(
+                placement = "speaker.footer",
+                conference = conference,
+                modifier = Modifier.fillMaxWidth().padding(16.dp),
             )
         }
     }

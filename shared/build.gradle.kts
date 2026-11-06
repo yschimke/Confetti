@@ -90,6 +90,11 @@ kotlin {
 
                 api(libs.kermit)
 
+                // Conference-styled slots (Livery: server-driven Remote Compose templates) with
+                // the contracts the designs are built against. See livery-catalog/README.md.
+                api(projects.liveryContracts)
+                implementation(libs.livery.compose)
+
                 implementation(compose.ui)
                 implementation(compose.runtime)
                 implementation(compose.foundation)
