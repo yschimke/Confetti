@@ -36,3 +36,21 @@ tasks.register("quickChecks") {
         ":wearApp:assembleDebugAndroidTest",
     )
 }
+
+// Livery 0.1.1 is compiled against Compose Multiplatform 1.13.0-beta02 and asks for it, which would
+// raise this repo's stable Compose (and with it androidx core, collection and tracing) in every app
+// that depends on :shared. Keep the repo's own version. The Livery slots are off until a Livery
+// release built on stable Compose (yschimke/livery#14), so no app runs Livery code on this runtime.
+// :livery-catalog is a JVM build tool that captures and renders designs and ships in no app; it
+// keeps what Livery asks for.
+subprojects {
+    if (path == ":livery-catalog") return@subprojects
+    configurations.configureEach {
+        resolutionStrategy.eachDependency {
+            if (requested.group.startsWith("org.jetbrains.compose") && requested.version == "1.13.0-beta02") {
+                useVersion(libs.versions.compose.multiplatform.get())
+                because("Livery 0.1.1 asks for a beta Compose Multiplatform; keep the repo's stable line")
+            }
+        }
+    }
+}
