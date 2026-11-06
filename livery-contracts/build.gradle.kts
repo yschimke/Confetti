@@ -22,7 +22,8 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(project.dependencies.platform(libs.kotlinx.serialization.bom))
+            // api, with its BOM: consumers (shared, and through it every app) need the version too.
+            api(project.dependencies.platform(libs.kotlinx.serialization.bom))
             api(libs.kotlinx.serialization)
         }
         commonTest.dependencies {
