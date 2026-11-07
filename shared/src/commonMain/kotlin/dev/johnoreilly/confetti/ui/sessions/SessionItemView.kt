@@ -1,5 +1,6 @@
 package dev.johnoreilly.confetti.ui.sessions
 
+import dev.johnoreilly.confetti.preview.PreviewImages
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -280,27 +281,31 @@ private fun TalkSessionItemView(
 @MobilePreviews
 @Composable
 internal fun SessionItemViewLoadedPreview() {
-    SessionItemView(
-        session = sessionDetails,
-        sessionSelected = {},
-        isBookmarked = true,
-        addBookmark = {},
-        removeBookmark = {},
-        isLoggedIn = true,
-    )
+    PreviewImages {
+        SessionItemView(
+            session = sessionDetails,
+            sessionSelected = {},
+            isBookmarked = true,
+            addBookmark = {},
+            removeBookmark = {},
+            isLoggedIn = true,
+        )
+    }
 }
 
 @Preview(name = "Lightning talk", widthDp = 411, heightDp = 220, showBackground = true)
 @Composable
 internal fun SessionItemViewLightningPreview() {
-    SessionItemView(
-        session = lightningSession,
-        sessionSelected = {},
-        isBookmarked = false,
-        addBookmark = {},
-        removeBookmark = {},
-        isLoggedIn = false,
-    )
+    PreviewImages {
+        SessionItemView(
+            session = lightningSession,
+            sessionSelected = {},
+            isBookmarked = false,
+            addBookmark = {},
+            removeBookmark = {},
+            isLoggedIn = false,
+        )
+    }
 }
 
 @Preview(name = "Break", widthDp = 411, heightDp = 140, showBackground = true)

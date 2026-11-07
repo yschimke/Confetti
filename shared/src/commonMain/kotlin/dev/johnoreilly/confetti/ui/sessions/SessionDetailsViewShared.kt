@@ -1,5 +1,6 @@
 package dev.johnoreilly.confetti.ui.sessions
 
+import dev.johnoreilly.confetti.preview.PreviewImages
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -389,13 +390,15 @@ private fun sessionTimeString(startsAt: LocalDateTime, endsAt: LocalDateTime): S
 @MobilePreviews
 @Composable
 internal fun SessionDetailViewLoadedPreview() {
-    MaterialTheme {
-        SessionDetailViewShared(
-            conference = "kotlinconf2023",
-            session = sessionDetails,
-            onSpeakerClick = {},
-            onRoomClick = {},
-        )
+    PreviewImages {
+        MaterialTheme {
+            SessionDetailViewShared(
+                conference = "kotlinconf2023",
+                session = sessionDetails,
+                onSpeakerClick = {},
+                onRoomClick = {},
+            )
+        }
     }
 }
 
