@@ -30,6 +30,11 @@ import dev.johnoreilly.confetti.ui.livery.SessionCardSlot
 import kotlinx.datetime.LocalDateTime
 import dev.johnoreilly.confetti.BuildConfig
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
+import androidx.compose.foundation.clickable
+import androidx.compose.ui.test.performClick
+import dev.johnoreilly.confetti.analytics.AnalyticsEvent
+import dev.johnoreilly.confetti.analytics.AnalyticsLogger
 import org.junit.Assume.assumeTrue
 import org.junit.After
 import org.junit.Rule
@@ -54,7 +59,15 @@ class LiverySlotsTest {
 
     // During the droidcon London party placement's window.
     private val clock = Instant.parse("2026-10-29T18:00:00Z").toEpochMilli()
-    private val styling = confettiLiveryStyling(ApplicationProvider.getApplicationContext()) { clock }
+    private val logged = mutableListOf<AnalyticsEvent>()
+    private val analytics = object : AnalyticsLogger {
+        override fun logEvent(event: AnalyticsEvent) { synchronized(logged) { logged += event } }
+    }
+
+    /** The bundled catalogs only (no network in tests), in the livery arm unless a test says otherwise. */
+    private fun styling(arm: String = SduiExperiment.LIVERY) = confettiLiveryStyling(
+        ApplicationProvider.getApplicationContext(), analytics, clock = { clock }, refresh = false, forcedArm = arm,
+    )
 
     // Each test's application starts Koin (KoinTestApp); stop it so the next test can.
     @After fun stopKoinAfterTest() = stopKoin()
@@ -75,9 +88,45 @@ class LiverySlotsTest {
         dynamic = true,
     )
 
-    private fun slots(name: String, scheme: ColorScheme, dynamic: Boolean = false) {
-        // The slots only exist when the feature is on (the default; -Pconfetti.livery=false is off).
+    /**
+     * The sdui experiment's native arm: Confetti's own row for every conference, no promotion, and
+     * the arm's impression and exposure reported as Livery analytics events.
+     */
+    @Test fun nativeArm() {
         assumeTrue(BuildConfig.LIVERY_ENABLED)
+        val styling = styling(SduiExperiment.NATIVE)
+        val live = LocalDateTime.parse("2023-04-13T14:10")
+        compose.setContent {
+            MaterialTheme(colorScheme = lightColorScheme()) {
+                CompositionLocalProvider(LocalLiveryStyling provides styling) {
+                    Column {
+                        for (conference in listOf("kotlinconf2026", "droidconlondon2025")) {
+                            SessionCardSlot(conference, sessionDetails, live, false, onOpen = {}, onToggleBookmark = {}) { tracker ->
+                                Text("Confetti's own row for $conference", Modifier.testTag("native").clickable { tracker.action(SessionContract.open) })
+                            }
+                        }
+                        PromoSlot("home.feed", "droidconlondon2026")
+                    }
+                }
+            }
+        }
+        compose.waitUntil(10_000) { compose.onAllNodesWithTag("native").fetchSemanticsNodes().size == 2 }
+        compose.onAllNodesWithTag("native")[0].performClick()
+        compose.waitForIdle()
+        val events = synchronized(logged) { logged.toList() }
+        val names = events.map { it.id }
+        assertTrue("$names", names.contains("livery_impression"))
+        assertTrue("$names", names.contains("livery_exposure"))
+        val tap = events.single { it.id == "livery_action" }
+        assertEquals("open", tap.properties["action"])
+        assertEquals(SduiExperiment.NATIVE, tap.properties["exp_${SduiExperiment.ID}"])
+        assertEquals(SduiExperiment.NATIVE_DESIGN, tap.properties["design_id"])
+    }
+
+    private fun slots(name: String, scheme: ColorScheme, dynamic: Boolean = false) {
+        // The slots only exist in the sduiDebug build type.
+        assumeTrue(BuildConfig.LIVERY_ENABLED)
+        val styling = styling()
         val live = LocalDateTime.parse("2023-04-13T14:10")
         compose.setContent {
             MaterialTheme(colorScheme = scheme) {
@@ -87,7 +136,7 @@ class LiverySlotsTest {
                         verticalArrangement = Arrangement.spacedBy(8.dp),
                     ) {
                         for ((conference, bookmarked) in listOf("kotlinconf2026" to false, "droidconlondon2025" to true, "devfestnantes2025" to false)) {
-                            SessionCardSlot(conference, sessionDetails, live, bookmarked, onOpen = {}, onToggleBookmark = {}) {
+                            SessionCardSlot(conference, sessionDetails, live, bookmarked, onOpen = {}, onToggleBookmark = {}) { _ ->
                                 Text("Confetti's own row for $conference", Modifier.testTag("native"), color = MaterialTheme.colorScheme.onBackground)
                             }
                         }

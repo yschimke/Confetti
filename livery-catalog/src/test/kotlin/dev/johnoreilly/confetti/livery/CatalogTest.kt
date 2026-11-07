@@ -4,32 +4,52 @@ import java.io.File
 import java.nio.file.Files
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 
 /**
  * The contract is enforced at three points: Kotlin types (designs and the app use Contracts.kt),
- * capture (a template can only read and emit what its contract declares), and here: the catalog
- * checked into the repository is exactly what the sources generate, and passes the checks the
- * Livery publisher can't make. Fix a failure with ./gradlew :livery-catalog:generateLiveryCatalog.
+ * capture (a template can only read and emit what its contract declares), and here: each series
+ * catalog checked into the repository is exactly what the sources generate, and passes the checks
+ * the Livery publisher can't make. Fix a failure with ./gradlew :livery-catalog:generateLiveryCatalog.
  */
 class CatalogTest {
-    private val catalog = File("catalog")
+    private val root = File("catalogs")
     private val captured by lazy { AllDesigns.flatMap { d -> d.templates.map { capture(d, it) } } }
 
     @Test fun contractChecksPass() {
-        assertEquals(emptyList(), checkContracts(captured, catalog))
+        AllBrands.forEach { brand ->
+            assertEquals(emptyList(), checkContracts(captured.filter { it.design.brand == brand }, root.resolve(brand.series), brand), brand.series)
+        }
     }
 
-    @Test fun checkedInCatalogMatchesTheSources() {
-        val fresh = Files.createTempDirectory("catalog").toFile()
-        catalog.copyRecursively(fresh, overwrite = true)
+    @Test fun checkedInCatalogsMatchTheSources() {
+        val fresh = Files.createTempDirectory("catalogs").toFile()
+        root.copyRecursively(fresh, overwrite = true)
         main(arrayOf(fresh.absolutePath))
-        val stale = listOf("contracts", "designs").flatMap { dir ->
-            val a = fresh.resolve(dir).walk().filter { it.isFile }.associateBy { it.relativeTo(fresh).path }
-            val b = catalog.resolve(dir).walk().filter { it.isFile }.associateBy { it.relativeTo(catalog).path }
-            (a.keys + b.keys).filter { a[it]?.readBytes()?.contentEquals(b[it]?.readBytes()) != true }
+        val stale = AllBrands.flatMap { brand ->
+            listOf("catalog.json", "contracts", "designs").flatMap { dir ->
+                val a = fresh.resolve("${brand.series}/$dir").walk().filter { it.isFile }.associateBy { it.relativeTo(fresh).path }
+                val b = root.resolve("${brand.series}/$dir").walk().filter { it.isFile }.associateBy { it.relativeTo(root).path }
+                (a.keys + b.keys).filter { a[it]?.readBytes()?.contentEquals(b[it]?.readBytes()) != true }
+            }
         }
-        assertTrue(stale.isEmpty(), "catalog/ is stale, run :livery-catalog:generateLiveryCatalog: $stale")
+        assertTrue(stale.isEmpty(), "catalogs/ is stale, run :livery-catalog:generateLiveryCatalog: $stale")
+    }
+
+    @Test fun eachSeriesCatalogHoldsOnlyItsOwnDesigns() {
+        AllBrands.forEach { brand ->
+            val designs = root.resolve("${brand.series}/designs").list().orEmpty().toSet()
+            assertEquals(AllDesigns.filter { it.brand == brand }.map { it.id }.toSet(), designs, brand.series)
+        }
+    }
+
+    @Test fun conferencesHaveTheirOwnTypeface() {
+        // Every label in a design is set in its brand's face, and the two brands differ.
+        assertNotEquals(Droidcon.fontFamily, KotlinConf.fontFamily)
+        captured.filter { t -> t.reads.isNotEmpty() }.forEach { t ->
+            assertEquals(setOf(t.design.brand.fontFamily), t.fonts, "${t.design.id}/${t.template.name}")
+        }
     }
 
     @Test fun aTemplateCannotReadAnotherContractsInput() {

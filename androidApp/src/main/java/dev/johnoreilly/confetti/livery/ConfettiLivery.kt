@@ -2,7 +2,11 @@ package dev.johnoreilly.confetti.livery
 
 import android.content.Context
 import dev.johnoreilly.confetti.BuildConfig
+import dev.johnoreilly.confetti.analytics.AnalyticsLogger
+import dev.johnoreilly.confetti.ui.livery.LiveryAnalyticsEvent
 import dev.johnoreilly.confetti.ui.livery.LiveryStyling
+import ee.schimke.livery.client.AnalyticsEventSink
+import ee.schimke.livery.client.AnalyticsSink
 import ee.schimke.livery.client.AndroidBundled
 import ee.schimke.livery.client.Clock
 import ee.schimke.livery.client.FileBlobStore
@@ -18,50 +22,66 @@ import java.util.Locale
 import java.util.UUID
 
 /**
- * Livery on Android: the conference designs from :livery-catalog, bundled into the APK's assets at
- * build time by Livery's Gradle plugin (see build.gradle.kts), so they work offline and on first
- * launch.
+ * Livery on Android (the sduiDebug build type): one catalog per conference series, each
  *
- * The remote channel is *planned*: [CATALOG_URL] isn't hosted yet, and with no trusted key nothing
- * remote would be accepted anyway. Hosting it means a signing key (`livery keygen confetti`), its
- * public half here in [TrustPolicy.Signed], `livery build` in CI, and a [TemplateRepository.refresh]
- * from WorkManager next to the conference refresh. Then a design change ships without an app
- * release.
+ * - bundled into the APK's assets at `livery/<series>/` by the build (see build.gradle.kts), so it
+ *   draws offline and on first launch;
+ * - refreshed from `<LIVERY_TEMPLATES_URL>/<series>/`, the livery-templates branch, which a merge
+ *   to main publishes. Anything downloaded has a higher serial than the bundled copy and wins.
+ *
+ * The branch isn't signed yet, so this debug-only build accepts unsigned manifests (https from one
+ * repository). A release build needs `TrustPolicy.Signed` with the public key of the CI's signing
+ * key (`livery keygen confetti`, the private half as a CI secret, `--key` in the publish step).
+ *
+ * Events (impressions, taps under the contract's action names, exposures of the sdui experiment's
+ * arms) go to Confetti's own [AnalyticsLogger] as Livery's flat analytics events: logcat in debug
+ * builds, Firebase Analytics in release.
  */
-fun confettiLiveryStyling(context: Context, clock: Clock = Clock { System.currentTimeMillis() }): LiveryStyling {
+fun confettiLiveryStyling(
+    context: Context,
+    analytics: AnalyticsLogger = AnalyticsLogger.None,
+    clock: Clock = Clock { System.currentTimeMillis() },
+    refresh: Boolean = BuildConfig.LIVERY_TEMPLATES_URL.isNotEmpty(),
+    forcedArm: String? = BuildConfig.LIVERY_FORCED_ARM.takeIf { it.isNotEmpty() },
+): LiveryStyling {
     val app = context.applicationContext
     val fetcher = KtorFetcher()
-    val bundled = AndroidBundled.fromAssets(app)
-    val repository = TemplateRepository(
-        source = StaticSource(CATALOG_URL, id = "confetti"),
-        fetcher = fetcher,
-        crypto = JavaCrypto,
-        trust = TrustPolicy.Signed(emptyList()),
-        blobs = FileBlobStore(File(app.cacheDir, "livery/blobs")),
-        kv = FileKeyValueStore(File(app.filesDir, "livery")),
-        clock = clock,
-        targets = listOf(LiveryStyling.InApp),
-        bundled = bundled,
-    )
+    val catalogs = ConferenceSeries.ALL.associateWith { series ->
+        TemplateRepository(
+            source = StaticSource("${BuildConfig.LIVERY_TEMPLATES_URL.trimEnd('/')}/$series/", id = "confetti-$series"),
+            fetcher = fetcher,
+            crypto = JavaCrypto,
+            trust = if (BuildConfig.LIVERY_TEMPLATES_URL.isNotEmpty()) TrustPolicy.AllowUnsigned else TrustPolicy.Signed(emptyList()),
+            // Separate stores per catalog: one conference's cache never evicts another's.
+            blobs = FileBlobStore(File(app.cacheDir, "livery/$series/blobs")),
+            kv = FileKeyValueStore(File(app.filesDir, "livery/$series")),
+            clock = clock,
+            targets = listOf(LiveryStyling.InApp),
+            bundled = AndroidBundled.fromAssets(app, "livery/$series"),
+        )
+    }
     return LiveryStyling(
-        repository = repository,
+        catalogs = catalogs,
         clock = clock,
         platform = "android",
         locale = Locale.getDefault().toLanguageTag(),
         appVersion = BuildConfig.VERSION_CODE.toLong(),
         bucketingId = bucketingId(app),
+        events = AnalyticsEventSink(AnalyticsSink { name, params -> analytics.logEvent(LiveryAnalyticsEvent(name, params)) }),
         // Speaker photos come from the conference data's own hosts; a catalog image proxy would
         // replace this list with one trusted host.
-        images = ImageResolver(
-            repository, fetcher, JavaCrypto,
-            directHosts = setOf("sessionize.com", "storage.googleapis.com", "githubusercontent.com"),
-        ),
+        images = { repository ->
+            ImageResolver(
+                repository, fetcher, JavaCrypto,
+                directHosts = setOf("sessionize.com", "storage.googleapis.com", "githubusercontent.com"),
+            )
+        },
+        refresh = refresh,
+        forcedArm = forcedArm,
     )
 }
 
-private const val CATALOG_URL = "https://confetti-app.dev/livery/"
-
-/** A random id for sticky rollouts, scoped to this install: never the account. */
+/** A random id for sticky rollouts and experiment arms, scoped to this install: never the account. */
 private fun bucketingId(context: Context): String {
     val file = File(context.filesDir, "livery/bucketing-id")
     return file.takeIf { it.isFile }?.readText()?.takeIf { it.isNotBlank() }

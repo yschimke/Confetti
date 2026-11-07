@@ -6,7 +6,10 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 // out as a Livery catalog source tree under catalog/ that `livery build` publishes.
 //
 //   ./gradlew :livery-catalog:test                     captures every template and checks it plays
-//   ./gradlew :livery-catalog:generateLiveryCatalog    (re)writes catalog/designs/**.rc + renders/
+//   ./gradlew :livery-catalog:generateLiveryCatalog    (re)writes catalogs/<series>/designs/**.rc + renders/
+//   ./gradlew :livery-catalog:buildLiveryChannels      `livery build --inspect` of each series into
+//                                                     build/livery-channels/<series>/, what the
+//                                                     livery-templates branch serves
 plugins {
     kotlin("jvm")
     id("org.jetbrains.compose")
@@ -41,12 +44,50 @@ dependencies {
     testImplementation(kotlin("test"))
 }
 
-val catalogDir = layout.projectDirectory.dir("catalog")
+// One catalog source tree per conference series: catalogs/droidcon, catalogs/kotlinconf.
+val catalogsDir = layout.projectDirectory.dir("catalogs")
 
 tasks.register<JavaExec>("generateLiveryCatalog") {
     group = "livery"
-    description = "Captures every Confetti design to .rc into catalog/ and renders previews."
+    description = "Captures every Confetti design to .rc into catalogs/<series>/ and renders previews."
     classpath = sourceSets["main"].runtimeClasspath
     mainClass.set("dev.johnoreilly.confetti.livery.GenerateCatalogKt")
-    args(catalogDir.asFile.absolutePath, layout.projectDirectory.dir("renders").asFile.absolutePath)
+    args(catalogsDir.asFile.absolutePath, layout.projectDirectory.dir("renders").asFile.absolutePath)
+}
+
+// Livery's publisher (`livery build`), to build each series into the static layout a channel
+// serves: manifest.json, blobs/, assets/, previews/. The livery-templates workflow pushes the
+// output to that branch; the app's sduiDebug build reads it from raw.githubusercontent.com.
+val liveryCli: Configuration by configurations.creating
+
+dependencies {
+    liveryCli(libs.livery.publish)
+}
+
+val channelsDir = layout.buildDirectory.dir("livery-channels")
+
+val buildLiveryChannels = tasks.register("buildLiveryChannels") {
+    group = "livery"
+    description = "Builds every series catalog with `livery build --inspect` into build/livery-channels/<series>/."
+}
+
+listOf("droidcon", "kotlinconf").forEach { series ->
+    val task = tasks.register<JavaExec>("buildLiveryChannel${series.replaceFirstChar { it.uppercase() }}") {
+        group = "livery"
+        classpath = liveryCli
+        mainClass.set("ee.schimke.livery.publisher.MainKt")
+        val src = catalogsDir.dir(series)
+        val out = channelsDir.map { it.dir(series) }
+        inputs.dir(src)
+        outputs.dir(out)
+        // --serial: the commit time when CI passes it, so a rebuild of the same commit is the same
+        // catalog; otherwise Livery's default (now). It must only grow per channel.
+        val serial = providers.gradleProperty("livery.serial")
+        doFirst { out.get().asFile.deleteRecursively() }
+        argumentProviders.add(CommandLineArgumentProvider {
+            listOf("build", src.asFile.absolutePath, out.get().asFile.absolutePath, "--inspect") +
+                (serial.orNull?.let { listOf("--serial", it) } ?: emptyList())
+        })
+    }
+    buildLiveryChannels.configure { dependsOn(task) }
 }

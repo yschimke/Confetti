@@ -41,6 +41,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.Arrangement
 import dev.johnoreilly.confetti.ui.livery.SessionCardSlot
+import dev.johnoreilly.confetti.ui.livery.SlotTracker
+import dev.johnoreilly.confetti.livery.SessionContract
 import dev.johnoreilly.confetti.ui.livery.PromoSlot
 import dev.johnoreilly.confetti.ui.livery.ConferenceHeaderSlot
 
@@ -160,13 +162,15 @@ fun SessionListView(
 
                                 itemsIndexed(sessions) { index, session ->
                                     val isBookmarked = uiState.bookmarks.contains(session.id)
-                                    val nativeItem = @Composable {
+                                    // Confetti's own row. As a slot's fallback it reports its taps
+                                    // under the session contract's actions, like a design would.
+                                    val nativeItem = @Composable { tracker: SlotTracker ->
                                         SessionItemView(
                                             session = session,
-                                            sessionSelected = sessionSelected,
+                                            sessionSelected = { tracker.action(SessionContract.open); sessionSelected(it) },
                                             isBookmarked = isBookmarked,
-                                            addBookmark = addBookmark,
-                                            removeBookmark = removeBookmark,
+                                            addBookmark = { tracker.action(SessionContract.bookmark); addBookmark(it) },
+                                            removeBookmark = { tracker.action(SessionContract.bookmark); removeBookmark(it) },
                                             onNavigateToSignIn = onNavigateToSignIn,
                                             isLoggedIn = isLoggedIn,
                                             trackColor = session.trackColor(uiState.tracks),
@@ -174,9 +178,10 @@ fun SessionListView(
                                         )
                                     }
                                     if (session.isBreak() || session.isService()) {
-                                        nativeItem()
+                                        nativeItem(SlotTracker.None)
                                     } else {
-                                        // The conference's session design when it has one (Livery),
+                                        // The conference's session design when it has one (Livery)
+                                        // and the user is in the sdui experiment's livery arm,
                                         // else Confetti's own row.
                                         SessionCardSlot(
                                             conference = uiState.conference,

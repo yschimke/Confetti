@@ -24,9 +24,14 @@ import kotlinx.serialization.json.jsonPrimitive
  * recording them at capture time means they can't drift from the document, and anything outside
  * the contract fails the capture.
  */
-class TemplateScope(val contract: ConfettiContract) {
+class TemplateScope(val contract: ConfettiContract, val brand: ConferenceBrand? = null) {
     val reads = linkedSetOf<String>()
     val emits = linkedSetOf<String>()
+    /** Font families the document names: the sidecar's `fonts`, so their files download with it. */
+    val fonts = linkedSetOf<String>()
+
+    /** The family labels use, recorded as used. */
+    fun font(): String? = brand?.fontFamily?.also { fonts += it }
 
     fun read(input: Input) {
         check(contract.inputs[input.name] === input) { "${input.name} is not an input of ${contract.ref}" }

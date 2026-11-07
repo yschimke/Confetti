@@ -231,6 +231,9 @@ object ConferenceSeries {
 
     private val prefixes = listOf("droidcon" to "droidcon", "kotlinconf" to "kotlinconf")
 
+    /** Every series with designs: one Livery catalog each (`catalogs/<series>/`). */
+    val ALL: List<String> = prefixes.map { it.second }.distinct()
+
     fun of(conferenceId: String): String? =
         prefixes.firstOrNull { (prefix, _) -> conferenceId.startsWith(prefix) }?.second
 

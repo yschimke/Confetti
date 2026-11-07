@@ -17,6 +17,11 @@ data class ConferenceBrand(
     val surface: Color,
     val onSurface: Color,
     val muted: Color,
+    /**
+     * The typeface every label is set in: a family in the series catalog's `fonts/fonts.json`
+     * (shipped with the templates, so it draws the same on every device) or `system:<family>`.
+     */
+    val fontFamily: String,
 )
 
 val Droidcon = ConferenceBrand(
@@ -28,6 +33,8 @@ val Droidcon = ConferenceBrand(
     surface = Color(0xFF0E1116),
     onSurface = Color(0xFFF5F7FA),
     muted = Color(0xFF9AA4B2),
+    // Terminal-flavoured, to go with the green-on-black.
+    fontFamily = "Space Mono",
 )
 
 val KotlinConf = ConferenceBrand(
@@ -39,4 +46,8 @@ val KotlinConf = ConferenceBrand(
     surface = Color(0xFF19191C),
     onSurface = Color(0xFFFFFFFF),
     muted = Color(0xFFC7C2D6),
+    // Geometric and round, to go with the soft corners and the gradient.
+    fontFamily = "Poppins",
 )
+
+val AllBrands: List<ConferenceBrand> = listOf(Droidcon, KotlinConf)

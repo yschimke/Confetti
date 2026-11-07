@@ -5,46 +5,73 @@ import androidx.compose.ui.platform.LocalUriHandler
 import dev.johnoreilly.confetti.decompose.SessionsUiState
 import dev.johnoreilly.confetti.fragment.SessionDetails
 import dev.johnoreilly.confetti.fragment.SpeakerDetails
+import dev.johnoreilly.confetti.livery.ConferenceCard
 import dev.johnoreilly.confetti.livery.ConferenceContract
-import dev.johnoreilly.confetti.livery.Input
+import dev.johnoreilly.confetti.livery.SessionCard
 import dev.johnoreilly.confetti.livery.SessionContract
+import dev.johnoreilly.confetti.livery.SpeakerCard
 import dev.johnoreilly.confetti.livery.SpeakerContract
-import dev.johnoreilly.confetti.livery.fit
 import kotlinx.datetime.LocalDateTime
 import sessionTimeFormat
 
 /*
- * Confetti's data, mapped onto the Livery contracts. These are the only places the app's model
- * meets a design: the contract types keep both sides honest (see livery-contracts/Contracts.kt).
+ * Confetti's data, copied onto the contracts' data classes (livery-contracts/ContractData.kt).
+ * These mappings are the only place the app's model (Apollo's fragments) meets a design, and the
+ * native composables are handed a SlotTracker so both arms of the sdui experiment report taps
+ * under the same contract action names.
  */
 
+/** The conference header, from the agenda's state. */
+fun SessionsUiState.Success.toConferenceCard(ticketsUrl: String? = null): ConferenceCard? {
+    val dates = confDates.sorted()
+    val first = dates.firstOrNull() ?: return null
+    val last = dates.last()
+    val dateText = if (first == last) "${first.day} ${first.month.name.take(3)} ${first.year}"
+        else "${first.day}–${last.day} ${last.month.name.take(3)} ${last.year}"
+    return ConferenceCard(name = conferenceName, dates = dateText, live = now.date in dates, ticketsUrl = ticketsUrl)
+}
+
+fun SessionDetails.toSessionCard(now: LocalDateTime, isBookmarked: Boolean) = SessionCard(
+    title = title,
+    speakers = speakers.joinToString { it.sessionSpeakerDetails.name },
+    room = room?.name,
+    time = "${startsAt.sessionTimeFormat()} – ${endsAt.sessionTimeFormat()}",
+    tag = tags.firstOrNull(),
+    live = now >= startsAt && now < endsAt,
+    bookmarked = isBookmarked,
+)
+
+fun SpeakerDetails.toSpeakerCard() = SpeakerCard(
+    name = name,
+    tagline = listOfNotNull(tagline, company).filter { it.isNotBlank() }.joinToString(" · "),
+    photoUrl = photoUrlThumbnail ?: photoUrl,
+    sessions = when (val n = sessions.size) {
+        0 -> null
+        1 -> "1 session"
+        else -> "$n sessions"
+    },
+)
+
 /**
- * The conference header above the agenda; nothing (the agenda as today) without a design. The
- * designs draw their tickets button only when there is a [ticketsUrl] (Confetti's data has none yet).
+ * The conference header above the agenda; nothing (the agenda as today) without a design, or in
+ * the native arm. The designs draw their tickets button only when there is a ticketsUrl
+ * (Confetti's data has none yet).
  */
 @Composable
 fun ConferenceHeaderSlot(state: SessionsUiState.Success, ticketsUrl: String? = null) {
-    val dates = state.confDates.sorted()
-    val first = dates.firstOrNull() ?: return
-    val last = dates.last()
-    val c = ConferenceContract
+    val card = state.toConferenceCard(ticketsUrl) ?: return
     val uriHandler = LocalUriHandler.current
-    val dateText = if (first == last) "${first.day} ${first.month.name.take(3)} ${first.year}"
-        else "${first.day}–${last.day} ${last.month.name.take(3)} ${last.year}"
     ConferenceSlot(
-        contract = c,
         conference = state.conference,
-        data = buildMap {
-            put(c.name, c.name.fit(state.conferenceName))
-            put(c.dates, c.dates.fit(dateText))
-            put(c.live, state.now.date in dates)
-            ticketsUrl?.let { put(c.ticketsUrl, c.ticketsUrl.fit(it)) }
-        },
-        actions = mapOf(c.tickets.kind to { args -> args["url"]?.let(uriHandler::openUri) }),
+        data = card,
+        actions = mapOf(ConferenceContract.tickets to { args -> args["url"]?.let(uriHandler::openUri) }),
     ) {}
 }
 
-/** A talk in the agenda, in the conference's session design, or [fallback] (Confetti's row). */
+/**
+ * A talk in the agenda, in the conference's session design, or [fallback] (Confetti's row),
+ * handed the tracker to report its taps with.
+ */
 @Composable
 fun SessionCardSlot(
     conference: String,
@@ -53,33 +80,17 @@ fun SessionCardSlot(
     isBookmarked: Boolean,
     onOpen: () -> Unit,
     onToggleBookmark: () -> Unit,
-    fallback: @Composable () -> Unit,
+    fallback: @Composable (SlotTracker) -> Unit,
 ) {
-    val c = SessionContract
     ConferenceSlot(
-        contract = c,
         conference = conference,
-        data = sessionData(session, now, isBookmarked),
+        data = session.toSessionCard(now, isBookmarked),
         actions = mapOf(
-            c.open.kind to { _ -> onOpen() },
-            c.bookmark.kind to { _ -> onToggleBookmark() },
+            SessionContract.open to { _ -> onOpen() },
+            SessionContract.bookmark to { _ -> onToggleBookmark() },
         ),
         fallback = fallback,
     )
-}
-
-fun sessionData(session: SessionDetails, now: LocalDateTime, isBookmarked: Boolean): Map<Input, Any> {
-    val c = SessionContract
-    return buildMap {
-        put(c.title, c.title.fit(session.title))
-        session.speakers.joinToString { it.sessionSpeakerDetails.name }.takeIf { it.isNotBlank() }
-            ?.let { put(c.speakers, c.speakers.fit(it)) }
-        session.room?.name?.takeIf { it.isNotBlank() }?.let { put(c.room, c.room.fit(it)) }
-        put(c.time, c.time.fit("${session.startsAt.sessionTimeFormat()} – ${session.endsAt.sessionTimeFormat()}"))
-        session.tags.firstOrNull()?.let { put(c.tag, c.tag.fit(it)) }
-        put(c.live, now >= session.startsAt && now < session.endsAt)
-        put(c.bookmarked, isBookmarked)
-    }
 }
 
 /** A speaker, in the conference's speaker design, or [fallback]. */
@@ -88,25 +99,12 @@ fun SpeakerCardSlot(
     conference: String,
     speaker: SpeakerDetails,
     onOpen: () -> Unit = {},
-    fallback: @Composable () -> Unit = {},
+    fallback: @Composable (SlotTracker) -> Unit = {},
 ) {
-    val c = SpeakerContract
     ConferenceSlot(
-        contract = c,
         conference = conference,
-        data = buildMap {
-            put(c.name, c.name.fit(speaker.name))
-            listOfNotNull(speaker.tagline, speaker.company).filter { it.isNotBlank() }.joinToString(" · ")
-                .takeIf { it.isNotBlank() }?.let { put(c.tagline, c.tagline.fit(it)) }
-            // Only https images bind (Livery PROTOCOL §6.1); anything else draws the placeholder.
-            (speaker.photoUrlThumbnail ?: speaker.photoUrl)?.takeIf { it.startsWith("https://") }?.let { put(c.photo, it) }
-            when (val n = speaker.sessions.size) {
-                0 -> {}
-                1 -> put(c.sessions, "1 session")
-                else -> put(c.sessions, "$n sessions")
-            }
-        },
-        actions = mapOf(c.open.kind to { _ -> onOpen() }),
+        data = speaker.toSpeakerCard(),
+        actions = mapOf(SpeakerContract.open to { _ -> onOpen() }),
         fallback = fallback,
     )
 }

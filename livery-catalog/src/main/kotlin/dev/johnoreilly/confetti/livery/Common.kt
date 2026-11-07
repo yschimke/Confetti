@@ -21,6 +21,7 @@ import androidx.compose.remote.creation.compose.state.rf
 import androidx.compose.remote.creation.compose.state.ri
 import androidx.compose.remote.creation.compose.state.rsp
 import androidx.compose.remote.creation.compose.state.sin
+import androidx.compose.remote.creation.compose.text.RemoteFontFamily
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -68,12 +69,14 @@ fun Label(
     modifier: RemoteModifier = RemoteModifier,
     maxLines: Int = 1,
 ) {
+    val family = LocalTemplateScope.current.font()
     RemoteText(
         text = text,
         modifier = modifier,
         color = color,
         fontSize = size.rsp,
         fontWeight = weight,
+        fontFamily = family?.let { RemoteFontFamily.Named(it.removePrefix("system:")) } ?: RemoteFontFamily.Default,
         overflow = TextOverflow.Ellipsis,
         maxLines = maxLines,
     )

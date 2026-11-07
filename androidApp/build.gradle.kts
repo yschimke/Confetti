@@ -15,13 +15,10 @@ plugins {
     // catalog.mobile.spec.json + the design-artifacts workflow). Mirrors :wearApp.
     alias(libs.plugins.composeai.preview)
     id("androidx.baselineprofile")
-    // Builds :livery-catalog's source tree into the APK's assets (checked like `livery build
-    // --inspect`), read back by AndroidBundled.fromAssets. See livery/ConfettiLivery.kt.
-    alias(libs.plugins.livery.catalog)
-}
-
-livery {
-    source.set(rootProject.layout.projectDirectory.dir("livery-catalog/catalog"))
+    // Livery's catalog builder (`livery build --inspect` as a Gradle task). Not applied: the
+    // plugin bundles one catalog into every variant, and Confetti bundles one per conference into
+    // sduiDebug only (see "Livery" below).
+    alias(libs.plugins.livery.catalog) apply false
 }
 
 configureCompilerOptions()
@@ -63,9 +60,11 @@ android {
         versionCode = versionCode()
         versionName = versionName()
 
-        // Conference-styled slots (Livery), on by default; -Pconfetti.livery=false builds the app
-        // with Confetti's own UI everywhere. See livery-catalog/README.md.
-        buildConfigField("boolean", "LIVERY_ENABLED", (findProperty("confetti.livery") != "false").toString())
+        // Conference-styled slots (Livery): only in the sduiDebug build type. Every other variant
+        // draws Confetti's own UI. See livery-catalog/README.md.
+        buildConfigField("boolean", "LIVERY_ENABLED", "false")
+        buildConfigField("String", "LIVERY_TEMPLATES_URL", "\"\"")
+        buildConfigField("String", "LIVERY_FORCED_ARM", "\"\"")
     }
 
     androidResources {
@@ -137,6 +136,23 @@ android {
         }
         getByName("debug") {
             signingConfig = signingConfigs.getByName("confetti")
+        }
+        // Server-driven UI: debug, plus each conference's Livery catalog bundled into the assets,
+        // a newer one fetched from the livery-templates branch when there is one, and the sdui
+        // experiment (Livery vs Confetti's own composables) assigned on the device. Same
+        // applicationId as debug: google-services.json has no client for a suffixed one.
+        create("sduiDebug") {
+            initWith(getByName("debug"))
+            versionNameSuffix = "-sdui"
+            matchingFallbacks += listOf("debug")
+            buildConfigField("boolean", "LIVERY_ENABLED", "true")
+            // Each series is served from <url>/<series>/manifest.json. -Pconfetti.livery.templates=
+            // points at another host or branch (a PR's channel, joreilly/confetti-templates).
+            val templates = (findProperty("confetti.livery.templates") as String?)
+                ?: "https://raw.githubusercontent.com/yschimke/Confetti/livery-templates/catalogs"
+            buildConfigField("String", "LIVERY_TEMPLATES_URL", "\"$templates\"")
+            // -Pconfetti.livery.arm=native|livery pins the sdui arm (screenshots, QA).
+            buildConfigField("String", "LIVERY_FORCED_ARM", "\"${findProperty("confetti.livery.arm") ?: ""}\"")
         }
     }
 
@@ -226,6 +242,7 @@ dependencies {
     testImplementation(libs.roborazzi.rule)
     testImplementation(libs.coil.test)
     debugImplementation(libs.compose.ui.manifest)
+    "sduiDebugImplementation"(libs.compose.ui.manifest)
 
     screenshotTestImplementation(libs.androidx.compose.ui.tooling)
 }
@@ -237,7 +254,26 @@ baselineProfile {
 
 // The plugin's profiling builds copy release's signing config, whose keystore isn't checked in.
 // They're only installed on the generator's emulator, so sign them with the committed key.
+// Livery: each conference series' catalog (livery-catalog/catalogs/<series>), built and checked
+// like `livery build --inspect`, into sduiDebug's assets at livery/<series>/, where
+// AndroidBundled.fromAssets(context, "livery/<series>") reads it back. The bundled copy has serial
+// 0, so a catalog the app downloads always replaces it.
+val liverySeries = listOf("droidcon", "kotlinconf")
+val liveryCatalogTasks = liverySeries.map { series ->
+    tasks.register<ee.schimke.livery.gradle.BuildLiveryCatalog>("buildLiveryCatalog${series.replaceFirstChar { it.uppercase() }}") {
+        group = "build"
+        description = "Builds the $series Livery catalog into generated assets"
+        source.set(rootProject.layout.projectDirectory.dir("livery-catalog/catalogs/$series"))
+        assetsPath.set("livery/$series")
+        inspect.set(true)
+        outputDir.set(layout.buildDirectory.dir("generated/livery/$series"))
+    }
+}
+
 androidComponents {
+    onVariants(selector().withBuildType("sduiDebug")) { variant ->
+        liveryCatalogTasks.forEach { variant.sources.assets?.addGeneratedSourceDirectory(it, ee.schimke.livery.gradle.BuildLiveryCatalog::outputDir) }
+    }
     onVariants(selector().withBuildType("nonMinifiedRelease")) {
         it.signingConfig.setConfig(android.signingConfigs.getByName("confetti"))
     }

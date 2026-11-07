@@ -22,7 +22,7 @@ Every colour in a design is a `theme.*` role, so a mode or a palette is data pus
 slot's data, never a new document:
 
 - **Light and dark.** Each conference has a theme pack per mode (`droidcon-light`,
-  `droidcon-dark`, `kotlinconf-light`, `kotlinconf-dark` in `catalog/themes/`). A slot picks the
+  `droidcon-dark`, `kotlinconf-light`, `kotlinconf-dark` in `catalogs/<series>/themes/`). A slot picks the
   one matching the app around it, judged from its `MaterialTheme`, so Confetti's own light or dark
   setting wins over the system's.
 - **Material 3 dynamic colour.** When the user has dynamic colour on (`ConferenceMaterialTheme`
@@ -65,8 +65,9 @@ livery-contracts/   Contracts.kt: the four contracts, typed (KMP: Android, iOS, 
         │  used by both sides
         ├── livery-catalog/   designs as @RemoteComposable functions (rc-players' CMP fork of
         │                     remote-creation-compose), captured to .rc on the JVM, plus
-        │                     catalog/themes and catalog/placements (data)
-        │       └── catalog/  a Livery catalog source tree: what `livery build` publishes
+        │                     plus themes, placements, experiments and fonts (data)
+        │       └── catalogs/<series>/  one Livery catalog source tree per conference series:
+        │                     what `livery build` publishes to the livery-templates branch
         │
         └── shared/ui/livery  ConferenceSlot / PromoSlot: contract-typed slots in the shared
                               Compose UI, each with Confetti's own UI as the fallback
@@ -75,8 +76,9 @@ androidApp/livery/            the repository (catalog bundled into assets by Liv
 ```
 
 ```bash
-./gradlew :livery-catalog:generateLiveryCatalog   # capture designs, write catalog/ and renders/
-./gradlew :livery-catalog:test                    # contract checks; catalog/ matches the sources
+./gradlew :livery-catalog:generateLiveryCatalog   # capture designs, write catalogs/ and renders/
+./gradlew :livery-catalog:test                    # contract checks; catalogs/ match the sources
+./gradlew :livery-catalog:buildLiveryChannels     # livery build --inspect per series -> build/livery-channels/
 ./gradlew :livery-contracts:jvmTest
 ```
 
@@ -94,7 +96,7 @@ enforced at every step. `Contracts.kt` is the source of truth:
 3. **Generation checks** (`CatalogTest`): every example binds through Livery's `ContractBinder`
    (the gate devices use), every design emits each of its contract's actions and shows every
    required input, theme packs only set theme roles, and placements carry data their design's
-   contract accepts. The checked-in `catalog/` must equal what the sources generate.
+   contract accepts. The checked-in `catalogs/` must equal what the sources generate.
 4. **Livery's publisher**: `livery build --inspect` decodes every `.rc` and checks it against its
    sidecar (the Android build runs this through the Gradle plugin).
 5. **Runtime**: binding refuses unknown or over-long values, so the app trims first
@@ -119,9 +121,9 @@ Every contract also takes the conference palette as theme roles (`theme.primary`
    conference with no designs keeps Confetti's UI, as does any platform that hasn't provided
    `LocalLiveryStyling`.
 2. **Conference assets.** The header shows the conference's own branding and copy, and a theme
-   pack per series (`catalog/themes/`) holds the palette as data: change a colour there and every
+   pack per series (`catalogs/<series>/themes/`) holds the palette as data: change a colour there and every
    template follows, with no new document.
-3. **Promotions.** `catalog/placements/` holds rules for `home.feed`, `session.footer` and
+3. **Promotions.** `catalogs/<series>/placements/` holds rules for `home.feed`, `session.footer` and
    `speaker.footer`: schedules, conference segments (`conference:<id>`), sticky rollouts and
    frequency caps, decided on the device. A promotion server could answer the same placements
    later (`FirstDecider`).
@@ -133,7 +135,7 @@ Every contract also takes the conference palette as theme roles (`theme.primary`
 
 | Surface | Status here |
 | --- | --- |
-| Phone and tablet (Android) | Wired: agenda header, promotion and session cards, promotions under sessions and on speaker pages. On by default; `-Pconfetti.livery=false` builds the app with Confetti's own UI everywhere |
+| Phone and tablet (Android) | Wired: agenda header, promotion and session cards, promotions under sessions and on speaker pages. Only in the `sduiDebug` build type (see below); every other variant draws Confetti's own UI |
 | iOS, desktop, web | The same shared slots compile for every target; each platform needs only to provide `LocalLiveryStyling` (a repository and a bundled or hosted catalog) |
 | Launcher widget | Templates authored (`launcher` target); next: a `LiveryLauncherWidgetProvider` for "next session" |
 | Wear | Templates authored (`wear-widget`, `wear:large`); next: a `LiveryWearWidget` beside the existing tiles |
@@ -146,7 +148,7 @@ conference admin would be:
 1. In the app (admin role), long-press a styled slot and write a request ("make the droidcon
    header say Berlin and use the blue from the venue"). The app sends it with the slot's
    design id, contract and current data to an agent session.
-2. The agent works on this source tree through `livery-mcp` (`livery-mcp livery-catalog/catalog
+2. The agent works on this source tree through `livery-mcp` (`livery-mcp livery-catalog/catalogs/droidcon
    --write --preview-out …`): `get_contract` for what it may use; data-only changes (copy, a theme
    pack's colours, a placement's schedule) are JSON edits checked by `validate_data`; a layout
    change edits the design's Kotlin and is re-captured. `render_preview` shows the result.
@@ -161,10 +163,155 @@ except what it reads and emits, and anything that would break the app fails befo
 Most admin requests are data (copy, colours, schedules), which is why the palette lives in theme
 packs and promotions in placements, not in the documents.
 
-## Friction, and what changed in Livery
+## The `sduiDebug` variant: server templates, baked-in fallback, an A/B test
+
+`sduiDebug` is `debug` plus Livery. Every other variant (`debug`, `release`, `githubRelease`)
+draws Confetti's own UI and ships no catalog.
+
+```bash
+./gradlew :androidApp:installSduiDebug
+./gradlew :androidApp:installSduiDebug -Pconfetti.livery.arm=native     # pin an arm (QA, screenshots)
+./gradlew :androidApp:installSduiDebug -Pconfetti.livery.templates=https://host/catalogs   # another channel
+```
+
+**One catalog per conference.** `catalogs/droidcon` and `catalogs/kotlinconf` are separate Livery
+catalogs (`confetti-droidcon`, `confetti-kotlinconf`), each with its own designs, theme packs,
+placements, experiments and fonts. They publish, cache, expire and fail independently: a broken
+droidcon publish can't blank KotlinConf's agenda.
+
+**Where a slot's design comes from, in order:**
+
+1. **The server.** `livery-templates` on this repository, one static channel per series
+   (`catalogs/<series>/manifest.json`, read from raw.githubusercontent.com). The *Livery templates*
+   workflow publishes it on every merge to main that touches the catalogs, and weekly so the
+   manifest doesn't expire. Slots ask for a refresh at most every five minutes; a downloaded
+   catalog has a higher serial than the bundled one, so it wins, and open slots replan on the
+   repository's revision.
+2. **Baked in.** The same source trees, built and checked (`--inspect`) into the APK's assets at
+   `livery/<series>/` by `BuildLiveryCatalog` tasks, sduiDebug only. First launch and offline
+   draw these.
+3. **Confetti's own composable**, when neither has a template for the slot, the conference has no
+   series, or the user is in the native arm. So the old composables can be deleted only once
+   every slot has a template in the bundled catalog.
+
+Later the channel can move to `joreilly/confetti-templates` (a repository of its own fits
+`GitHubReleaseSource`'s `releases/latest`), and a release build needs a signed manifest (below).
+
+**Different designs and fonts.** droidcon is set in **Space Mono** (terminal-flavoured, green on
+black) and KotlinConf in **Poppins** (round, on the Kotlin gradient), both OFL-1.1, shipped in
+each catalog's `fonts/` and downloaded with the templates that name them. `Label` sets every
+text in its brand's face (`RemoteFontFamily.Named`), capture records it in the sidecar's
+`fonts`, and `CatalogTest` checks every template names its brand's face and that the catalog
+ships it. The renders use the same files.
+
+| droidcon (Space Mono) | KotlinConf (Poppins) |
+| --- | --- |
+| ![](renders/droidcon-session-in-app.png) | ![](renders/kotlinconf-session-in-app.png) |
+
+**The A/B test: Livery against the composables.** `experiments/sdui.json` in each catalog splits
+users between `native` (Confetti's composables) and `livery` (the conference's designs): 50/50
+for droidcon, 25/75 for KotlinConf. It's data: a conference changes its split or ends the test
+with a PR to its catalog. Arms are assigned on the device (`LocalBucketing`, sticky per install's
+bucketing id, the same on every platform). Users who aren't enrolled get `livery`.
+
+**Interaction tracking.** Every event goes to Confetti's own `AnalyticsLogger` as Livery's flat
+analytics events (logcat in debug, Firebase in release): `livery_impression`, `livery_viewable`,
+`livery_action` with `action` = the contract action (`open`, `bookmark`, `tickets`, `cta`),
+`livery_leave` with `duration_ms`, and `livery_exposure` once per arm. Every event carries
+`exp_sdui`. In the native arm the composable gets a `SlotTracker`, and Confetti's own session
+row reports its impression and its taps under the same action names, with `design_id=native`,
+so tap-through compares across arms. `LiverySlotsTest.nativeArm` checks this.
+
+## Findings
+
+### What works well
+
+- **The contract as Kotlin objects.** Designs and app both use `SessionContract.title`, so a rename
+  breaks both at compile time, and capture refuses another contract's input. Nothing about the
+  per-conference split or the experiment needed a contract change.
+- **Data-only changes.** Colours (theme packs per mode), promotions (placements), the experiment
+  split and the fonts are files in the catalog. Only layout needs a re-capture.
+- **Fallback by construction.** `LiverySlot` draws the fallback while planning and whenever there's
+  no template, so the composables were the native arm for free.
+- **Publishing as static files.** `livery build` output is a plain directory. A branch plus
+  raw.githubusercontent.com was enough, and the bundled copy uses the same builder, so "baked in"
+  and "from the server" can't drift apart.
+- **Analytics shape.** `AnalyticsEventSink` fit Confetti's existing `AnalyticsLogger` with a
+  three-line adapter, so iOS and web get the events through their own loggers too.
+
+### Friction and boilerplate (candidates for Livery)
+
+- **No "native arm".** An experiment arm can pick a design or nothing (the usual choice). An arm
+  that means "the app's own composable" has to be read by the app (`Experiments.arm`). The app
+  then emits the impression, the exposure and the taps itself, and tags every event with the arm
+  through a wrapped sink (`SeriesCatalog.events`, `NativeSlot`, `nativeTracker`, about 60
+  lines). **Livery should provide this pattern:** an arm flag (`"native": true`) that makes
+  `SlotPlanner` return `PlanResult.Native(arm)`, plus a `LiveryNativeSlot { tracker -> }` that
+  reports `Impression`, `Viewable`, `Leave` and `Action` through the same `ActionGate` rules. Then
+  "Livery vs what we had" is one JSON file and no app code.
+- **Arms ignore slot context.** `Experiments` takes one `DecisionContext` provider, but arms here
+  depend on the conference (segments), so the app builds a second `Experiments` per call.
+  `arm(id, context)` would fix it.
+- **One catalog per Gradle plugin.** The plugin bundles one source tree into every variant. Per
+  conference and per build type meant registering `BuildLiveryCatalog` tasks by hand (the class is
+  public, which saved it). A `livery { catalogs { register("droidcon") { … } }; variants = … }`
+  DSL would remove that.
+- **A repository per catalog is a lot of wiring.** Each series needs its own `TemplateRepository`
+  with separate blob and key-value stores, its own `Experiments`, `SlotPlanner`, `Decider` and
+  `LiveryHost`. A `LiveryCatalogs(sources, bundled = { "livery/$it" })` would keep apps from getting
+  the store separation wrong.
+- **Refresh is the app's job.** Nothing calls `TemplateRepository.refresh()`. Slots here call it
+  throttled. Livery could offer `repository.refreshWhileObserved()` or a WorkManager helper.
+- **Expiry needs a scheduled republish.** `expiresInDays` applies to downloaded manifests, so an
+  idle catalog must be rebuilt (the weekly cron). That's correct for signed catalogs, but it's
+  easy to miss: the app silently drops back to the bundled copy.
+- **Font names are case-folded by the player.** A custom `RcTypefaceLoader` (the renders here) must
+  match families case-insensitively. `LiveryTypefaceLoader` does, and `livery-render` could take
+  a catalog's `fonts/` directly.
+- **Unchanged from 0.2.0:** slot height is the capture height, so wider faces (Space Mono) clip
+  sooner. `open-url` builds `{"url":"…"}` in the document. Sidecars and typed contracts are still
+  hand-rolled (`Authoring.kt`; `livery-capture`'s `LiveryValues` isn't published to Maven yet).
+
+### Contracts and the app's model (DAO objects)
+
+Options weighed for getting Apollo's `SessionDetails` into a slot:
+
+- **Interfaces the model implements.** Not possible: the models are generated, and they carry
+  fields a design must not see.
+- **`Map<Input, Any>` built at each call site** (0.2.0 branch). Type-safe keys, but not values or
+  completeness. It's easy to forget an input or to skip `fit`.
+- **Copy into a data class per contract (chosen).** `SessionCard`, `SpeakerCard` and
+  `ConferenceCard` in `:livery-contracts` (`ContractData.kt`):
+  - one mapping function per model (`SessionDetails.toSessionCard`);
+  - `values()` fits every string, drops blanks and refuses non-https images;
+  - `ContractDataTest` fails when a contract gains an input its class doesn't fill.
+
+  The native composable can take the same class. Then both arms draw the same data, and deleting
+  an old composable touches nothing around it. That's the next step here: `SessionItemView`
+  still takes `SessionDetails`.
+
+What Livery could add: generate these classes, the JSON and the checks from the contract (KSP
+or a Gradle task over `contracts/*.json`), validated at the same `ContractBinder` gate.
+
+### Does Livery need a way to publish themes?
+
+Partly. Theme packs already publish as catalog data: they ship in the manifest, an admin changes
+them as JSON, and `repository.theme(id)` reads them. What's missing:
+
+- **Theme-only publishing.** A colour change rebuilds and republishes the whole catalog. A
+  `themes` channel, or a manifest that can reference a theme document by hash, would make a
+  recolour a tiny, fast update.
+- **Typography in themes.** Fonts sit in `fonts/` and are named per template. A theme pack that
+  could map `theme.font.display`/`theme.font.body` roles to families would let a conference change
+  its face without a re-capture, the way colours already work.
+- **One theme for the whole app.** Confetti's native UI has its own per-conference Material
+  schemes. Exporting a pack as a Material 3 `ColorScheme` (the inverse of `materialThemeValues`)
+  would give native and Livery slots one source of truth.
+
+## Friction found in 0.1.1, fixed in Livery 0.2.0
 
 Found doing this, fixed in [yschimke/livery#14](https://github.com/yschimke/livery/pull/14) and
-released in Livery 0.2.0, which this branch uses:
+released in Livery 0.2.0 (this branch is on 0.3.0):
 
 - **Compose version.** Livery 0.1.1 is built against Compose Multiplatform 1.13.0-beta02. Confetti
   pins the stable androidx Compose BOM (runtime 1.12.1), so the app compiles and then every slot
@@ -177,18 +324,4 @@ released in Livery 0.2.0, which this branch uses:
   headless host. It now says why and how to fix it.
 - **Stale getting-started step**, pointing at a snapshot composite build.
 
-Still open:
-
-- **Slot height.** An in-app slot is as tall as the document's capture size, not its content at
-  the slot's width, so text that wraps more is clipped. This needs wrap-content measurement in
-  the player, or a size hint per template.
-- **Action arguments.** Only a bare text value maps to an argument (`value`), so `open-url` builds
-  `{"url":"…"}` as a string in the document.
-- **Authoring.** Sidecars and typed contracts are hand-rolled here (`Authoring.kt`,
-  `Contracts.kt`). Livery's authoring work could absorb both: record reads and emits at capture,
-  and generate or check contracts from Kotlin.
-- **Example data as initial values.** A host pushes only the inputs it binds, so a document's
-  initial values show whenever the app leaves an optional input out. Captured with example data,
-  they looked like real data. Here the capture uses contract defaults and `CatalogTest` guards
-  it. Livery's authoring tools should do the same, or a host could reset unbound reads.
-- A placement's segments must match the conference id exactly (`conference:droidconlondon2026`).
+The ones still open are under **Findings** above.
