@@ -93,7 +93,12 @@ kotlin {
                 // Conference-styled slots (Livery: server-driven Remote Compose templates) with
                 // the contracts the designs are built against. See livery-catalog/README.md.
                 api(projects.liveryContracts)
-                implementation(libs.livery.compose)
+                implementation("${libs.livery.compose.get().module}:${libs.versions.livery.get()}") {
+                    // rc-player-compose declares Ktor's CIO engine but never uses it. On the
+                    // classpath beside OkHttp it can become HttpClient()'s default engine, which
+                    // is what coil3-network-ktor fetches speaker photos with.
+                    exclude(group = "io.ktor", module = "ktor-client-cio")
+                }
 
                 implementation(compose.ui)
                 implementation(compose.runtime)
