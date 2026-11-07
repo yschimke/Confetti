@@ -67,7 +67,7 @@ fun confettiComponents(
  *
  * Each arm is read once per process and kept, so a background fetch never swaps the UI under the
  * user; the next launch draws what it activated. Until a fetch has activated, and wherever Firebase
- * isn't available (tests), a series has no arm and draws [SduiExperiment.LIVERY].
+ * isn't available (tests), a series draws [SduiExperiment.LIVERY], and keeps it for the process.
  */
 class FirebaseSduiArms(private val forced: String? = null) : SduiArms {
     private val remoteConfig by lazy {
@@ -83,7 +83,9 @@ class FirebaseSduiArms(private val forced: String? = null) : SduiArms {
     override fun arm(series: String): String? {
         forced?.let { return it }
         arms[series]?.let { return it }
-        val value = remoteConfig?.getString(key(series))?.takeIf { it in SduiExperiment.ARMS } ?: return null
+        // Whatever this first lookup draws is kept, the default included: a value that arrives
+        // later in this process (defaults or a fetch finishing) applies from the next launch.
+        val value = remoteConfig?.getString(key(series))?.takeIf { it in SduiExperiment.ARMS } ?: SduiExperiment.LIVERY
         return arms.putIfAbsent(series, value) ?: value
     }
 
