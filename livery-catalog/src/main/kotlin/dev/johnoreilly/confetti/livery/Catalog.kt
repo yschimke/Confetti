@@ -46,6 +46,6 @@ private fun designs(brand: ConferenceBrand, example: String, title: String, head
 
 val AllDesigns: List<DesignDef> =
     designs(Droidcon, "default", "droidcon", { DroidconHeader() }, { DroidconSession() }, { DroidconSessionWidget() },
-        { DroidconSessionWear() }, { DroidconSpeaker() }, { DroidconPromo() }) +
+        { DroidconSessionWear() }, { with(ContractScope(SpeakerContract, Droidcon)) { DroidconSpeaker() } }, { DroidconPromo() }) +
     designs(KotlinConf, "kotlinconf", "KotlinConf", { KotlinConfHeader() }, { KotlinConfSession() }, { KotlinConfSessionWidget() },
         { KotlinConfSessionWear() }, { KotlinConfSpeaker() }, { KotlinConfPromo() })

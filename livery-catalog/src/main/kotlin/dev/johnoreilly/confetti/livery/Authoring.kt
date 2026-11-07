@@ -103,3 +103,48 @@ fun emit(action: Action, value: RemoteString): RemoteAction {
     LocalTemplateScope.current.emit(action)
     return hostAction(action.name.rs, if (arg == "value") value else "{\"$arg\":\"".rs + value + "\"}")
 }
+
+/*
+ * Context parameters (Kotlin 2.4, no flag): a design declares the contract it is written against
+ * as `context(t: ContractScope<SpeakerContract>)`, and reads inputs and emits actions by picking
+ * from that contract (`text { name }`, `action { open }`). Inside the picker `this` is the
+ * contract, so `text { title }` in a speaker design doesn't compile. The checks `input` and `emit`
+ * make at capture time stay as a backstop (e.g. `text { SessionContract.title }` still fails
+ * there).
+ */
+
+/** The contract and brand a design is written for, provided by the catalog entry that captures it. */
+class ContractScope<out C : ConfettiContract>(val contract: C, val brand: ConferenceBrand)
+
+/** A string input of this design's contract. */
+context(t: ContractScope<C>)
+@Composable
+fun <C : ConfettiContract> text(pick: C.() -> Input): RemoteString = input(t.checked().pick())
+
+/** A boolean input of this design's contract. */
+context(t: ContractScope<C>)
+@Composable
+fun <C : ConfettiContract> flag(pick: C.() -> Input): RemoteBoolean = inputBool(t.checked().pick())
+
+/** An image input of this design's contract. */
+context(t: ContractScope<C>)
+@Composable
+fun <C : ConfettiContract> image(pick: C.() -> Input): RemoteImageBitmap = inputImage(t.checked().pick())
+
+/** An action of this design's contract, with no argument. */
+context(t: ContractScope<C>)
+@Composable
+fun <C : ConfettiContract> action(pick: C.() -> Action): RemoteAction = emit(t.checked().pick())
+
+/** The brand's colours, as the theme roles a theme pack overrides. */
+context(t: ContractScope<C>)
+@Composable
+fun <C : ConfettiContract> colors(): BrandColors = brandColors(t.brand)
+
+/** The scope's contract, once checked against the template being captured. */
+@Composable
+private fun <C : ConfettiContract> ContractScope<C>.checked(): C {
+    val capturing = LocalTemplateScope.current.contract
+    check(capturing === contract) { "a ${contract.ref} design is being captured as ${capturing.ref}" }
+    return contract
+}

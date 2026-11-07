@@ -103,16 +103,16 @@ fun DroidconSession() {
 }
 
 @Composable
+context(_: ContractScope<SpeakerContract>)
 fun DroidconSpeaker() {
-    val C = SpeakerContract
-    val c = brandColors(Droidcon)
+    val c = colors()
     RemoteRow(
         modifier = RemoteModifier
             .fillMaxWidth()
             .clip(RemoteRoundedCornerShape(6.rdp))
             .background(c.surface)
             .border(1.rdp, c.muted, RemoteRoundedCornerShape(6.rdp))
-            .clickable(emit(C.open))
+            .clickable(action { open })
             .padding(12.rdp),
         verticalAlignment = RemoteAlignment.CenterVertically,
         horizontalArrangement = RemoteArrangement.spacedBy(14.rdp),
@@ -121,7 +121,7 @@ fun DroidconSpeaker() {
             modifier = RemoteModifier.size(64.rdp, 64.rdp).clip(RemoteRoundedCornerShape(6.rdp)).background(c.primary).padding(2.rdp),
         ) {
             RemoteImage(
-                bitmap = inputImage(C.photo),
+                bitmap = image { photo },
                 contentDescription = null,
                 modifier = RemoteModifier.fillMaxSize().clip(RemoteRoundedCornerShape(4.rdp)),
                 contentScale = RemoteContentScale.Crop,
@@ -130,9 +130,9 @@ fun DroidconSpeaker() {
         }
         RemoteColumn(RemoteModifier.weight(1f), verticalArrangement = RemoteArrangement.spacedBy(2.rdp)) {
             Label("SPEAKER".rs, c.primary, size = 11)
-            Label(input(C.name), c.onSurface, size = 18, weight = FontWeight.Bold)
-            Label(input(C.tagline), c.muted, size = 13, weight = FontWeight.Normal, maxLines = 2)
-            Label(input(C.sessions), c.secondary, size = 12, weight = FontWeight.Medium)
+            Label(text { name }, c.onSurface, size = 18, weight = FontWeight.Bold)
+            Label(text { tagline }, c.muted, size = 13, weight = FontWeight.Normal, maxLines = 2)
+            Label(text { sessions }, c.secondary, size = 12, weight = FontWeight.Medium)
         }
     }
 }
