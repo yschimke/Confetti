@@ -31,8 +31,12 @@ import kotlinx.datetime.LocalDateTime
 import dev.johnoreilly.confetti.BuildConfig
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.foundation.clickable
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.onNodeWithText
 import dev.johnoreilly.confetti.analytics.AnalyticsEvent
 import dev.johnoreilly.confetti.analytics.AnalyticsLogger
 import org.junit.Assume.assumeTrue
@@ -121,6 +125,27 @@ class LiverySlotsTest {
         assertEquals("open", tap.properties["action"])
         assertEquals(SduiExperiment.NATIVE, tap.properties["exp_${SduiExperiment.ID}"])
         assertEquals(SduiExperiment.NATIVE_DESIGN, tap.properties["design_id"])
+    }
+
+    /** A slot a lazy list reuses for another session reports that session's impression too. */
+    @Test fun nativeArmReportsAnImpressionPerSessionShown() {
+        assumeTrue(BuildConfig.LIVERY_ENABLED)
+        val styling = styling(SduiExperiment.NATIVE)
+        val live = LocalDateTime.parse("2023-04-13T14:10")
+        var session by mutableStateOf(sessionDetails)
+        compose.setContent {
+            CompositionLocalProvider(LocalLiveryStyling provides styling) {
+                SessionCardSlot("kotlinconf2026", session, live, false, onOpen = {}, onToggleBookmark = {}) { _ ->
+                    Text(session.title, Modifier.testTag("native"))
+                }
+            }
+        }
+        fun impressions() = synchronized(logged) { logged.count { it.id == "livery_impression" } }
+        compose.waitUntil(10_000) { impressions() == 1 }
+        session = sessionDetails.copy(id = "another-session", title = "Another session")
+        compose.waitForIdle()
+        compose.onNodeWithText("Another session").assertExists()
+        compose.waitUntil(10_000) { impressions() == 2 }
     }
 
     private fun slots(name: String, scheme: ColorScheme, dynamic: Boolean = false) {

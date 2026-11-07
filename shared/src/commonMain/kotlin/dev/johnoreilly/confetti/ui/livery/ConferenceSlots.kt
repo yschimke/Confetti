@@ -85,6 +85,7 @@ fun SessionCardSlot(
     ConferenceSlot(
         conference = conference,
         data = session.toSessionCard(now, isBookmarked),
+        identity = session.id,
         actions = mapOf(
             SessionContract.open to { _ -> onOpen() },
             SessionContract.bookmark to { _ -> onToggleBookmark() },
@@ -104,6 +105,7 @@ fun SpeakerCardSlot(
     ConferenceSlot(
         conference = conference,
         data = speaker.toSpeakerCard(),
+        identity = speaker.id,
         actions = mapOf(SpeakerContract.open to { _ -> onOpen() }),
         fallback = fallback,
     )

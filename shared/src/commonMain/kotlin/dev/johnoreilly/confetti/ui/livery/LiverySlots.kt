@@ -185,13 +185,15 @@ fun interface SlotTracker {
  * One contract-typed slot for one conference: the conference's design when Livery has one that
  * plays here and the user is in the [SduiExperiment.LIVERY] arm, otherwise [fallback] (Confetti's
  * own composable), handed a [SlotTracker] for its taps. [data] is the contract's own data class,
- * so it can't carry a field the designs don't know.
+ * so it can't carry a field the designs don't know. [identity] is what the slot shows (a session
+ * id): a lazy list can reuse a slot for another item, and that is a new impression.
  */
 @Composable
 fun ConferenceSlot(
     conference: String,
     data: ContractData,
     modifier: Modifier = Modifier.fillMaxWidth(),
+    identity: Any? = null,
     actions: ActionHandlers = emptyMap(),
     fallback: @Composable (SlotTracker) -> Unit,
 ) {
@@ -208,7 +210,7 @@ fun ConferenceSlot(
     when (val a = arm) {
         // Deciding: draw what the slot would fall back to, untracked.
         null -> fallback(SlotTracker.None)
-        SduiExperiment.NATIVE -> NativeSlot(styling, catalog, contract, a, fallback)
+        SduiExperiment.NATIVE -> NativeSlot(styling, catalog, contract, a, identity, fallback)
         else -> {
             val json = remember(data) { data.toJson() }
             val host = rememberHost(styling, catalog, a, actions)
@@ -233,10 +235,12 @@ private fun NativeSlot(
     catalog: LiveryStyling.SeriesCatalog,
     contract: ConfettiContract,
     arm: String,
+    identity: Any?,
     content: @Composable (SlotTracker) -> Unit,
 ) {
     val tracker = remember(catalog, contract, arm) { nativeTracker(styling, catalog, contract, arm) }
-    LaunchedEffect(tracker) {
+    // Once per item shown: a recycled slot showing another session is another impression.
+    LaunchedEffect(tracker, identity) {
         catalog.events(arm).emit(TemplateEvent(
             TemplateEvent.Type.Impression, styling.clock.nowEpochMs(), designId = SduiExperiment.NATIVE_DESIGN, detail = contract.ref,
         ))
