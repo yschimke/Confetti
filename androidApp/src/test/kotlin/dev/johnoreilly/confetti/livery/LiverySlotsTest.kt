@@ -24,6 +24,7 @@ import androidx.compose.ui.test.hasAnyAncestor
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.unit.dp
@@ -135,6 +136,22 @@ class LiverySlotsTest {
         assertEquals("open", tap.properties["action"])
         assertEquals(SduiExperiment.NATIVE, tap.properties["exp_${SduiExperiment.ID}"])
         assertEquals(SduiExperiment.NATIVE_DESIGN, tap.properties["design_id"])
+    }
+
+    /**
+     * A signed-out bookmark tap counts in the native arm as a design's `bookmark` action does,
+     * although the row then asks the user to sign in instead of bookmarking.
+     */
+    @Test fun nativeArmTracksSignedOutBookmarkTaps() {
+        val native = NativeComponents(SduiTracking(analytics), SduiExperiment.NATIVE)
+        val signedOut = card("kotlinconf2026").let {
+            SessionCardModel(it.conference, it.session, it.now, false, false, null, emptyList(), {}, {}, {}, {})
+        }
+        compose.setContent { MaterialTheme { native.SessionCard(signedOut) } }
+        compose.onNodeWithContentDescription("add bookmark").performClick()
+        compose.waitForIdle()
+        val tap = synchronized(logged) { logged.single { it.id == "livery_action" } }
+        assertEquals("bookmark", tap.properties["action"])
     }
 
     /** The arms are per conference: KotlinConf in Livery's designs, droidcon in Confetti's own rows. */

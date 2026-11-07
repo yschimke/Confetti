@@ -48,6 +48,7 @@ import ee.schimke.livery.protocol.NamedValue
 import ee.schimke.livery.protocol.PlayerCapabilities
 import ee.schimke.livery.protocol.Surfaces
 import ee.schimke.livery.protocol.TemplateEvent
+import kotlin.coroutines.cancellation.CancellationException
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
@@ -124,7 +125,16 @@ class LiveryStyling(
                 if (now - lastRefreshEpochMs < refreshEveryMs) return
                 lastRefreshEpochMs = now
             }
-            runCatching { repository.refresh() }
+            try {
+                repository.refresh()
+            } catch (e: CancellationException) {
+                // The slot that started it left composition mid-download (scrolled away): nothing
+                // was refreshed, so let the next slot try now rather than in refreshEveryMs.
+                lastRefreshEpochMs = Long.MIN_VALUE / 2
+                throw e
+            } catch (_: Exception) {
+                // Offline or a bad catalog: the bundled or cached one keeps drawing until next time.
+            }
         }
 
         fun theme(dark: Boolean): suspend () -> Bindings? = { repository.theme(ConferenceSeries.themePack(series, dark)) ?: repository.theme(series) }

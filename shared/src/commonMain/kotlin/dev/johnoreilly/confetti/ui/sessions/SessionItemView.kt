@@ -62,6 +62,8 @@ fun SessionItemView(
     isLoggedIn: Boolean,
     trackColor: Color? = null,
     tags: List<String> = session.listTags(),
+    /** Every tap on the bookmark button, signed in or not (before the sign-in prompt): for analytics. */
+    onBookmarkTap: () -> Unit = {},
 ) {
     if (session.isBreak() || session.isService()) {
         BreakSessionItemView(session = session)
@@ -76,6 +78,7 @@ fun SessionItemView(
             isLoggedIn = isLoggedIn,
             trackColor = trackColor,
             tags = tags,
+            onBookmarkTap = onBookmarkTap,
         )
     }
 }
@@ -157,6 +160,7 @@ private fun TalkSessionItemView(
     isLoggedIn: Boolean,
     trackColor: Color? = null,
     tags: List<String>,
+    onBookmarkTap: () -> Unit,
 ) {
     var showDialog by remember { mutableStateOf(false) }
 
@@ -256,6 +260,7 @@ private fun TalkSessionItemView(
             Bookmark(
                 isBookmarked = isBookmarked,
                 onBookmarkChange = { shouldAdd ->
+                    onBookmarkTap()
                     if (!isLoggedIn) {
                         showDialog = true
                         return@Bookmark

@@ -114,12 +114,14 @@ open class NativeComponents(
             session = card.session,
             sessionSelected = { tracker.action(SessionContract.open); card.sessionSelected(it) },
             isBookmarked = card.isBookmarked,
-            addBookmark = { tracker.action(SessionContract.bookmark); card.addBookmark(it) },
-            removeBookmark = { tracker.action(SessionContract.bookmark); card.removeBookmark(it) },
+            addBookmark = card.addBookmark,
+            removeBookmark = card.removeBookmark,
             onNavigateToSignIn = card.onNavigateToSignIn,
             isLoggedIn = card.isLoggedIn,
             trackColor = card.trackColor,
             tags = card.tags,
+            // Every tap, as a design's `bookmark` action is: signed out included (it then prompts).
+            onBookmarkTap = { tracker.action(SessionContract.bookmark) },
         )
     }
 
