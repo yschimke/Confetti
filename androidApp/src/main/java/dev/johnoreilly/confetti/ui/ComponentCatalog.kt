@@ -1,5 +1,6 @@
 package dev.johnoreilly.confetti.ui
 
+import dev.johnoreilly.confetti.ui.components.NativeComponents
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -185,16 +186,18 @@ fun ColorSchemeSpecimenPreview() {
 @Composable
 fun ScheduleScreenPreview() {
     CatalogTheme {
-        SessionListView(
-            uiState = sessionsSuccessState,
-            sessionSelected = {},
-            addBookmark = {},
-            removeBookmark = {},
-            onRefresh = {},
-            onNavigateToSignIn = {},
-            onTrackSelectionChanged = {},
-            isLoggedIn = false,
-        )
+        with(NativeComponents()) {
+            SessionListView(
+                uiState = sessionsSuccessState,
+                sessionSelected = {},
+                addBookmark = {},
+                removeBookmark = {},
+                onRefresh = {},
+                onNavigateToSignIn = {},
+                onTrackSelectionChanged = {},
+                isLoggedIn = false,
+            )
+        }
     }
 }
 
@@ -202,11 +205,13 @@ fun ScheduleScreenPreview() {
 @Composable
 fun SessionDetailsScreenPreview() {
     CatalogTheme {
-        SessionDetailViewShared(
-            conference = "kotlinconf2023",
-            session = sessionDetails,
-            onSpeakerClick = {},
-        )
+        with(NativeComponents()) {
+            SessionDetailViewShared(
+                conference = "kotlinconf2023",
+                session = sessionDetails,
+                onSpeakerClick = {},
+            )
+        }
     }
 }
 
@@ -214,12 +219,14 @@ fun SessionDetailsScreenPreview() {
 @Composable
 fun SpeakerDetailsScreenPreview() {
     CatalogTheme {
-        SpeakerDetailsView(
-            conference = "kotlinconf2023",
-            speaker = johnOreillySpeaker,
-            navigateToSession = {},
-            popBack = {},
-            onSocialLinkClicked = {},
-        )
+        with(NativeComponents()) {
+            SpeakerDetailsView(
+                conference = "kotlinconf2023",
+                speaker = johnOreillySpeaker,
+                navigateToSession = {},
+                popBack = {},
+                onSocialLinkClicked = {},
+            )
+        }
     }
 }

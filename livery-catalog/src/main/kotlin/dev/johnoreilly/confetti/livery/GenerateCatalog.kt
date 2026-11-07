@@ -155,12 +155,6 @@ fun checkContracts(captured: List<CapturedTemplate>, catalog: File, brand: Confe
         (t.fonts - shipped).filterNot { it.startsWith("system:") || it.startsWith("google:") }
             .forEach { problems += "${t.design.id}/${t.template.name}: font '$it' isn't in ${brand.series}/fonts/fonts.json" }
     }
-    // The sdui experiment is declared, with both arms and no designs (the app reads it).
-    catalog.resolve("experiments/${SduiExperiment.ID}.json").takeIf { it.isFile }?.let { f ->
-        val e = json.decodeFromString<ee.schimke.livery.protocol.Experiment>(f.readText())
-        if (e.arms.map { it.id }.toSet() != SduiExperiment.ARMS.toSet()) problems += "${brand.series}/experiments/${f.name}: arms must be ${SduiExperiment.ARMS}"
-        if (e.arms.any { it.designs.isNotEmpty() }) problems += "${brand.series}/experiments/${f.name}: the sdui arms pick no design"
-    } ?: run { problems += "${brand.series}: no experiments/${SduiExperiment.ID}.json" }
     // Theme packs only set theme roles every contract declares.
     val roles = AllContracts.map { c -> c.inputs.values.filter { it.role != null }.map { it.name }.toSet() }.reduce { a, b -> a intersect b }
     catalog.resolve("themes").listFiles { f -> f.extension == "json" }.orEmpty().forEach { f ->

@@ -17,11 +17,17 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
-import dev.johnoreilly.confetti.ui.livery.LiveryStyling
-import dev.johnoreilly.confetti.livery.confettiLiveryStyling
+import dev.johnoreilly.confetti.BuildConfig
+import dev.johnoreilly.confetti.livery.confettiComponents
+import dev.johnoreilly.confetti.ui.components.ConferenceComponents
+import dev.johnoreilly.confetti.ui.components.NativeComponents
 
 val appModule = module {
-    single<LiveryStyling> { confettiLiveryStyling(androidContext(), analytics = get()) }
+    // Confetti's own composables, except in sduiDebug: there each conference draws in the arm of
+    // the sdui experiment Firebase assigned, and Livery is built only for a livery-arm conference.
+    single<ConferenceComponents> {
+        if (BuildConfig.LIVERY_ENABLED) confettiComponents(androidContext(), okHttp = get(), analytics = get()) else NativeComponents()
+    }
     single<ConfettiRepository> {
         ConfettiRepository().apply {
             addConferenceListener { conference, colorScheme ->

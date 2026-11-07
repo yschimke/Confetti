@@ -146,10 +146,13 @@ android {
             versionNameSuffix = "-sdui"
             matchingFallbacks += listOf("debug")
             buildConfigField("boolean", "LIVERY_ENABLED", "true")
-            // Each series is served from <url>/<series>/manifest.json. -Pconfetti.livery.templates=
-            // points at another host or branch (a PR's channel, joreilly/confetti-templates).
+            // Each series is served from <url>/<series>/manifest.json: the livery-templates branch
+            // the Livery templates workflow publishes on this repository's main. Until it has
+            // published (404), the app draws the bundled catalogs. -Pconfetti.livery.templates=
+            // points at another host or branch: a fork's (https://raw.githubusercontent.com/
+            // <owner>/Confetti/livery-templates/catalogs), a PR's channel, joreilly/confetti-templates.
             val templates = (findProperty("confetti.livery.templates") as String?)
-                ?: "https://raw.githubusercontent.com/yschimke/Confetti/livery-templates/catalogs"
+                ?: "https://raw.githubusercontent.com/joreilly/Confetti/livery-templates/catalogs"
             buildConfigField("String", "LIVERY_TEMPLATES_URL", "\"$templates\"")
             // -Pconfetti.livery.arm=native|livery pins the sdui arm (screenshots, QA).
             buildConfigField("String", "LIVERY_FORCED_ARM", "\"${findProperty("confetti.livery.arm") ?: ""}\"")
@@ -188,6 +191,9 @@ dependencies {
     implementation(projects.common.car)
     implementation(projects.shared)
     implementation(libs.livery.client)
+    // Livery's catalog and image fetches through the app's own OkHttpClient (ConfettiLivery.kt).
+    implementation(platform(libs.ktor.bom))
+    implementation(libs.ktor.client.okhttp)
 
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling)
@@ -226,6 +232,8 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.crashlytics, excludeCrashlyticsConflicts)
     implementation(libs.firebase.analytics, excludeCrashlyticsConflicts)
+    // The sdui experiment's arm per conference (Firebase A/B Testing over Remote Config).
+    implementation(libs.firebase.config, excludeCrashlyticsConflicts)
     implementation(libs.firebase.performance, excludeCrashlyticsConflicts)
     implementation(libs.play.services.auth)
     coreLibraryDesugaring(libs.desugar)

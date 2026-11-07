@@ -1,9 +1,0 @@
-{
-  "id": "sdui",
-  "allocationBasisPoints": 10000,
-  "conditions": { "platforms": ["android"] },
-  "arms": [
-    { "id": "native", "weight": 1 },
-    { "id": "livery", "weight": 1 }
-  ]
-}

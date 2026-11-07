@@ -1,5 +1,6 @@
 package dev.johnoreilly.confetti.ui.sessions
 
+import dev.johnoreilly.confetti.ui.components.LocalConferenceComponents
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -83,11 +84,13 @@ fun SessionDetailsUI(component: SessionDetailsComponent) {
                 is SessionDetailsUiState.Error -> ErrorView(onRefresh = component::refresh)
 
                 is SessionDetailsUiState.Success ->
-                    SessionDetailViewShared(
-                        state.conference, state.sessionDetails,
-                        component::onSpeakerClicked,
-                        onRoomClick = component::onVenueClicked,
-                    )
+                    with(LocalConferenceComponents.current) {
+                        SessionDetailViewShared(
+                            state.conference, state.sessionDetails,
+                            component::onSpeakerClicked,
+                            onRoomClick = component::onVenueClicked,
+                        )
+                    }
             }
         }
     }

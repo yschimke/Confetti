@@ -1,9 +1,17 @@
 package dev.johnoreilly.confetti.livery
 
 import android.content.Context
+import com.google.firebase.Firebase
+import com.google.firebase.remoteconfig.remoteConfig
 import dev.johnoreilly.confetti.BuildConfig
 import dev.johnoreilly.confetti.analytics.AnalyticsLogger
+import dev.johnoreilly.confetti.ui.components.ConferenceComponents
+import dev.johnoreilly.confetti.ui.components.NativeComponents
+import dev.johnoreilly.confetti.ui.components.SduiArms
+import dev.johnoreilly.confetti.ui.components.SduiComponents
+import dev.johnoreilly.confetti.ui.components.SduiTracking
 import dev.johnoreilly.confetti.ui.livery.LiveryAnalyticsEvent
+import dev.johnoreilly.confetti.ui.livery.LiveryComponents
 import dev.johnoreilly.confetti.ui.livery.LiveryStyling
 import ee.schimke.livery.client.AnalyticsEventSink
 import ee.schimke.livery.client.AnalyticsSink
@@ -17,12 +25,83 @@ import ee.schimke.livery.client.KtorFetcher
 import ee.schimke.livery.client.StaticSource
 import ee.schimke.livery.client.TemplateRepository
 import ee.schimke.livery.client.TrustPolicy
+import ee.schimke.livery.client.liveryDefaults
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.okhttp.OkHttp
+import okhttp3.OkHttpClient
 import java.io.File
 import java.util.Locale
 import java.util.UUID
+import java.util.concurrent.ConcurrentHashMap
 
 /**
- * Livery on Android (the sduiDebug build type): one catalog per conference series, each
+ * What the agenda, session and speaker screens draw with in the sduiDebug build: per conference,
+ * the arm of the sdui experiment Firebase assigned (see [FirebaseSduiArms]). The Livery side,
+ * repositories, bundled catalogs, refreshes and all, is built only when the first conference in
+ * the livery arm draws, so a user whose conferences are all native never loads it.
+ */
+fun confettiComponents(
+    context: Context,
+    okHttp: OkHttpClient,
+    analytics: AnalyticsLogger,
+    arms: SduiArms = FirebaseSduiArms(forced = BuildConfig.LIVERY_FORCED_ARM.takeIf { it.isNotEmpty() }),
+): SduiComponents {
+    val tracking = SduiTracking(analytics)
+    return SduiComponents(
+        arms = arms,
+        native = NativeComponents(tracking, SduiExperiment.NATIVE),
+        livery = {
+            LiveryComponents(
+                styling = confettiLiveryStyling(context, liveryHttpClient(okHttp), analytics),
+                native = NativeComponents(tracking, SduiExperiment.LIVERY),
+            )
+        },
+    )
+}
+
+/**
+ * The arm per series from Firebase Remote Config: `sdui_<series>` (`sdui_droidcon`,
+ * `sdui_kotlinconf`) holds `native` or `livery`. Run the split as a Firebase A/B Testing
+ * experiment on those parameters: Firebase assigns users, counts exposures and reads the outcome
+ * from Analytics, where every slot's events carry `exp_sdui`.
+ *
+ * Each arm is read once per process and kept, so a background fetch never swaps the UI under the
+ * user; the next launch draws what it activated. Until a fetch has activated, and wherever Firebase
+ * isn't available (tests), a series has no arm and draws [SduiExperiment.LIVERY].
+ */
+class FirebaseSduiArms(private val forced: String? = null) : SduiArms {
+    private val remoteConfig by lazy {
+        runCatching {
+            Firebase.remoteConfig.apply {
+                setDefaultsAsync(ConferenceSeries.ALL.associate { key(it) to SduiExperiment.LIVERY })
+                fetchAndActivate()
+            }
+        }.getOrNull()
+    }
+    private val arms = ConcurrentHashMap<String, String>()
+
+    override fun arm(series: String): String? {
+        forced?.let { return it }
+        arms[series]?.let { return it }
+        val value = remoteConfig?.getString(key(series))?.takeIf { it in SduiExperiment.ARMS } ?: return null
+        return arms.putIfAbsent(series, value) ?: value
+    }
+
+    private fun key(series: String) = "${SduiExperiment.ID}_$series"
+}
+
+/**
+ * Livery's Ktor client on the app's own [OkHttpClient] (its connection pool, cache, interceptors
+ * and any proxy or pinning the app sets), with Livery's settings: no automatic redirects, since
+ * Livery checks each hop itself, and its timeouts.
+ */
+fun liveryHttpClient(okHttp: OkHttpClient): HttpClient = HttpClient(OkHttp) {
+    engine { preconfigured = okHttp }
+    liveryDefaults()
+}
+
+/**
+ * Livery on Android: one catalog per conference series, each
  *
  * - bundled into the APK's assets at `livery/<series>/` by the build (see build.gradle.kts), so it
  *   draws offline and on first launch;
@@ -32,20 +111,16 @@ import java.util.UUID
  * The branch isn't signed yet, so this debug-only build accepts unsigned manifests (https from one
  * repository). A release build needs `TrustPolicy.Signed` with the public key of the CI's signing
  * key (`livery keygen confetti`, the private half as a CI secret, `--key` in the publish step).
- *
- * Events (impressions, taps under the contract's action names, exposures of the sdui experiment's
- * arms) go to Confetti's own [AnalyticsLogger] as Livery's flat analytics events: logcat in debug
- * builds, Firebase Analytics in release.
  */
 fun confettiLiveryStyling(
     context: Context,
+    httpClient: HttpClient,
     analytics: AnalyticsLogger = AnalyticsLogger.None,
     clock: Clock = Clock { System.currentTimeMillis() },
     refresh: Boolean = BuildConfig.LIVERY_TEMPLATES_URL.isNotEmpty(),
-    forcedArm: String? = BuildConfig.LIVERY_FORCED_ARM.takeIf { it.isNotEmpty() },
 ): LiveryStyling {
     val app = context.applicationContext
-    val fetcher = KtorFetcher()
+    val fetcher = KtorFetcher(httpClient)
     val catalogs = ConferenceSeries.ALL.associateWith { series ->
         TemplateRepository(
             source = StaticSource("${BuildConfig.LIVERY_TEMPLATES_URL.trimEnd('/')}/$series/", id = "confetti-$series"),
@@ -68,8 +143,8 @@ fun confettiLiveryStyling(
         appVersion = BuildConfig.VERSION_CODE.toLong(),
         bucketingId = bucketingId(app),
         events = AnalyticsEventSink(AnalyticsSink { name, params -> analytics.logEvent(LiveryAnalyticsEvent(name, params)) }),
-        // Speaker photos come from the conference data's own hosts; a catalog image proxy would
-        // replace this list with one trusted host.
+        // Speaker photos come from the conference data's own hosts (sessionize.com redirects to
+        // cdn.sessionize.com; subdomains match). A catalog image proxy would replace this list.
         images = { repository ->
             ImageResolver(
                 repository, fetcher, JavaCrypto,
@@ -77,11 +152,10 @@ fun confettiLiveryStyling(
             )
         },
         refresh = refresh,
-        forcedArm = forcedArm,
     )
 }
 
-/** A random id for sticky rollouts and experiment arms, scoped to this install: never the account. */
+/** A random id for sticky rollouts, scoped to this install: never the account. */
 private fun bucketingId(context: Context): String {
     val file = File(context.filesDir, "livery/bucketing-id")
     return file.takeIf { it.isFile }?.readText()?.takeIf { it.isNotBlank() }

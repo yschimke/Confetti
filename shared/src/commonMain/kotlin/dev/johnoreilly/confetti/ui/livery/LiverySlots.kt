@@ -25,6 +25,7 @@ import dev.johnoreilly.confetti.livery.ConfettiContract
 import dev.johnoreilly.confetti.livery.ContractData
 import dev.johnoreilly.confetti.livery.PromoContract
 import dev.johnoreilly.confetti.livery.SduiExperiment
+import dev.johnoreilly.confetti.ui.components.SlotTracker
 import dev.johnoreilly.confetti.livery.materialThemeValues
 import dev.johnoreilly.confetti.ui.LocalDynamicColorInUse
 import ee.schimke.livery.client.ActionRouter
@@ -52,8 +53,8 @@ import kotlinx.coroutines.sync.withLock
 
 /**
  * What a platform hands the shared UI to draw conference-styled slots. Absent (the default), every
- * slot draws Confetti's own UI, so a platform opts in by providing [LocalLiveryStyling] and nothing
- * else changes.
+ * slot draws Confetti's own UI. Built only for a conference in the [SduiExperiment.LIVERY] arm
+ * (see `LiveryComponents`), so the native arm never constructs one.
  *
  * Each conference series is its own Livery catalog ([catalogs]): published to its own URL and
  * bundled into the app as its own copy, so one conference's designs, theme packs, promotions and
@@ -78,8 +79,6 @@ class LiveryStyling(
     /** Whether slots ask each catalog's server for a newer catalog (at most every [refreshEveryMs]). */
     val refresh: Boolean = true,
     val refreshEveryMs: Long = 5 * 60_000L,
-    /** A forced arm of [SduiExperiment] (a debug setting, a test); null lets the catalog's experiment decide. */
-    val forcedArm: String? = null,
 ) {
     val catalogs: Map<String, SeriesCatalog> = catalogs.mapValues { (series, repo) -> SeriesCatalog(series, repo) }
 
@@ -128,25 +127,17 @@ class LiveryStyling(
             runCatching { repository.refresh() }
         }
 
-        /** The user's arm of [SduiExperiment] for [conference]: [SduiExperiment.LIVERY] when not enrolled. */
-        suspend fun sduiArm(conference: String): String =
-            forcedArm ?: runCatching { experimentsFor(conference).arm(SduiExperiment.ID) }.getOrNull() ?: SduiExperiment.LIVERY
-
-        // Arms are per conference (segment conditions), so the context carries the conference.
-        private fun experimentsFor(conference: String) =
-            Experiments({ repository.current() }, { context(conference) }, LocalBucketing)
-
         fun theme(dark: Boolean): suspend () -> Bindings? = { repository.theme(ConferenceSeries.themePack(series, dark)) ?: repository.theme(series) }
 
         fun query(contract: ConfettiContract) =
             TemplateQuery(contract.ref, capabilities, tags = mapOf(ConferenceSeries.TAG to series), minor = contract.minor)
 
         /**
-         * Events tagged with the arm that drew them, through [Experiments.sink]: an `Impression`
-         * reports the arm's exposure once, and every tap and leave carries `exp_sdui`.
+         * Events through [Experiments.sink] (an `Impression` reports a catalog experiment's
+         * exposure once), each tagged `exp_sdui=livery`: the arm Firebase assigned this conference.
          */
-        fun events(arm: String): EventSink = EventSink { e ->
-            experiments.sink.emit(e.copy(experiments = e.experiments + (SduiExperiment.ID to arm)))
+        val slotEvents: EventSink = EventSink { e ->
+            experiments.sink.emit(e.copy(experiments = e.experiments + (SduiExperiment.ID to SduiExperiment.LIVERY)))
         }
     }
 
@@ -161,134 +152,71 @@ internal fun urlAllowed(url: String, hosts: Set<String>): Boolean {
     return hosts.any { host == it || host.endsWith(".$it") }
 }
 
-val LocalLiveryStyling = staticCompositionLocalOf<LiveryStyling?> { null }
-
 /** What a slot does with each contract action, by the action itself (not a string). */
 typealias ActionHandlers = Map<Action, suspend (args: Map<String, String>) -> Unit>
 
 /**
- * How a native composable reports what the user did, under the contract's action names: a tap on
- * Confetti's own session row is `open`, the same as a tap on a design's card. With it, both arms of
- * [SduiExperiment] are counted alike. [None] outside Livery.
- */
-fun interface SlotTracker {
-    fun action(action: Action, args: Map<String, String>)
-
-    fun action(action: Action) = action(action, emptyMap())
-
-    companion object {
-        val None = SlotTracker { _, _ -> }
-    }
-}
-
-/**
  * One contract-typed slot for one conference: the conference's design when Livery has one that
- * plays here and the user is in the [SduiExperiment.LIVERY] arm, otherwise [fallback] (Confetti's
- * own composable), handed a [SlotTracker] for its taps. [data] is the contract's own data class,
- * so it can't carry a field the designs don't know. [identity] is what the slot shows (a session
- * id): a lazy list can reuse a slot for another item, and that is a new impression.
+ * plays here, otherwise [fallback] (Confetti's own composable), handed a [SlotTracker] that reports
+ * its taps as `design_id=native`. [data] is the contract's own data class, so it can't carry a
+ * field the designs don't know.
  */
 @Composable
 fun ConferenceSlot(
+    styling: LiveryStyling,
     conference: String,
     data: ContractData,
     modifier: Modifier = Modifier.fillMaxWidth(),
-    identity: Any? = null,
     actions: ActionHandlers = emptyMap(),
     fallback: @Composable (SlotTracker) -> Unit,
 ) {
-    val styling = LocalLiveryStyling.current
-    val catalog = styling?.catalog(conference)
-    if (styling == null || catalog == null) {
-        fallback(SlotTracker.None)
-        return
-    }
+    val catalog = styling.catalog(conference) ?: return fallback(SlotTracker.None)
     LaunchedEffect(catalog) { catalog.refreshIfDue() }
-    val revision by catalog.repository.revision.collectAsState()
-    val arm by produceState<String?>(null, catalog, conference, revision) { value = catalog.sduiArm(conference) }
     val contract = data.contract
-    when (val a = arm) {
-        // Deciding: draw what the slot would fall back to, untracked.
-        null -> fallback(SlotTracker.None)
-        SduiExperiment.NATIVE -> NativeSlot(styling, catalog, contract, a, identity, fallback)
-        else -> {
-            val json = remember(data) { data.toJson() }
-            val host = rememberHost(styling, catalog, a, actions)
-            val colors = rememberSlotColors()
-            // When this conference has no template for the slot, the composable draws, still tracked.
-            val native = remember(catalog, contract, a) { nativeTracker(styling, catalog, contract, a) }
-            // Re-planned when the data or the colours change: a mode switch or a new wallpaper recolours live.
-            LiverySlot(key = json to colors, host = host, modifier = modifier, fallback = { fallback(native) }) {
-                catalog.planner.forAppData(catalog.query(contract), json, extra = colors.app ?: catalog.theme(colors.dark)() ?: Bindings.EMPTY)
-            }
-        }
+    val json = remember(data) { data.toJson() }
+    val host = rememberHost(styling, catalog, actions)
+    val colors = rememberSlotColors()
+    // When this conference has no template for the slot, the composable draws, still tracked.
+    val native = remember(catalog, contract) { nativeTracker(styling, catalog, contract) }
+    // Re-planned when the data or the colours change, and on a refreshed catalog (LiverySlot
+    // watches the repository's revision): a mode switch or a new wallpaper recolours live.
+    LiverySlot(key = json to colors, host = host, modifier = modifier, fallback = { fallback(native) }) {
+        catalog.planner.forAppData(catalog.query(contract), json, extra = colors.app ?: catalog.theme(colors.dark)() ?: Bindings.EMPTY)
     }
-}
-
-/**
- * The native arm: Confetti's composable, reporting the impression a template would and its taps
- * (the composable calls the app's callbacks directly, and the [SlotTracker] beside them).
- */
-@Composable
-private fun NativeSlot(
-    styling: LiveryStyling,
-    catalog: LiveryStyling.SeriesCatalog,
-    contract: ConfettiContract,
-    arm: String,
-    identity: Any?,
-    content: @Composable (SlotTracker) -> Unit,
-) {
-    val tracker = remember(catalog, contract, arm) { nativeTracker(styling, catalog, contract, arm) }
-    // Once per item shown: a recycled slot showing another session is another impression.
-    LaunchedEffect(tracker, identity) {
-        catalog.events(arm).emit(TemplateEvent(
-            TemplateEvent.Type.Impression, styling.clock.nowEpochMs(), designId = SduiExperiment.NATIVE_DESIGN, detail = contract.ref,
-        ))
-    }
-    content(tracker)
 }
 
 private fun nativeTracker(
     styling: LiveryStyling,
     catalog: LiveryStyling.SeriesCatalog,
     contract: ConfettiContract,
-    arm: String,
-): SlotTracker {
-    val events = catalog.events(arm)
-    return SlotTracker { action, args ->
-        require(contract.actions[action.name] === action) { "${action.name} is not an action of ${contract.ref}" }
-        // Only an argument the contract declares reaches analytics, as with a template (PROTOCOL §7).
-        val declared = args.filterKeys { it == action.arg }
-        events.emit(TemplateEvent(
-            TemplateEvent.Type.Action, styling.clock.nowEpochMs(), designId = SduiExperiment.NATIVE_DESIGN,
-            action = action.name, detail = contract.ref, args = declared,
-        ))
-    }
+): SlotTracker = SlotTracker { action, args ->
+    require(contract.actions[action.name] === action) { "${action.name} is not an action of ${contract.ref}" }
+    // Only an argument the contract declares reaches analytics, as with a template (PROTOCOL §7).
+    catalog.slotEvents.emit(TemplateEvent(
+        TemplateEvent.Type.Action, styling.clock.nowEpochMs(), designId = SduiExperiment.NATIVE_DESIGN,
+        action = action.name, detail = contract.ref, args = args.filterKeys { it == action.arg },
+    ))
 }
 
 /**
  * A growth placement (`home.feed`, `session.footer`, `speaker.footer`): whatever the conference
- * catalog's rules decide for its attendees right now. Draws nothing when nothing is decided, when
- * it is dismissed, in the [SduiExperiment.NATIVE] arm, or on a platform without Livery.
+ * catalog's rules decide for its attendees right now. Draws nothing when nothing is decided or
+ * when it is dismissed.
  */
 @Composable
 fun PromoSlot(
+    styling: LiveryStyling,
     placement: String,
     conference: String,
     modifier: Modifier = Modifier.fillMaxWidth(),
     segments: Set<String> = emptySet(),
 ) {
-    val styling = LocalLiveryStyling.current ?: return
     val catalog = styling.catalog(conference) ?: return
     var dismissed by rememberSaveable(placement, conference) { mutableStateOf(false) }
     if (dismissed) return
     LaunchedEffect(catalog) { catalog.refreshIfDue() }
-    val revision by catalog.repository.revision.collectAsState()
-    val arm by produceState<String?>(null, catalog, conference, revision) { value = catalog.sduiArm(conference) }
-    val a = arm ?: return
-    if (a == SduiExperiment.NATIVE) return
     val uriHandler = LocalUriHandler.current
-    val host = rememberHost(styling, catalog, a, mapOf(
+    val host = rememberHost(styling, catalog, mapOf(
         PromoContract.ctaAction to { args -> args["url"]?.let(uriHandler::openUri) },
         PromoContract.dismiss to { _ -> dismissed = true },
     ))
@@ -330,11 +258,11 @@ fun ColorScheme.toLiveryTheme(): Bindings {
 private val ActionKinds = listOf("app:open-session", "app:toggle-bookmark", "app:open-speaker", "open-url", "dismiss")
 
 @Composable
-private fun rememberHost(styling: LiveryStyling, catalog: LiveryStyling.SeriesCatalog, arm: String, actions: ActionHandlers): LiveryHost {
+private fun rememberHost(styling: LiveryStyling, catalog: LiveryStyling.SeriesCatalog, actions: ActionHandlers): LiveryHost {
     // The latest handlers, so a recomposition with new lambdas never rebuilds the host.
     val current by rememberUpdatedState(actions)
-    return remember(styling, catalog, arm) {
-        val events = catalog.events(arm)
+    return remember(styling, catalog) {
+        val events = catalog.slotEvents
         LiveryHost(
             repository = catalog.repository,
             actions = ActionRouter(

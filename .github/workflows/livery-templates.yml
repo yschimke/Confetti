@@ -13,6 +13,10 @@ on:
   pull_request:
     paths:
       - 'livery-catalog/**'
+      - 'shared/src/commonMain/kotlin/dev/johnoreilly/confetti/ui/livery/**'
+      - 'shared/src/commonMain/kotlin/dev/johnoreilly/confetti/ui/components/**'
+      - 'androidApp/src/main/java/dev/johnoreilly/confetti/livery/**'
+      - 'androidApp/src/test/kotlin/dev/johnoreilly/confetti/livery/**'
       - 'livery-contracts/**'
       - 'gradle/libs.versions.toml'
       - '.github/workflows/livery-templates.yml'
@@ -20,6 +24,10 @@ on:
     branches: [main]
     paths:
       - 'livery-catalog/**'
+      - 'shared/src/commonMain/kotlin/dev/johnoreilly/confetti/ui/livery/**'
+      - 'shared/src/commonMain/kotlin/dev/johnoreilly/confetti/ui/components/**'
+      - 'androidApp/src/main/java/dev/johnoreilly/confetti/livery/**'
+      - 'androidApp/src/test/kotlin/dev/johnoreilly/confetti/livery/**'
       - 'livery-contracts/**'
       - 'gradle/libs.versions.toml'
       - '.github/workflows/livery-templates.yml'
@@ -54,6 +62,12 @@ jobs:
       # The contract checks, and each checked-in catalog equals what the Kotlin designs capture.
       - name: Test
         run: ./gradlew :livery-contracts:jvmTest :livery-catalog:test
+
+      # The app path, in the build type that bundles the catalogs: each conference's designs in the
+      # agenda, per-conference arms, and the native arm never building Livery. Android CI only
+      # runs the debug unit tests, where these skip.
+      - name: App slots (sduiDebug)
+        run: ./gradlew :androidApp:testSduiDebugUnitTest --tests '*LiverySlotsTest*'
 
       # `livery build --inspect` per series. The serial is the build time (Livery's default), so it
       # only grows, and the weekly republish's fresh expiry is a newer catalog to installed apps.

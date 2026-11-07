@@ -1,4 +1,5 @@
 import androidx.compose.material3.MaterialTheme
+import dev.johnoreilly.confetti.ui.components.NativeComponents
 import dev.johnoreilly.confetti.preview.PreviewImages
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
@@ -12,11 +13,13 @@ class ScreenshotTest {
     fun SessionDetailsPreview() {
         PreviewImages {
             MaterialTheme {
-                SessionDetailViewShared(
-                    conference = "kotlinconf2023",
-                    session = sessionDetails,
-                    onSpeakerClick = {},
-                )
+                with(NativeComponents()) {
+                    SessionDetailViewShared(
+                        conference = "kotlinconf2023",
+                        session = sessionDetails,
+                        onSpeakerClick = {},
+                    )
+                }
             }
         }
     }

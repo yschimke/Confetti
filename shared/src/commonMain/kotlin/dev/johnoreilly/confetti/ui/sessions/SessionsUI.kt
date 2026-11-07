@@ -1,5 +1,6 @@
 package dev.johnoreilly.confetti.ui.sessions
 
+import dev.johnoreilly.confetti.ui.components.LocalConferenceComponents
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
@@ -52,20 +53,22 @@ fun SessionsUI(
                     isLoggedIn = component.isLoggedIn,
                 )
             } else {
-                SessionListView(
-                    uiState = uiState,
-                    sessionSelected = component::onSessionClicked,
-                    addBookmark = {
-                        // Bookmarks might be sent as notifications
-                        notificationPermissionState.maybeRequest()
-                        component.addBookmark(it)
-                    },
-                    removeBookmark = component::removeBookmark,
-                    onRefresh = component::refresh,
-                    onNavigateToSignIn = component::onSignInClicked,
-                    onTrackSelectionChanged = component::onTrackSelectionChanged,
-                    isLoggedIn = component.isLoggedIn,
-                )
+                with(LocalConferenceComponents.current) {
+                    SessionListView(
+                        uiState = uiState,
+                        sessionSelected = component::onSessionClicked,
+                        addBookmark = {
+                            // Bookmarks might be sent as notifications
+                            notificationPermissionState.maybeRequest()
+                            component.addBookmark(it)
+                        },
+                        removeBookmark = component::removeBookmark,
+                        onRefresh = component::refresh,
+                        onNavigateToSignIn = component::onSignInClicked,
+                        onTrackSelectionChanged = component::onTrackSelectionChanged,
+                        isLoggedIn = component.isLoggedIn,
+                    )
+                }
             }
         }
     }

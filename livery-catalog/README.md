@@ -65,14 +65,17 @@ livery-contracts/   Contracts.kt: the four contracts, typed (KMP: Android, iOS, 
         │  used by both sides
         ├── livery-catalog/   designs as @RemoteComposable functions (rc-players' CMP fork of
         │                     remote-creation-compose), captured to .rc on the JVM, plus
-        │                     plus themes, placements, experiments and fonts (data)
+        │                     plus themes, placements and fonts (data)
         │       └── catalogs/<series>/  one Livery catalog source tree per conference series:
         │                     what `livery build` publishes to the livery-templates branch
         │
-        └── shared/ui/livery  ConferenceSlot / PromoSlot: contract-typed slots in the shared
-                              Compose UI, each with Confetti's own UI as the fallback
-androidApp/livery/            the repository (catalog bundled into assets by Livery's Gradle
-                              plugin) provided as LocalLiveryStyling
+        ├── shared/ui/components  ConferenceComponents: what the screens draw a conference's
+        │                     header, session cards and promotions with (a context parameter):
+        │                     NativeComponents, or SduiComponents choosing per conference
+        └── shared/ui/livery  LiveryComponents: contract-typed slots, each with the native
+                              implementation as the fallback
+androidApp/livery/            Firebase Remote Config arms, the repositories (catalogs bundled into
+                              sduiDebug's assets), Livery on the app's OkHttpClient
 ```
 
 ```bash
@@ -119,7 +122,7 @@ Every contract also takes the conference palette as theme roles (`theme.primary`
 1. **Conference-styled components.** Designs carry a `series` tag (`droidcon`, `kotlinconf`);
    the app maps a conference id to its series (`ConferenceSeries`) and asks for that tag. A
    conference with no designs keeps Confetti's UI, as does any platform that hasn't provided
-   `LocalLiveryStyling`.
+   other `ConferenceComponents` than the native ones.
 2. **Conference assets.** The header shows the conference's own branding and copy, and a theme
    pack per series (`catalogs/<series>/themes/`) holds the palette as data: change a colour there and every
    template follows, with no new document.
@@ -136,7 +139,7 @@ Every contract also takes the conference palette as theme roles (`theme.primary`
 | Surface | Status here |
 | --- | --- |
 | Phone and tablet (Android) | Wired: agenda header, promotion and session cards, promotions under sessions and on speaker pages. Only in the `sduiDebug` build type (see below); every other variant draws Confetti's own UI |
-| iOS, desktop, web | The same shared slots compile for every target; each platform needs only to provide `LocalLiveryStyling` (a repository and a bundled or hosted catalog) |
+| iOS, desktop, web | The same shared components compile for every target; each platform needs only to provide `LocalConferenceComponents` (Livery's needs a repository and a bundled or hosted catalog) |
 | Launcher widget | Templates authored (`launcher` target); next: a `LiveryLauncherWidgetProvider` for "next session" |
 | Wear | Templates authored (`wear-widget`, `wear:large`); next: a `LiveryWearWidget` beside the existing tiles |
 
@@ -191,7 +194,7 @@ droidcon publish can't blank KotlinConf's agenda.
    `livery/<series>/` by `BuildLiveryCatalog` tasks, sduiDebug only. First launch and offline
    draw these.
 3. **Confetti's own composable**, when neither has a template for the slot, the conference has no
-   series, or the user is in the native arm. So the old composables can be deleted only once
+   series, or the user is in the native arm (where Livery is never built). So the old composables can be deleted only once
    every slot has a template in the bundled catalog.
 
 Later the channel can move to `joreilly/confetti-templates` (a repository of its own fits
@@ -208,19 +211,34 @@ ships it. The renders use the same files.
 | --- | --- |
 | ![](renders/droidcon-session-in-app.png) | ![](renders/kotlinconf-session-in-app.png) |
 
-**The A/B test: Livery against the composables.** `experiments/sdui.json` in each catalog splits
-users between `native` (Confetti's composables) and `livery` (the conference's designs): 50/50
-for droidcon, 25/75 for KotlinConf. It's data: a conference changes its split or ends the test
-with a PR to its catalog. Arms are assigned on the device (`LocalBucketing`, sticky per install's
-bucketing id, the same on every platform). Users who aren't enrolled get `livery`.
+**Screens draw through `ConferenceComponents`.** The agenda, session and speaker screens take it
+as a context parameter (`context(components: ConferenceComponents)`) and call
+`components.SessionCard(…)`, `components.ConferenceHeader(…)` and `components.Promo(…)`. Each
+screen's entry point supplies it from `LocalConferenceComponents`; previews and the platform
+wrappers pass `NativeComponents()`. The interface has no Livery types, so:
 
-**Interaction tracking.** Every event goes to Confetti's own `AnalyticsLogger` as Livery's flat
-analytics events (logcat in debug, Firebase in release): `livery_impression`, `livery_viewable`,
-`livery_action` with `action` = the contract action (`open`, `bookmark`, `tickets`, `cta`),
-`livery_leave` with `duration_ms`, and `livery_exposure` once per arm. Every event carries
-`exp_sdui`. In the native arm the composable gets a `SlotTracker`, and Confetti's own session
-row reports its impression and its taps under the same action names, with `design_id=native`,
-so tap-through compares across arms. `LiverySlotsTest.nativeArm` checks this.
+- `NativeComponents` is Confetti's own composables, and what every build but sduiDebug uses;
+- `LiveryComponents` draws the conference's designs, falling back to `NativeComponents`;
+- `SduiComponents` picks one per conference from its arm, and builds the Livery side on first
+  use, so a session where every conference is in the native arm never constructs a repository,
+  reads a bundled catalog or fetches a template (`LiverySlotsTest.nativeArmNeverBuildsLivery`).
+
+**The A/B test: Livery against the composables, in Firebase.** Each series has a Remote Config
+parameter, `sdui_droidcon` and `sdui_kotlinconf`, set to `native` or `livery`. Run the split as a
+Firebase A/B Testing experiment on them, say 50/50 for droidcon and 25/75 for KotlinConf: Firebase
+assigns users, counts exposures and reads the outcome from Analytics. The app reads each arm once
+per process before drawing, so a background fetch never swaps the UI mid-session. A series with
+no value yet (first launch before a fetch, or no Firebase) draws `livery`.
+`-Pconfetti.livery.arm=native|livery` pins it for QA.
+
+**Interaction tracking.** Every event goes to Confetti's own `AnalyticsLogger`, as Livery's flat
+analytics events (logcat in debug, Firebase in release):
+- `livery_impression`, `livery_viewable` and `livery_leave` with `duration_ms`;
+- `livery_action`, whose `action` is the contract action (`open`, `bookmark`, `tickets`, `cta`).
+
+Every event carries `exp_sdui` with the arm. In the native arm, Confetti's own session row
+reports its impression and taps under the same action names with `design_id=native`, through
+`SduiTracking`, which logs without loading Livery. So tap-through compares across arms.
 
 ## Findings
 
@@ -238,20 +256,26 @@ so tap-through compares across arms. `LiverySlotsTest.nativeArm` checks this.
   and "from the server" can't drift apart.
 - **Analytics shape.** `AnalyticsEventSink` fit Confetti's existing `AnalyticsLogger` with a
   three-line adapter, so iOS and web get the events through their own loggers too.
+- **One HTTP stack.** Livery's `KtorFetcher` takes any Ktor client, so `liveryHttpClient` builds it
+  on the app's own `OkHttpClient` (its pool, cache and interceptors) with Livery's settings: no
+  automatic redirects (Livery checks each hop) and its timeouts. The Remote Compose player gets
+  the same from rc-players' `agent/ktor-okhttp-engine`: OkHttp as its engine on Android and the
+  JVM instead of CIO, and `rememberCoilRcImageLoader(httpClient)` to pass the app's client.
 
 ### Friction and boilerplate (candidates for Livery)
 
-- **No "native arm".** An experiment arm can pick a design or nothing (the usual choice). An arm
-  that means "the app's own composable" has to be read by the app (`Experiments.arm`). The app
-  then emits the impression, the exposure and the taps itself, and tags every event with the arm
-  through a wrapped sink (`SeriesCatalog.events`, `NativeSlot`, `nativeTracker`, about 60
-  lines). **Livery should provide this pattern:** an arm flag (`"native": true`) that makes
-  `SlotPlanner` return `PlanResult.Native(arm)`, plus a `LiveryNativeSlot { tracker -> }` that
-  reports `Impression`, `Viewable`, `Leave` and `Action` through the same `ActionGate` rules. Then
-  "Livery vs what we had" is one JSON file and no app code.
-- **Arms ignore slot context.** `Experiments` takes one `DecisionContext` provider, but arms here
-  depend on the conference (segments), so the app builds a second `Experiments` per call.
-  `arm(id, context)` would fix it.
+- **Native vs Livery isn't a Livery experiment.** A catalog experiment can only be read once the
+  catalog is loaded, which is exactly what the native arm must avoid. So the arm comes from
+  Firebase, before Livery. The app also tracks native rows in Livery's event shape itself
+  (`SduiTracking`). **Livery could provide this pattern** as a small Livery-free module:
+  - a `components` interface split, as here;
+  - an `ArmSource` (Remote Config, local bucketing) read before any repository is built;
+  - a native tracker that emits Livery's event names without its runtime.
+
+  Then "Livery vs what we had" is configuration, not app code.
+- **Arms ignore slot context.** `Experiments` takes one `DecisionContext` provider, but per
+  conference arms depend on the conference. `arm(id, context)` would fix it, for design arms
+  inside a catalog.
 - **One catalog per Gradle plugin.** The plugin bundles one source tree into every variant. Per
   conference and per build type meant registering `BuildLiveryCatalog` tasks by hand (the class is
   public, which saved it). A `livery { catalogs { register("droidcon") { … } }; variants = … }`

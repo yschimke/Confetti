@@ -1,5 +1,6 @@
 package dev.johnoreilly.confetti.ui.speakers
 
+import dev.johnoreilly.confetti.ui.components.LocalConferenceComponents
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
@@ -58,17 +59,19 @@ fun SpeakerDetailsUI(component: SpeakerDetailsComponent) {
     when (val state = uiState) {
         is SpeakerDetailsUiState.Loading -> LoadingView()
         is SpeakerDetailsUiState.Error -> ErrorView()
-        is SpeakerDetailsUiState.Success -> SpeakerDetailsView(
-            conference = state.conference,
-            speaker = state.details,
-            isBookmarked = { state.bookmarks.contains(it) },
-            addBookmark = component::addBookmark,
-            removeBookmark = component::removeBookmark,
-            onNavigateToSignIn = component::onSignInClicked,
-            isLoggedIn = component.isLoggedIn,
-            navigateToSession = component::onSessionClicked,
-            popBack = component::onCloseClicked,
-            onSocialLinkClicked = uriHandler::openUri
-        )
+        is SpeakerDetailsUiState.Success -> with(LocalConferenceComponents.current) {
+            SpeakerDetailsView(
+                conference = state.conference,
+                speaker = state.details,
+                isBookmarked = { state.bookmarks.contains(it) },
+                addBookmark = component::addBookmark,
+                removeBookmark = component::removeBookmark,
+                onNavigateToSignIn = component::onSignInClicked,
+                isLoggedIn = component.isLoggedIn,
+                navigateToSession = component::onSessionClicked,
+                popBack = component::onCloseClicked,
+                onSocialLinkClicked = uriHandler::openUri
+            )
+        }
     }
 }

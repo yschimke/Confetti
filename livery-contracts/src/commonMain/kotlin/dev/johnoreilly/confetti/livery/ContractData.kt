@@ -101,12 +101,10 @@ data class SpeakerCard(
 
 /**
  * The first A/B test: Livery's conference designs against Confetti's own composables, the ones the
- * slots fall back to anyway. Declared in every conference catalog (`experiments/sdui.json`), so a
- * conference can change its split, or end the test, as data.
- *
- * Neither arm names a design, so Livery's design selection ignores the experiment; the app reads
- * the arm itself (`Experiments.arm`) and, for [NATIVE], draws the composable and reports its
- * impression and taps under the same contract action names a design would.
+ * slots fall back to anyway. Run with Firebase A/B Testing over Remote Config: one parameter per
+ * conference series, `sdui_<series>` (`sdui_droidcon`, `sdui_kotlinconf`), set to an arm. The app
+ * reads the arm before drawing (`SduiArms`), so the native arm never loads Livery, and every
+ * event from either arm carries `exp_sdui` with the same contract action names.
  */
 object SduiExperiment {
     const val ID = "sdui"

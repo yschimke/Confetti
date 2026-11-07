@@ -26,8 +26,8 @@ import dev.johnoreilly.confetti.decompose.DefaultAppComponent
 import dev.johnoreilly.confetti.decompose.ThemeBrand
 import dev.johnoreilly.confetti.decompose.UserEditableSettings
 import dev.johnoreilly.confetti.ui.App
-import dev.johnoreilly.confetti.ui.livery.LiveryStyling
-import dev.johnoreilly.confetti.ui.livery.LocalLiveryStyling
+import dev.johnoreilly.confetti.ui.components.ConferenceComponents
+import dev.johnoreilly.confetti.ui.components.LocalConferenceComponents
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
@@ -41,7 +41,7 @@ class MainActivity : ComponentActivity() {
 
         var userEditableSettings by mutableStateOf<UserEditableSettings?>(null)
         val signInProcess: SignInProcess by inject()
-        val liveryStyling: LiveryStyling by inject()
+        val components: ConferenceComponents by inject()
 
         val appComponent =
             handleDeepLink { uri ->
@@ -71,8 +71,9 @@ class MainActivity : ComponentActivity() {
         }
 
         setContent {
-            // Conference-styled slots from the bundled Livery catalog (see livery/ConfettiLivery.kt).
-            CompositionLocalProvider(LocalLiveryStyling provides if (BuildConfig.LIVERY_ENABLED) liveryStyling else null) {
+            // What the screens draw their conference components with: native, or per conference
+            // its sdui arm in the sduiDebug build (see livery/ConfettiLivery.kt).
+            CompositionLocalProvider(LocalConferenceComponents provides components) {
                 App(component = appComponent)
             }
         }

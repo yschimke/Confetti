@@ -36,18 +36,23 @@ import dev.johnoreilly.confetti.isBreak
 import dev.johnoreilly.confetti.isService
 import dev.johnoreilly.confetti.listTags
 import dev.johnoreilly.confetti.ui.LocalBottomNavigationPadding
+import dev.johnoreilly.confetti.ui.components.ConferenceComponents
+import dev.johnoreilly.confetti.ui.components.NativeComponents
+import dev.johnoreilly.confetti.ui.components.SessionCardModel
+import dev.johnoreilly.confetti.ui.components.SlotTracker
+import androidx.compose.foundation.layout.fillMaxWidth
 import dev.johnoreilly.confetti.ui.trackColor
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.Arrangement
-import dev.johnoreilly.confetti.ui.livery.SessionCardSlot
-import dev.johnoreilly.confetti.ui.livery.SlotTracker
-import dev.johnoreilly.confetti.livery.SessionContract
-import dev.johnoreilly.confetti.ui.livery.PromoSlot
-import dev.johnoreilly.confetti.ui.livery.ConferenceHeaderSlot
 
+/**
+ * The agenda. The conference header, promotion and session cards are drawn by [components], the
+ * context the screen's entry point supplies: Confetti's own composables, or a conference's designs.
+ */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
+context(components: ConferenceComponents)
 fun SessionListView(
 
     uiState: SessionsUiState,
@@ -149,8 +154,8 @@ fun SessionListView(
                                     modifier = Modifier.padding(horizontal = 16.dp),
                                     verticalArrangement = Arrangement.spacedBy(8.dp),
                                 ) {
-                                    ConferenceHeaderSlot(uiState)
-                                    PromoSlot(placement = "home.feed", conference = uiState.conference)
+                                    components.ConferenceHeader(uiState)
+                                    components.Promo("home.feed", uiState.conference, Modifier.fillMaxWidth())
                                 }
                             }
 
@@ -161,43 +166,24 @@ fun SessionListView(
                                 }
 
                                 itemsIndexed(sessions) { index, session ->
-                                    val isBookmarked = uiState.bookmarks.contains(session.id)
-                                    // Confetti's own row. As a slot's fallback it reports its taps
-                                    // under the session contract's actions, like a design would.
-                                    val nativeItem = @Composable { tracker: SlotTracker ->
-                                        SessionItemView(
-                                            session = session,
-                                            sessionSelected = { tracker.action(SessionContract.open); sessionSelected(it) },
-                                            isBookmarked = isBookmarked,
-                                            addBookmark = { tracker.action(SessionContract.bookmark); addBookmark(it) },
-                                            removeBookmark = { tracker.action(SessionContract.bookmark); removeBookmark(it) },
-                                            onNavigateToSignIn = onNavigateToSignIn,
-                                            isLoggedIn = isLoggedIn,
-                                            trackColor = session.trackColor(uiState.tracks),
-                                            tags = session.listTags(trackNames, uiState.selectedTracks),
-                                        )
-                                    }
+                                    val card = SessionCardModel(
+                                        conference = uiState.conference,
+                                        session = session,
+                                        now = uiState.now,
+                                        isBookmarked = uiState.bookmarks.contains(session.id),
+                                        isLoggedIn = isLoggedIn,
+                                        trackColor = session.trackColor(uiState.tracks),
+                                        tags = session.listTags(trackNames, uiState.selectedTracks),
+                                        sessionSelected = sessionSelected,
+                                        addBookmark = addBookmark,
+                                        removeBookmark = removeBookmark,
+                                        onNavigateToSignIn = onNavigateToSignIn,
+                                    )
                                     if (session.isBreak() || session.isService()) {
-                                        nativeItem(SlotTracker.None)
+                                        // Breaks are the agenda's own, never a conference's design.
+                                        NativeComponents().SessionCard(card, SlotTracker.None)
                                     } else {
-                                        // The conference's session design when it has one (Livery)
-                                        // and the user is in the sdui experiment's livery arm,
-                                        // else Confetti's own row.
-                                        SessionCardSlot(
-                                            conference = uiState.conference,
-                                            session = session,
-                                            now = uiState.now,
-                                            isBookmarked = isBookmarked,
-                                            onOpen = { sessionSelected(session.id) },
-                                            onToggleBookmark = {
-                                                when {
-                                                    !isLoggedIn -> onNavigateToSignIn()
-                                                    isBookmarked -> removeBookmark(session.id)
-                                                    else -> addBookmark(session.id)
-                                                }
-                                            },
-                                            fallback = nativeItem,
-                                        )
+                                        components.SessionCard(card)
                                     }
                                     val isCurrentBreak = session.isBreak() || session.isService()
                                     val isNextBreak = index < sessions.lastIndex && (sessions[index + 1].isBreak() || sessions[index + 1].isService())
@@ -217,46 +203,52 @@ fun SessionListView(
 @MobilePreviews
 @Composable
 internal fun SessionListViewLoadedPreview() {
-    SessionListView(
-        uiState = sessionsSuccessState,
-        sessionSelected = {},
-        addBookmark = {},
-        removeBookmark = {},
-        onRefresh = {},
-        onNavigateToSignIn = {},
-        onTrackSelectionChanged = {},
-        isLoggedIn = false,
-    )
+    with(NativeComponents()) {
+        SessionListView(
+            uiState = sessionsSuccessState,
+            sessionSelected = {},
+            addBookmark = {},
+            removeBookmark = {},
+            onRefresh = {},
+            onNavigateToSignIn = {},
+            onTrackSelectionChanged = {},
+            isLoggedIn = false,
+        )
+    }
 }
 
 @Preview(name = "Loading", widthDp = 411, heightDp = 914, showBackground = true)
 @Composable
 internal fun SessionListViewLoadingPreview() {
-    SessionListView(
-        uiState = SessionsUiState.Loading,
-        sessionSelected = {},
-        addBookmark = {},
-        removeBookmark = {},
-        onRefresh = {},
-        onNavigateToSignIn = {},
-        onTrackSelectionChanged = {},
-        isLoggedIn = false,
-    )
+    with(NativeComponents()) {
+        SessionListView(
+            uiState = SessionsUiState.Loading,
+            sessionSelected = {},
+            addBookmark = {},
+            removeBookmark = {},
+            onRefresh = {},
+            onNavigateToSignIn = {},
+            onTrackSelectionChanged = {},
+            isLoggedIn = false,
+        )
+    }
 }
 
 @Preview(name = "Error", widthDp = 411, heightDp = 914, showBackground = true)
 @Composable
 internal fun SessionListViewErrorPreview() {
-    SessionListView(
-        uiState = SessionsUiState.Error,
-        sessionSelected = {},
-        addBookmark = {},
-        removeBookmark = {},
-        onRefresh = {},
-        onNavigateToSignIn = {},
-        onTrackSelectionChanged = {},
-        isLoggedIn = false,
-    )
+    with(NativeComponents()) {
+        SessionListView(
+            uiState = SessionsUiState.Error,
+            sessionSelected = {},
+            addBookmark = {},
+            removeBookmark = {},
+            onRefresh = {},
+            onNavigateToSignIn = {},
+            onTrackSelectionChanged = {},
+            isLoggedIn = false,
+        )
+    }
 }
 
 /** Items above the first sticky header: the conference header and promotion. */
