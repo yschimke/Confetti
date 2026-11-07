@@ -311,7 +311,7 @@ them as JSON, and `repository.theme(id)` reads them. What's missing:
 ## Friction found in 0.1.1, fixed in Livery 0.2.0
 
 Found doing this, fixed in [yschimke/livery#14](https://github.com/yschimke/livery/pull/14) and
-released in Livery 0.2.0 (this branch is on 0.3.0):
+released in Livery 0.2.0 (this branch is on 0.4.0):
 
 - **Compose version.** Livery 0.1.1 is built against Compose Multiplatform 1.13.0-beta02. Confetti
   pins the stable androidx Compose BOM (runtime 1.12.1), so the app compiles and then every slot
