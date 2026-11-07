@@ -271,6 +271,10 @@ val liveryCatalogTasks = liverySeries.map { series ->
 }
 
 androidComponents {
+    // AGP only creates unit tests for the test build type (debug); LiverySlotsTest runs here.
+    beforeVariants(selector().withBuildType("sduiDebug")) { variant ->
+        variant.hostTests[com.android.build.api.variant.HostTestBuilder.UNIT_TEST_TYPE]?.enable = true
+    }
     onVariants(selector().withBuildType("sduiDebug")) { variant ->
         liveryCatalogTasks.forEach { variant.sources.assets?.addGeneratedSourceDirectory(it, ee.schimke.livery.gradle.BuildLiveryCatalog::outputDir) }
     }
