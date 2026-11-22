@@ -1,6 +1,6 @@
 # Confetti Livery templates
 
-Published from b958d252947bfb01f9a39ecbb9ebc26cad6b340f (branch claude/livery-variant-templates-ubsx1l). One static Livery
-catalog channel per conference series: `catalogs/<series>/manifest.json`, read by Confetti's
-sduiDebug build. Don't edit by hand: change `livery-catalog/` and let the Livery templates
-workflow publish.
+Published by the Livery templates workflow from 8fc04edcc84c01a756f847b01b2c234217718161. One static catalog
+channel per conference series: `catalogs/<series>/manifest.json`, and every design's
+previews in `renders/`. Generated from the Kotlin designs; don't edit by hand: change
+`livery/catalog/` on main.
