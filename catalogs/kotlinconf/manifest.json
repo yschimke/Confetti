@@ -1,8 +1,8 @@
 {
     "catalog": "confetti-kotlinconf",
-    "serial": 1795352007974,
-    "generatedAtEpochMs": 1795352007974,
-    "expiresAtEpochMs": 1797944007974,
+    "serial": 1795407965133,
+    "generatedAtEpochMs": 1795407965133,
+    "expiresAtEpochMs": 1797999965133,
     "minClient": 8,
     "contracts": [
         {

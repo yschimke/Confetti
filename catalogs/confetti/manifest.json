@@ -1,8 +1,8 @@
 {
     "catalog": "confetti-confetti",
-    "serial": 1795352099978,
-    "generatedAtEpochMs": 1795352099978,
-    "expiresAtEpochMs": 1797944099978,
+    "serial": 1795408042139,
+    "generatedAtEpochMs": 1795408042139,
+    "expiresAtEpochMs": 1798000042139,
     "contracts": [
         {
             "id": "confetti/break",
