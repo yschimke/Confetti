@@ -121,7 +121,7 @@ actual fun platformModule() = module {
     singleOf(::SessionNotificationSender)
     single { WorkManager.getInstance(androidContext()) }
 
-    single<CoroutineScope> { CoroutineScope(Dispatchers.Default) }
+    single<CoroutineScope> { CoroutineScope(kotlinx.coroutines.SupervisorJob() + Dispatchers.Default) }
 
     single<WearDataLayerRegistry> {
         WearDataLayerRegistry.fromContext(

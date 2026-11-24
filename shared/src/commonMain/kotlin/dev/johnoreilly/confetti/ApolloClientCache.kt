@@ -67,13 +67,17 @@ class ApolloClientCache : KoinComponent {
                 if (exception is ApolloHttpException && exception.statusCode == 401) {
                     throw exception
                 }
-            }.catch {
-                val token2 = tokenProvider.token(true)
-                if (token2 != null) {
-                    val newRequest2 = request.newBuilder().addHttpHeader("Authorization", "Bearer $token2").build()
-                    emitAll(chain.proceed(newRequest2))
+            }.catch { cause ->
+                if (cause is ApolloHttpException && cause.statusCode == 401) {
+                    val token2 = tokenProvider.token(true)
+                    if (token2 != null) {
+                        val newRequest2 = request.newBuilder().addHttpHeader("Authorization", "Bearer $token2").build()
+                        emitAll(chain.proceed(newRequest2))
+                    } else {
+                        emit(ApolloResponse.Builder(request.operation, request.requestUuid).exception(cause).build())
+                    }
                 } else {
-                    emit(ApolloResponse.Builder(request.operation, request.requestUuid).exception(it as ApolloException).build())
+                    throw cause
                 }
             }
 
@@ -132,18 +136,23 @@ class ApolloClientCache : KoinComponent {
     }
 
     fun close() {
-        _clients.values.forEach {
+        val clients = mutex.withLock {
+            _clients.values.toList().also { _clients.clear() }
+        }
+        clients.forEach {
             it.close()
             it.unregisterApolloDebugServer()
         }
-        _clients.clear()
     }
 
     suspend fun clear() {
-        _clients.values.forEach {
+        val clients = mutex.withLock {
+            _clients.values.toList().also { _clients.clear() }
+        }
+        clients.forEach {
             it.apolloStore.clearAll()
             it.close()
+            it.unregisterApolloDebugServer()
         }
-        _clients.clear()
     }
 }

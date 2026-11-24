@@ -122,7 +122,7 @@ class SessionNotificationSender(
             .orEmpty()
 
         val now = dateService.now()
-        val nowInstant = now.toInstant(conferenceTimeZone)
+        val nowInstant = now.toInstant(kotlinx.datetime.TimeZone.currentSystemDefault())
 
         for (session in sessions) {
             alarmManager.cancelAlarm(session.id)
@@ -136,6 +136,7 @@ class SessionNotificationSender(
             val sessionInstant = session.startsAt.toInstant(conferenceTimeZone)
             val triggerInstant = sessionInstant.minus(15.minutes)
             val triggerTimeMillis = triggerInstant.toEpochMilliseconds()
+            if (triggerTimeMillis <= nowInstant.toEpochMilliseconds()) continue
 
             alarmManager.scheduleAlarm(
                 conferenceId = conferenceId,

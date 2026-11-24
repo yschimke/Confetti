@@ -58,6 +58,8 @@ class RefreshWorker(
             )
             Result.success()
         }
+    } catch (ce: kotlinx.coroutines.CancellationException) {
+        throw ce
     } catch (e: Exception) {
         Result.failure()
     }
@@ -69,36 +71,38 @@ class RefreshWorker(
 
     private suspend fun cacheImages(images: Set<String>) {
         val dispatcher = Dispatchers.IO.limitedParallelism(5)
-        val cache = imageLoader.diskCache!!
+        val cache = imageLoader.diskCache ?: return
 
-        var cached = 0
-        var fetched = 0
-        var failed = 0
+        val cached = java.util.concurrent.atomic.AtomicInteger(0)
+        val fetched = java.util.concurrent.atomic.AtomicInteger(0)
+        val failed = java.util.concurrent.atomic.AtomicInteger(0)
 
         supervisorScope {
             images.forEach { url ->
-                val openSnapshot = cache.openSnapshot(url).also {
-                    it?.close()
-                }
-                if (openSnapshot == null) {
-                    val request = ImageRequest.Builder(appContext)
-                        .data(url)
-                        .memoryCachePolicy(CachePolicy.DISABLED)
-                        .dispatcher(dispatcher)
-                        .build()
-                    val result = imageLoader.execute(request)
-
-                    when (result) {
-                        is SuccessResult -> fetched++
-                        is ErrorResult -> failed++
+                kotlinx.coroutines.launch(dispatcher) {
+                    val openSnapshot = cache.openSnapshot(url).also {
+                        it?.close()
                     }
-                } else {
-                    cached++
+                    if (openSnapshot == null) {
+                        val request = ImageRequest.Builder(appContext)
+                            .data(url)
+                            .memoryCachePolicy(CachePolicy.DISABLED)
+                            .dispatcher(dispatcher)
+                            .build()
+                        val result = imageLoader.execute(request)
+
+                        when (result) {
+                            is SuccessResult -> fetched.incrementAndGet()
+                            is ErrorResult -> failed.incrementAndGet()
+                        }
+                    } else {
+                        cached.incrementAndGet()
+                    }
                 }
             }
         }
 
-        println("cacheImages cached=$cached fetched=$fetched failed=$failed")
+        println("cacheImages cached=${cached.get()} fetched=${fetched.get()} failed=${failed.get()}")
     }
     companion object {
         fun WorkRefresh(conference: String): String = "refresh-$conference"

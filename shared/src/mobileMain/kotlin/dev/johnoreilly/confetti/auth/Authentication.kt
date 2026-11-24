@@ -23,6 +23,8 @@ class DefaultUser(
     override suspend fun token(forceRefresh: Boolean): String? {
         return try {
             user_?.getIdToken(forceRefresh)
+        } catch (ce: kotlinx.coroutines.CancellationException) {
+            throw ce
         } catch (e: FirebaseAuthException) {
             // TODO log to firebase
             null
@@ -46,6 +48,8 @@ class DefaultAuthentication(
             Firebase.auth.signInWithCredential(credential)
             onTokenChanged(idToken)
             SignInSuccess
+        } catch (ce: kotlinx.coroutines.CancellationException) {
+            throw ce
         } catch (e: FirebaseAuthException) {
             // TODO log to firebase
             SignInError(e)
@@ -67,7 +71,7 @@ private fun FirebaseUser.toUser(): User {
     return DefaultUser(
         name = displayName ?: "",
         email = email,
-        photoUrl = photoURL.toString(),
+        photoUrl = photoURL?.toString(),
         uid = uid,
         user_ = this
     )

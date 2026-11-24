@@ -50,14 +50,15 @@ class SpeakersSimpleComponent(
     private val coroutineScope = coroutineScope()
 
     val speakers: StateFlow<SpeakersUiState> = flow {
-        repository.conferenceData(conference, FetchPolicy.CacheFirst)
+        val speakers = repository.conferenceData(conference, FetchPolicy.CacheFirst)
             .data?.speakers?.nodes?.map {
                 it.speakerDetails
-            }.let {
-                it?.let {
-                    emit(SpeakersUiState.Success(conference, it))
-                }
             }
+        if (speakers != null) {
+            emit(SpeakersUiState.Success(conference, speakers))
+        } else {
+            emit(SpeakersUiState.Error)
+        }
     }
         // Offload speaker mapping to Default dispatcher to keep UI responsive.
         .flowOn(Dispatchers.Default)

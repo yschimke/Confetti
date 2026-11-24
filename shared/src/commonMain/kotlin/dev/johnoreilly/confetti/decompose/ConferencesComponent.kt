@@ -108,7 +108,7 @@ class DefaultConferencesComponent(
     }
 
     private fun groupConferencesByYear(conferences: List<GetConferencesQuery.Conference>): Map<Int, List<GetConferencesQuery.Conference>> {
-        return conferences.groupBy { it.days[0].year }
+        return conferences.filter { it.days.isNotEmpty() }.groupBy { it.days[0].year }
     }
 
     override fun onConferenceClicked(conference: GetConferencesQuery.Conference) {

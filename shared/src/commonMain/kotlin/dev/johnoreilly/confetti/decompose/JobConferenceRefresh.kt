@@ -21,7 +21,7 @@ class JobConferenceRefresh : KoinComponent {
 
     fun refresh() {
         refreshJob?.cancel()
-        coroutineScope.launch {
+        refreshJob = coroutineScope.launch {
             updateCache(
                 true,
                 fetchImages = false,

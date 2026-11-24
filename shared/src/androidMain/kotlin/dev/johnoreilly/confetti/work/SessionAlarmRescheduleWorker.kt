@@ -22,14 +22,22 @@ class SessionAlarmRescheduleWorker(
     override suspend fun doWork(): Result = try {
         notificationSender.updateSchedule()
         Result.success()
+    } catch (ce: kotlinx.coroutines.CancellationException) {
+        throw ce
     } catch (e: Exception) {
         Result.failure()
     }
 
     companion object {
+        private const val WORK_NAME = "session-alarm-reschedule"
+
         fun enqueue(workManager: WorkManager) {
             val request = OneTimeWorkRequestBuilder<SessionAlarmRescheduleWorker>().build()
-            workManager.enqueue(request)
+            workManager.enqueueUniqueWork(
+                WORK_NAME,
+                androidx.work.ExistingWorkPolicy.REPLACE,
+                request,
+            )
         }
     }
 }

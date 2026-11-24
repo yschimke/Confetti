@@ -116,15 +116,15 @@ class ConfettiRepository : KoinComponent {
     /**
      * ignores all errors unless the Flow terminates without an emission in which case it will emit an error
      */
-    private fun <D : Operation.Data> Flow<ApolloResponse<D>>.itemsOrError(operation: Operation<D>): Flow<ApolloResponse<D>> {
-        var hasValidResponse = false
-        return this.onEach {
-            if (it.data != null) {
-                hasValidResponse = true
+    private fun <D : Operation.Data> Flow<ApolloResponse<D>>.itemsOrError(operation: Operation<D>): Flow<ApolloResponse<D>> =
+        kotlinx.coroutines.flow.flow {
+            var hasValidResponse = false
+            collect { response ->
+                if (response.data != null) {
+                    hasValidResponse = true
+                    emit(response)
+                }
             }
-        }.filter {
-            it.data != null
-        }.onCompletion {
             if (!hasValidResponse) {
                 emit(
                     ApolloResponse.Builder(
@@ -134,7 +134,6 @@ class ConfettiRepository : KoinComponent {
                 )
             }
         }
-    }
 
     /**
      * Empty bookmarks data for unauthenticated users.
